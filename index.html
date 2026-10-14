@@ -232,14 +232,7 @@ h1, h2 { text-wrap: balance; }
 .cit-vib { font-family: var(--f-leitura); font-style: italic; font-size: 16px; line-height: 1.5; color: #F3E9F7; margin-top: 14px; padding-left: 12px; border-left: 3px solid rgba(246,217,168,.7); text-shadow: 0 1px 12px rgba(10,8,30,.8); }
 .cit-vib small { display: block; font-family: var(--f-ui); font-style: normal; font-size: 12.5px; font-weight: 600; color: #EADBC9; margin-top: 4px; }
 .vib-incluir { margin-top: 12px; }
-.silencio { width: 128px; height: 128px; margin: 16px auto 0; padding: 10px; border-radius: 50%; background: radial-gradient(circle, rgba(14,12,38,.62) 0%, rgba(14,12,38,.38) 55%, rgba(14,12,38,0) 72%); }
-.silencio svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
-.silencio circle { fill: none; stroke-width: 4.5; stroke-linecap: round; }
-.silencio .trilho { stroke: rgba(255,238,214,.28); }
-.silencio .arco { stroke: #FBE7C2; filter: drop-shadow(0 0 6px rgba(255,230,190,.8)); }
-.silencio.fim .arco { animation: brilho-silencio 2.4s ease-in-out infinite; }
-@keyframes brilho-silencio { 50% { stroke: #FFFFFF; filter: drop-shadow(0 0 14px rgba(255,240,210,1)); } }
-@media (prefers-reduced-motion: reduce) { .halo-vib, .silencio.fim .arco { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .halo-vib { animation: none; } }
 
 /* ---------- Prece final ---------- */
 .prece-texto { margin: 18px 0 0; padding: 0 28px; max-height: 46vh; overflow-y: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
@@ -661,6 +654,8 @@ h1, h2 { text-wrap: balance; }
 .cit-inf { font-family: var(--f-leitura); font-style: italic; font-size: 15px; line-height: 1.5; color: #3E4A6E; }
 .cit-inf small { display: block; font-family: var(--f-ui); font-style: normal; font-size: 12.5px; color: #5E6A8C; margin-top: 2px; }
 .btn-texto.claro-inf { align-self: center; color: #2B3A6A; }
+/* Na tela final o texto fica sobre a mesa escura da pintura: ganha uma pílula clara para ser lido. */
+#anotar { align-self: center; padding: 9px 18px; border-radius: 999px; color: var(--tinta); background: rgba(251,244,232,.9); text-decoration: none; box-shadow: 0 6px 18px rgba(30,22,40,.22); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .brilho-inf { position: absolute; left: 76px; top: 76px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #FFF, #FFE7AE 50%, rgba(255,231,174,0) 72%); pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .ceu-inf i, .cisco-inf .cisco, .cisco-inf .asa-e, .cisco-inf .asa-d, .cisco .olhos, .cisco-inf .braco-d, .cisco-inf .aura { animation: none !important; } }
 
@@ -975,26 +970,21 @@ h1, h2 { text-wrap: balance; }
 
   // Vibrar é irradiar: transmitir, pelo pensamento e pela vontade, bons fluidos a distância (FEB, Orientação ao
   // Atendimento Espiritual, irradiação; O Evangelho segundo o Espiritismo, cap. XXVII, itens 10 e 15). Os destinos seguem
-  // a irradiação da FEB, as preces por outrem do cap. XXVIII e o roteiro da FEESP (2025), que termina no minuto de silêncio.
+  // a irradiação da FEB e as preces por outrem do cap. XXVIII. São quatro, sem o minuto de silêncio (pedido do usuário,
+  // 14/10/2026): o lar, quem precisa (com os nomes da família), os que partiram e a humanidade.
   // Cada vibração acende mais uma parte da cidade.
   var VIBRACOES = [
-    { t: 'Unidos num só pensamento', f: 'Respirem devagar e aquietem a mente. Juntos, como uma só família, vamos doar amor e paz a quem precisa.',
+    { t: 'Pelo nosso lar', id: 'lar', f: 'Unidos num só pensamento, envolvemos em luz cada um desta casa. Que haja paciência, perdão e alegria entre nós durante a semana.',
       cit: ['A prece em comum tem ação mais poderosa, quando todos os que oram se associam de coração a um mesmo pensamento e colimam o mesmo objetivo…', 'O Evangelho segundo o Espiritismo, cap. XXVII, item 15'] },
-    { t: 'Pelo nosso lar', id: 'lar', f: 'Envolvemos em luz cada um desta casa. Que haja paciência, perdão e alegria entre nós durante a semana.' },
-    { t: 'Por quem lembramos hoje', id: 'nomes', f: 'Pelos parentes e amigos doentes, pelos que passam por aflição e pelos que estão sozinhos: que recebam força e consolo.' },
-    { t: 'Por quem nos magoou', f: 'Mandamos paz a quem nos feriu ou nos quer mal, sem guardar mágoa. Perdoamos, como desejamos ser perdoados.' },
+    { t: 'Por quem precisa de amparo', id: 'nomes', f: 'Pelos parentes e amigos doentes, pelos que passam por aflição, pelos que estão sozinhos e por quem perdeu a esperança: que recebam força e consolo.' },
     { t: 'Pelos que já partiram', f: 'Pelos nossos afetos que voltaram à vida espiritual: que sintam o nosso carinho, sem a nossa tristeza. E por todos os Espíritos que sofrem e pedem preces.' },
-    { t: 'Pelos que sofrem no corpo e na alma', f: 'Pelos doentes nos hospitais e nos lares, pelos que lutam contra os vícios e a tristeza profunda, e por quem perdeu a esperança na vida: que sintam que não estão sós.' },
-    { t: 'Pela paz entre os povos', f: 'Pelos que sofrem com as guerras e a violência, e por todos os que trabalham para que elas acabem. Pelos governantes, para que governem com justiça.' },
-    { t: 'Pelos trabalhadores do bem', f: 'Pelas casas espíritas e por todos os que servem ao próximo: quem cura, quem ensina e quem cuida de crianças, de jovens e de idosos.' },
-    { t: 'Pelo Evangelho em todos os lares', f: 'Que a mensagem de Jesus chegue a todos os lares e seja compreendida e vivida. Pela fraternidade, pela paz e pelo equilíbrio de toda a humanidade.' },
-    { t: 'Um minuto de silêncio', id: 'silencio', f: 'Agora, em silêncio, cada um fala com Jesus no próprio coração e pede amparo, força e coragem para os desafios da semana.' }
+    { t: 'Pela paz no mundo', f: 'Pela paz entre os povos e por todos os que servem ao próximo. Que a mensagem de Jesus chegue a todos os lares e seja compreendida e vivida.' }
   ];
   function juntarNomes(l) { return l.length < 2 ? l.join('') : l.slice(0, -1).join(', ') + ' e ' + l[l.length - 1]; }
   function fraseVibracao(v) {
     var casa = (fam.pessoas || []).map(function (p) { return p.nome; }).filter(Boolean);
-    if (v.id === 'lar' && casa.length) return 'Envolvemos em luz cada um desta casa: ' + juntarNomes(casa) + '. Que haja paciência, perdão e alegria entre nós durante a semana.';
-    if (v.id === 'nomes' && fam.nomes.length) return 'Mandamos força e consolo a ' + juntarNomes(fam.nomes) + ', e a todos os que passam por aflição ou estão sozinhos.';
+    if (v.id === 'lar' && casa.length) return 'Unidos num só pensamento, envolvemos em luz cada um desta casa: ' + juntarNomes(casa) + '. Que haja paciência, perdão e alegria entre nós durante a semana.';
+    if (v.id === 'nomes' && fam.nomes.length) return 'Mandamos força e consolo a ' + juntarNomes(fam.nomes) + ', e a todos os doentes, aos que passam por aflição e aos que estão sozinhos.';
     return v.f;
   }
 
@@ -1026,7 +1016,7 @@ h1, h2 { text-wrap: balance; }
     { id: 'prece', nome: 'Prece inicial', min: 3, img: 'prece', tom: 'claro' },
     { id: 'inicial', nome: 'Leitura inicial', min: 3, img: 'mesa', tom: 'claro' },
     { id: 'evangelho', nome: 'O Evangelho', min: 7, img: 'leitura', tom: 'claro' },
-    { id: 'vibracoes', nome: 'Vibrações', min: 7, img: 'vib', tom: 'escuro' },
+    { id: 'vibracoes', nome: 'Vibrações', min: 4, img: 'vib', tom: 'escuro' },
     { id: 'final', nome: 'Prece final', min: 2, img: 'final', tom: 'escuro' },
     { id: 'agua', nome: 'Água fluidificada', min: 1, img: 'mesa', tom: 'claro', opcional: true }
   ];
@@ -1889,11 +1879,10 @@ h1, h2 { text-wrap: balance; }
       var v = VIBRACOES[estado.vib];
       return cab('Vibrações', '') +
         '<div class="cabeca vib-cena" style="padding-top:6px"><div class="halo-vib" aria-hidden="true"></div>' +
-        '<p class="vib-num">' + (v.id === 'silencio' ? 'Para terminar' : (estado.vib ? 'Vibração ' + estado.vib + ' de ' + (VIBRACOES.length - 2) : 'Antes de vibrar')) + '</p>' +
+        '<p class="vib-num">Vibração ' + (estado.vib + 1) + ' de ' + VIBRACOES.length + '</p>' +
         '<h2 class="vib-titulo" id="vib-titulo">' + esc(v.t) + '</h2><p class="vib-frase" id="vib-frase">' + esc(fraseVibracao(v)) + '</p>' +
         (v.cit ? '<p class="cit-vib">“' + v.cit[0] + '”<small>' + v.cit[1] + '</small></p>' : '') +
         (v.id === 'nomes' ? '<button type="button" class="btn-texto vib-incluir" id="vib-incluir">Incluir alguém</button>' : '') +
-        (v.id === 'silencio' ? '<div class="silencio" id="silencio" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="trilho"/><circle cx="60" cy="60" r="52" class="arco" id="arco-silencio"/></svg></div>' : '') +
         '</div>' +
         pe((estado.vib ? '' : '<p class="vib-guia">Vibrar não é pedir: é doar, em pensamento, amor, paz e equilíbrio. Fiquem alguns instantes em cada vibração.</p>') + proxBtn());
     },
@@ -2054,7 +2043,7 @@ h1, h2 { text-wrap: balance; }
     }
     if (id === 'agua') fluidificarAgua();
     if (id === 'vibracoes') {
-      var luz = Math.min(5, 1 + Math.floor(estado.vib * 5 / VIBRACOES.length));
+      var luz = 1 + Math.round(estado.vib * 4 / Math.max(1, VIBRACOES.length - 1));
       if (estado.vib === 0) setTimeout(function () { if (telaAtual === 'encontro') acenderCidade(1); }, 700); else acenderCidade(luz);
       if (anima) G.from('#vib-titulo, #vib-frase, .cit-vib, #vib-incluir', { y: 16, opacity: 0, duration: 1, ease: 'expo.out', stagger: .12 });
       var inc = $('#vib-incluir'); if (inc) inc.addEventListener('click', function () {
@@ -2068,16 +2057,6 @@ h1, h2 { text-wrap: balance; }
           i.addEventListener('keydown', function (e) { if (e.key === 'Enter') ok(); });
         });
       });
-      // O minuto de silêncio: um anel de luz se fecha devagar em 60 segundos e um som suave avisa o fim.
-      var arco = $('#arco-silencio'); if (arco) {
-        var L = 2 * Math.PI * 52; arco.style.strokeDasharray = L; arco.style.strokeDashoffset = L;
-        var t0 = performance.now(), passo = function (t) {
-          if (!document.body.contains(arco)) return;
-          var k = Math.min(1, (t - t0) / 60000); arco.style.strokeDashoffset = L * (1 - k);
-          if (k < 1) requestAnimationFrame(passo); else { Som.suave(); $('#silencio').classList.add('fim'); }
-        };
-        requestAnimationFrame(passo);
-      }
     }
     if (id === 'final') {
       // Outra prece: o texto se apaga como estrelas e a nova prece acende, com sino e brilho.
@@ -2921,14 +2900,19 @@ h1, h2 { text-wrap: balance; }
     if (b.hasAttribute('data-fim-inf')) { festejar(); setTimeout(function () { irA(inf.volta); }, anima ? 1200 : 0); }
   });
   $('#fechar-inf').addEventListener('click', function () { irA(inf.volta); });
-  // A história da vez: a próxima ainda sem figurinha (assim cada encontro traz uma nova).
+  // A história da vez (pedido do usuário, 14/10/2026): a mesma do Evangelho que a família acabou de ler, quando ela
+  // tem versão infantil; senão, uma ao acaso, sem repetir a última contada.
   function abrirEvangelhinho(volta) {
     inf.volta = volta || telaAtual || 'inicio';
     carregarInfantil().then(function () {
-      var album = lerLocal('lar-figurinhas', {}), n = INFANTIL.trechos.length, k = 0;
-      while (k < n && album[k] !== undefined) k++;
+      var n = INFANTIL.trechos.length, doDia = versaoInfantil(), k = doDia ? INFANTIL.trechos.indexOf(doDia) : -1;
+      if (k < 0) {
+        var ultima = (lerLocal('lar-evangelhinho', [])[0] || {}).t;
+        k = Math.floor(Math.random() * n);
+        if (n > 1 && k === ultima) k = (k + 1 + Math.floor(Math.random() * (n - 1))) % n;
+      }
       var ff = faixasDaFamilia();
-      inf = { cena: 0, look: lerLocal('lar-cisco', 0), faixa: ff.pequenos && !ff.criancas ? 'pequenos' : 'criancas', trecho: k < n ? k : Math.floor(Math.random() * n), par: 0, perg: 0, acertos: 0, luz: {}, pontos: 0, linhaPN: 0, volta: inf.volta };
+      inf = { cena: 0, look: lerLocal('lar-cisco', 0), faixa: ff.pequenos && !ff.criancas ? 'pequenos' : 'criancas', trecho: k, par: 0, perg: 0, acertos: 0, luz: {}, pontos: 0, linhaPN: 0, volta: inf.volta };
       irA('evangelhinho');
     }).catch(function () { aviso('Não deu para abrir as histórias agora'); });
   }
@@ -3611,9 +3595,9 @@ h1, h2 { text-wrap: balance; }
       fonte: FEESP },
     { img: 'vib5', tom: 'escuro', passo: '3. Vibrações', titulo: 'Vibrar não é pedir',
       corpo: ['É irradiar: enviar, pelo pensamento e pela vontade, amor, paz e equilíbrio a quem precisa, perto ou longe, encarnado ou desencarnado. O app conduz uma vibração de cada vez, e a família acompanha em silêncio por alguns instantes:'],
-      lista: VIBRACOES.slice(1).map(function (v) { return v.t; }),
+      lista: VIBRACOES.map(function (v) { return v.t; }),
       cit: ['Dirigido, pois, o pensamento para um ser qualquer, na Terra ou no espaço, de encarnado para desencarnado, ou vice-versa, uma corrente fluídica se estabelece entre um e outro…', 'O Evangelho segundo o Espiritismo, cap. XXVII, item 10'],
-      fonte: 'FEB, Orientação ao Atendimento Espiritual (irradiação); O Evangelho segundo o Espiritismo, cap. XXVII e XXVIII; “Vibrar não é pedir” e o minuto de silêncio, ' + FEESP },
+      fonte: 'FEB, Orientação ao Atendimento Espiritual (irradiação); O Evangelho segundo o Espiritismo, cap. XXVII e XXVIII; “Vibrar não é pedir”, ' + FEESP },
     { img: 'final', tom: 'escuro', passo: '4. Prece final', titulo: 'Agradecer',
       corpo: ['Para encerrar, uma prece de agradecimento pelo que foi lido e pelo momento em família: com as próprias palavras ou com uma prece que o app sorteia a cada encontro: o Pai Nosso, a Prece de Cáritas ou uma das preces de O Evangelho segundo o Espiritismo.'],
       cit: ['…duas ou três, ligadas por uma mesma aspiração, orarão quais verdadeiros irmãos em Deus…', 'O Evangelho segundo o Espiritismo, cap. XXVII, item 15'], fonte: FEESP },
