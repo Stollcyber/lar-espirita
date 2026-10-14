@@ -585,6 +585,7 @@ h1, h2 { text-wrap: balance; }
 @keyframes nuvem-inf { from { transform: translateX(-60vw); } to { transform: translateX(120vw); } }
 .topo-inf { display: flex; align-items: center; gap: 12px; padding: calc(12px + env(safe-area-inset-top, 0px)) 14px 0; }
 .topo-inf .icone { background: rgba(255,255,255,.7); color: #2B3A6A; box-shadow: 0 4px 14px rgba(40,60,110,.14); }
+#voz-inf[aria-pressed="false"] .ondas-voz { opacity: .15; }
 .marca-inf { margin-left: auto; font-family: var(--f-leitura); font-weight: 600; font-size: 17px; color: #2B3A6A; }
 .palco-inf { display: flex; align-items: flex-end; gap: 4px; padding: 6px 14px 0; }
 .cisco-inf { width: 148px; flex-shrink: 0; margin-left: -8px; }
@@ -761,7 +762,7 @@ h1, h2 { text-wrap: balance; }
   <!-- EVANGELHINHO -->
   <section class="tela claro t-inf" data-tela="evangelhinho" aria-label="Evangelhinho" hidden>
     <div class="ceu-inf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="topo-inf"><button class="icone" id="fechar-inf" aria-label="Sair do Evangelhinho"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pontos-etapa" id="pontos-inf"></div><span class="marca-inf">Evangelhinho</span></div>
+    <div class="topo-inf"><button class="icone" id="fechar-inf" aria-label="Sair do Evangelhinho"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pontos-etapa" id="pontos-inf"></div><span class="marca-inf">Evangelhinho</span><button class="icone" id="voz-inf" type="button" aria-pressed="true" aria-label="Desligar a voz do Cisquinho"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="ondas-voz" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg></button></div>
     <div class="palco-inf" id="palco-inf"><div class="cisco-inf" id="cisco-inf"></div><p class="balao-inf" id="balao-inf" aria-live="polite"></p></div>
     <div class="cena-inf" id="cena-inf"></div>
   </section>
@@ -1094,7 +1095,7 @@ h1, h2 { text-wrap: balance; }
     function revelacao() { nota(587, 0, .045, 2.8); nota(740, .12, .04, 2.8); nota(880, .24, .038, 3); nota(1175, .38, .028, 3.2); }
     function suave() { nota(659, 0, .04, 2.6); nota(988, .16, .028, 2.6); }
     return {
-      sino: nota, folhear: folhear, tique: tique, revelacao: revelacao, suave: suave,
+      sino: nota, folhear: folhear, tique: tique, revelacao: revelacao, suave: suave, contexto: ac,
       ligado: function () { return ligado; },
       alternar: function () { ligado = !ligado; try { localStorage.setItem('lar-som', ligado ? 'ligado' : 'desligado'); } catch (e) {} if (ligado) suave(); return ligado; }
     };
@@ -2764,12 +2765,55 @@ h1, h2 { text-wrap: balance; }
   ];
   var inf = { cena: 0, look: lerLocal('lar-cisco', 0), faixa: 'criancas', trecho: 0, par: 0, perg: 0, acertos: 0, luz: {}, pontos: 0, linhaPN: 0, volta: 'inicio' };
   var CENAS_INF = ['oi', 'prece', 'historia', 'pensar', 'luz', 'jogo', 'tchau'];
-  function falar(texto) {
+  // Voz do Cisquinho: voz de IA (ElevenLabs, voz de menino do Projeto Crescer, a "Broto"), gerada antes em MP3 por
+  // ferramentas/vozes.mjs; o mapa texto → arquivo fica em dados/vozes-cisquinho.json. Não imita a voz de ninguém.
+  // Toca pelo mesmo contexto de áudio dos sons; uma fala nova cala a anterior; sair da tela cala. Sem arquivo para
+  // um texto, ele só mexe a boca pelo tempo da leitura.
+  var VozCisco = (function () {
+    var mapa = null, buffers = {}, atual = null, vez = 0, ligada = lerLocal('lar-voz-cisco', true) !== false;
+    var pedido = null;
+    function carregar() {
+      if (!pedido) pedido = fetch('dados/vozes-cisquinho.json').then(function (r) { return r.ok ? r.json() : {}; }).then(function (m) { mapa = m.falas || {}; return mapa; }).catch(function () { mapa = {}; return mapa; });
+      return pedido;
+    }
+    function parar() { vez++; if (atual) { try { atual.onended = null; atual.stop(); } catch (e) {} } atual = null; }
+    function falar(texto, aoFim) {
+      parar();
+      var minha = vez, a = ligada && Som.ligado() ? Som.contexto() : null, reserva = setTimeout(function () { if (minha === vez) aoFim(); }, Math.min(4000, 600 + texto.length * 45));
+      if (!a) return;
+      carregar().then(function (m) {
+        var arq = m[texto.replace(/\s+/g, ' ').trim()]; if (!arq || minha !== vez) return;
+        var pronto = buffers[arq] ? Promise.resolve(buffers[arq]) : fetch(arq).then(function (r) { return r.arrayBuffer(); }).then(function (ab) {
+          return new Promise(function (ok, erro) { a.decodeAudioData(ab, ok, erro); });
+        }).then(function (b) { buffers[arq] = b; return b; });
+        // Com o áudio do aparelho ainda travado, fica só a boca mexendo pelo tempo da leitura (a reserva).
+        pronto.then(function (b) { return a.state === 'running' ? b : a.resume().then(function () { return b; }); }).then(function (b) {
+          if (minha !== vez || a.state !== 'running') return;
+          clearTimeout(reserva);
+          var src = a.createBufferSource(), g = a.createGain(); g.gain.value = .95;
+          src.buffer = b; src.connect(g); g.connect(a.destination);
+          src.onended = function () { if (minha === vez) { atual = null; aoFim(); } };
+          src.start(); atual = src;
+        }).catch(function () {});
+      });
+    }
+    return {
+      falar: falar, parar: parar, carregar: carregar,
+      ligada: function () { return ligada; },
+      alternar: function () { ligada = !ligada; gravarLocal('lar-voz-cisco', ligada); if (!ligada) parar(); return ligada; }
+    };
+  })();
+  // Fala no balão; "voz" é o que ele diz em voz alta, quando é diferente do balão (ex.: lê a pergunta da tela).
+  function falar(texto, voz) {
     var b = $('#balao-inf'), c = $('#cisco-inf');
     b.textContent = texto;
     if (anima) { G.fromTo(b, { scale: .85, opacity: 0, transformOrigin: '20% 100%' }, { scale: 1, opacity: 1, duration: .5, ease: 'back.out(2)' }); }
-    if (c) { c.classList.add('falando'); clearTimeout(falar.t); falar.t = setTimeout(function () { c.classList.remove('falando'); }, Math.min(4000, 600 + texto.length * 45)); }
+    if (c) c.classList.add('falando');
+    VozCisco.falar(voz || texto, function () { var cc = $('#cisco-inf'); if (cc) cc.classList.remove('falando'); });
   }
+  function atualizarVozInf() { var b = $('#voz-inf'); if (!b) return; b.setAttribute('aria-pressed', VozCisco.ligada()); b.setAttribute('aria-label', VozCisco.ligada() ? 'Desligar a voz do Cisquinho' : 'Ligar a voz do Cisquinho'); }
+  $('#voz-inf').addEventListener('click', function () { var on = VozCisco.alternar(); atualizarVozInf(); aviso(on ? 'Voz do Cisquinho ligada' : 'Voz do Cisquinho desligada'); });
+  atualizarVozInf();
   function festejar() { var c = $('#cisco-inf'); if (!c) return; c.classList.remove('feliz'); void c.offsetWidth; c.classList.add('feliz'); brilhosInf(); Som.revelacao(); }
   // Brilhos redondos que saem do Cisquinho (nada de estrelas pontudas).
   function brilhosInf() {
@@ -2792,14 +2836,17 @@ h1, h2 { text-wrap: balance; }
         '<p class="rot-inf">Para quem é hoje?</p><div class="idades-inf"><button type="button" data-idade="pequenos" aria-pressed="' + (inf.faixa === 'pequenos') + '">Pequenos<small>3 a 6 anos</small></button><button type="button" data-idade="criancas" aria-pressed="' + (inf.faixa === 'criancas') + '">Crianças<small>7 a 12 anos</small></button></div>' +
         '<button class="btn btn-luz" data-seguir-inf>Vamos começar!</button>';
     } else if (cena === 'prece') {
-      var linhas = PAI_NOSSO.split('\n');
-      fala = inf.linhaPN ? 'Isso! Bem devagarinho...' : 'Primeiro, a gente conversa com Jesus. Vamos orar o Pai Nosso juntos? Eu leio uma parte e vocês repetem.';
-      html = '<div class="pn-inf">' + linhas.map(function (l, i) { return '<p class="' + (i < inf.linhaPN ? 'dita' : i === inf.linhaPN ? 'agora' : '') + '">' + esc(l) + '</p>'; }).join('') + '</div>' +
-        (inf.linhaPN < linhas.length ? '<button class="btn btn-luz" data-linha-pn>' + (inf.linhaPN ? 'Repetimos! Próxima parte' : 'Começar a prece') + '</button>' : '<button class="btn btn-luz" data-seguir-inf>Amém! Agora, a história</button>') +
+      // linhaPN: 0 = ainda não começou; 1 a L = o Cisquinho está lendo a parte linhaPN; mais que L = prece feita.
+      var linhas = PAI_NOSSO.split('\n'), L = linhas.length, k = inf.linhaPN;
+      fala = k === 0 ? 'Primeiro, a gente conversa com Jesus. Vamos orar o Pai Nosso juntos? Eu leio uma parte e vocês repetem.' : (k <= L ? linhas[k - 1] : 'Amém!');
+      html = '<div class="pn-inf">' + linhas.map(function (l, i) { return '<p class="' + (i < k - 1 || k > L ? 'dita' : i === k - 1 ? 'agora' : '') + '">' + esc(l) + '</p>'; }).join('') + '</div>' +
+        (k < L ? '<button class="btn btn-luz" data-linha-pn>' + (k ? 'Repetimos! Próxima parte' : 'Começar a prece') + '</button>' : '<button class="btn btn-luz" data-seguir-inf>' + (k === L ? 'Repetimos! Amém!' : 'Amém! Agora, a história') + '</button>') +
         '<button class="btn-texto claro-inf" data-propria>Alguém quer orar com as próprias palavras</button>';
     } else if (cena === 'historia') {
       var v = h[inf.faixa], ps = v.texto;
-      fala = inf.par === 0 ? 'Escutem esta história que Jesus ensinou. Alguém quer ler em voz alta?' : (inf.par < ps.length - 1 ? 'E tem mais...' : 'Gostaram? Agora eu quero saber o que vocês acharam!');
+      var peq = inf.faixa === 'pequenos', ultimo = inf.par === ps.length - 1;
+      fala = inf.par === 0 ? (peq ? 'Escutem esta história que Jesus ensinou.' : 'Escutem esta história que Jesus ensinou. Alguém quer ler em voz alta?') : (!ultimo ? 'E tem mais...' : 'Gostaram? Agora eu quero saber o que vocês acharam!');
+      var vozH = peq ? (inf.par === 0 ? fala + ' ' : '') + ps[inf.par] + (ultimo ? ' Gostaram? Agora eu quero saber o que vocês acharam!' : '') : null;
       html = '<p class="rot-inf">' + esc(h.titulo) + '</p><div class="hist-inf">' + ps.slice(0, inf.par + 1).map(function (t, i) { return '<p class="' + (i === inf.par ? 'nova' : '') + '">' + esc(t) + '</p>'; }).join('') + '</div>' +
         '<p class="ref-inf">Baseado em O Evangelho segundo o Espiritismo, ' + esc(h.base.charAt(0).toLowerCase() + h.base.slice(1)) + '</p>' +
         (inf.par < ps.length - 1 ? '<button class="btn btn-luz" data-par-inf>Continuar a história</button>' : '<button class="btn btn-luz" data-seguir-inf>Vamos pensar juntos</button>');
@@ -2809,7 +2856,7 @@ h1, h2 { text-wrap: balance; }
         fala = h[inf.faixa].conversa;
         html = '<div class="conversa-inf"><b>Para conversar</b><p>' + esc(h[inf.faixa].conversa) + '</p><small>Cada um conta o que pensa. Não tem resposta errada!</small></div><button class="btn btn-luz" data-conversou>Já conversamos! Quero as perguntas</button>';
       } else if (q) {
-        fala = ['Pergunta rapidinha!', 'Essa é boa!', 'A última!'][inf.perg];
+        fala = ['Pergunta rapidinha!', 'Essa é boa!', 'A última!'][inf.perg]; var vozQ = fala + ' ' + q[0];
         var gira = (inf.trecho * 2 + inf.perg + 1) % 3, ordem = [0, 1, 2].map(function (_, x) { return (x + gira) % 3; });
         html = '<p class="rot-inf">Pergunta ' + (inf.perg + 1) + ' de 3</p><p class="perg-inf">' + esc(q[0]) + '</p><div class="ops-inf">' + ordem.map(function (k) { return '<button type="button" data-op="' + k + '">' + esc(q[1][k]) + '</button>'; }).join('') + '</div>';
       } else {
@@ -2825,18 +2872,20 @@ h1, h2 { text-wrap: balance; }
         (todos ? '<button class="btn btn-luz" data-seguir-inf>Hora do joguinho!</button>' : '<button class="btn-texto claro-inf" data-seguir-inf>Pular</button>');
     } else if (cena === 'jogo') {
       fala = inf.jogoFim ? 'Você pegou ' + inf.pontos + (inf.pontos === 1 ? ' bolha' : ' bolhas') + ' do bem! O coração ficou cheinho de luz.' : 'Joguinho das Bolhas do Bem! Toque só nas bolhas que fazem bem ao coração.';
+      var vozJ = inf.jogoFim ? 'Que beleza! O coração ficou cheinho de luz.' : null;
       html = inf.jogoFim ? '<div class="placar-inf"><b>' + inf.pontos + '</b><span>' + (inf.pontos === 1 ? 'bolha' : 'bolhas') + ' do bem</span></div><button class="btn btn-luz" data-seguir-inf>Ver a minha figurinha</button><button class="btn-texto claro-inf" data-jogar-de-novo>Jogar de novo</button>'
         : '<div class="jogo-inf" id="jogo-inf"><p class="tempo-inf" id="tempo-inf">30</p></div><button class="btn btn-luz" data-jogar>Começar!</button>';
     } else if (cena === 'tchau') {
       var fig = FIGURINHAS[inf.trecho % FIGURINHAS.length], album = lerLocal('lar-figurinhas', {});
       fala = 'Antes de ir: sabia que cada um de nós tem um anjo da guarda de verdade? É um Espírito bom que cuida da gente, como um pai cuida do filho.';
+      var vozT = fala + ' Para viver esta semana: ' + h[inf.faixa].vivencia;
       html = '<div class="figurinha-inf"><svg viewBox="0 0 60 60" aria-hidden="true">' + fig[1] + '</svg><b>' + fig[0] + '</b><small>Figurinha nova no álbum: ' + Object.keys(album).length + ' de ' + FIGURINHAS.length + '</small></div>' +
         '<div class="conversa-inf"><b>Para viver esta semana</b><p>' + esc(h[inf.faixa].vivencia) + '</p></div>' +
         '<p class="cit-inf">“A de um pai com relação aos filhos; a de guiar o seu protegido pela senda do bem…”<small>O Livro dos Espíritos, questão 491, sobre a missão do Espírito protetor</small></p>' +
         '<p class="rot-inf">Para terminar, cada um diz um obrigado a Jesus, bem do coração.</p><button class="btn btn-luz" data-fim-inf>Obrigado, Jesus! Tchau, Cisquinho!</button>';
     }
     el.innerHTML = html;
-    falar(fala);
+    falar(fala, cena === 'historia' ? vozH : cena === 'pensar' ? (typeof vozQ !== 'undefined' ? vozQ : null) : cena === 'jogo' ? vozJ : cena === 'tchau' ? vozT : null);
     if (anima && dir !== undefined) G.from(el.children, { y: 16, opacity: 0, duration: .6, stagger: .06, ease: 'expo.out', clearProps: 'transform,opacity' });
   }
   function seguirInf() {
@@ -2871,7 +2920,7 @@ h1, h2 { text-wrap: balance; }
     if (b.dataset.idade) { inf.faixa = b.dataset.idade; mostrarInf(); Som.tique(); return; }
     if (b.hasAttribute('data-seguir-inf')) { seguirInf(); return; }
     if (b.hasAttribute('data-linha-pn')) { inf.linhaPN++; mostrarInf(); Som.suave(); var ag = $('.pn-inf .agora') || $('.pn-inf .dita:last-of-type'); if (ag) ag.scrollIntoView({ block: 'center', behavior: anima ? 'smooth' : 'auto' }); return; }
-    if (b.hasAttribute('data-propria')) { falar('Que bonito! Fala com Jesus do jeitinho que vier do coração. Eu fico quietinho escutando.'); inf.linhaPN = PAI_NOSSO.split('\n').length; setTimeout(function () { mostrarInf(); }, 2600); return; }
+    if (b.hasAttribute('data-propria')) { falar('Que bonito! Fala com Jesus do jeitinho que vier do coração. Eu fico quietinho escutando.'); inf.linhaPN = PAI_NOSSO.split('\n').length + 1; setTimeout(function () { mostrarInf(); }, 2600); return; }
     if (b.hasAttribute('data-par-inf')) { inf.par++; mostrarInf(); Som.folhear(1); return; }
     if (b.hasAttribute('data-conversou')) { inf.conversou = true; mostrarInf(1); return; }
     if (b.dataset.op !== undefined) {
@@ -2916,7 +2965,8 @@ h1, h2 { text-wrap: balance; }
       irA('evangelhinho');
     }).catch(function () { aviso('Não deu para abrir as histórias agora'); });
   }
-  aoEntrar.evangelhinho = function () { mostrarInf(1); };
+  aoEntrar.evangelhinho = function () { VozCisco.carregar(); mostrarInf(1); };
+  aoSair.evangelhinho = function () { VozCisco.parar(); };
   $$('[data-evangelhinho]').forEach(function (b) { b.addEventListener('click', function () { abrirEvangelhinho(); }); });
 
   /* ---------- Família: pessoas, dias do encontro, nomes para a prece ---------- */
