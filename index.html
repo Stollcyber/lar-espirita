@@ -1040,43 +1040,71 @@ h1, h2 { text-wrap: balance; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   /* ---------- Sons suaves (gerados no aparelho, sem arquivos) ---------- */
-  // Volume baixo e notas de uma escala pentatônica, para soar como sinos de vento ao longe.
+  // Notas redondas de caixinha de música, numa escala pentatônica (Ré maior), com um eco curto de sala, que não
+  // deixa nenhum som seco nem agudo demais. Trocar de página ou de cena é um sopro macio de ar, sem chiado
+  // (o usuário achou feio o ruído de folhear antigo, 14/10/2026). Tudo passa por um filtro que corta os agudos
+  // ásperos e por um compressor, para sons juntos nunca estourarem.
   var Som = (function () {
-    var ctx = null, ligado = true;
+    var ctx = null, saida = null, eco = null, ligado = true, sopro = null;
     try { ligado = localStorage.getItem('lar-som') !== 'desligado'; } catch (e) {}
     function ac() {
-      if (!ctx) { var C = window.AudioContext || window.webkitAudioContext; if (!C) return null; ctx = new C(); }
+      if (!ctx) {
+        var C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+        ctx = new C();
+        var comp = ctx.createDynamicsCompressor(), suaviza = ctx.createBiquadFilter();
+        comp.threshold.value = -20; comp.ratio.value = 4; comp.attack.value = .005; comp.release.value = .3;
+        suaviza.type = 'lowpass'; suaviza.frequency.value = 4200; suaviza.Q.value = .5;
+        saida = ctx.createGain(); saida.gain.value = 1;
+        saida.connect(suaviza); suaviza.connect(comp); comp.connect(ctx.destination);
+        // Eco de sala: um pouco de ar em volta de cada nota (resposta gerada, que se apaga em 2 s).
+        try {
+          var dur = 2, n = Math.floor(ctx.sampleRate * dur), ir = ctx.createBuffer(2, n, ctx.sampleRate);
+          for (var c = 0; c < 2; c++) { var d = ir.getChannelData(c); for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3.2); }
+          var conv = ctx.createConvolver(), ganhoEco = ctx.createGain(), escurece = ctx.createBiquadFilter();
+          conv.buffer = ir; escurece.type = 'lowpass'; escurece.frequency.value = 2600; ganhoEco.gain.value = .32;
+          conv.connect(escurece); escurece.connect(ganhoEco); ganhoEco.connect(saida);
+          eco = conv;
+        } catch (e) { eco = null; }
+        // O sopro: ruído já escurecido, guardado uma vez.
+        var m = Math.floor(ctx.sampleRate * .9); sopro = ctx.createBuffer(1, m, ctx.sampleRate);
+        var s = sopro.getChannelData(0), ult = 0;
+        for (var j = 0; j < m; j++) { ult = ult * .96 + (Math.random() * 2 - 1) * .04; s[j] = ult * 6; }
+      }
       if (ctx.state === 'suspended') ctx.resume();
       return ctx;
     }
-    function sino(freq, quando, vol, dur) {
+    function ligar(no) { no.connect(saida); if (eco) no.connect(eco); }
+    // Uma nota: fundamental redonda, oitava bem leve e um toque de triângulo filtrado, com ataque macio.
+    function nota(freq, quando, vol, dur) {
       var a = ac(); if (!a || !ligado) return;
-      var t = a.currentTime + (quando || 0);
-      [1, 2.76, 5.4].forEach(function (h, k) {
-        var o = a.createOscillator(), g = a.createGain();
-        o.type = 'sine'; o.frequency.value = freq * h;
-        var v = (vol || .06) / (k + 1) / (k ? 2.2 : 1);
-        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + (dur || 2.6) / (k + 1));
-        o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + (dur || 2.6));
+      var t = a.currentTime + (quando || 0), v = vol || .05, d = dur || 2.4;
+      var g = a.createGain(), f = a.createBiquadFilter();
+      f.type = 'lowpass'; f.frequency.setValueAtTime(Math.min(3800, freq * 3.2), t); f.frequency.exponentialRampToValueAtTime(Math.max(500, freq * 1.1), t + d * .6);
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + .018); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+      [[freq, 'sine', 1], [freq * 2, 'sine', .18], [freq, 'triangle', .22]].forEach(function (p) {
+        var o = a.createOscillator(), go = a.createGain();
+        o.type = p[1]; o.frequency.value = p[0]; go.gain.value = p[2];
+        o.connect(go); go.connect(f); o.start(t); o.stop(t + d + .05);
       });
+      f.connect(g); ligar(g);
     }
+    // Sopro de ar macio (troca de página ou de cena): sobe e desce devagar, só em médios, sem chiado.
     function folhear(vezes) {
       var a = ac(); if (!a || !ligado) return;
-      var n = vezes || 7, tam = Math.floor(a.sampleRate * .07);
-      var buf = a.createBuffer(1, tam, a.sampleRate), d = buf.getChannelData(0);
-      for (var i = 0; i < tam; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / tam, 2);
-      for (var k = 0; k < n; k++) {
-        var s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain(), t = a.currentTime + k * (.06 + k * .012);
-        s.buffer = buf; f.type = 'bandpass'; f.frequency.value = 2200 + Math.random() * 1600; f.Q.value = .8;
-        g.gain.value = .045 * (1 - k / (n + 2));
-        s.connect(f); f.connect(g); g.connect(a.destination); s.start(t);
-      }
+      var n = Math.min(vezes || 1, 4), t = a.currentTime, d = .38 + n * .08;
+      var src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+      src.buffer = sopro; f.type = 'bandpass'; f.Q.value = .7;
+      f.frequency.setValueAtTime(420, t); f.frequency.exponentialRampToValueAtTime(1100, t + d * .45); f.frequency.exponentialRampToValueAtTime(520, t + d);
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.035 + n * .006, t + d * .4); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+      src.connect(f); f.connect(g); g.connect(saida); src.start(t); src.stop(t + d + .05);
+      // Nas trocas maiores (capítulo, etapa, cena), uma nota bem leve acompanha o sopro.
+      if (n >= 2) nota([587, 659, 740, 880][n - 1] || 659, d * .3, .018, 1.6);
     }
-    function tique(intensidade) { sino(1568, 0, .012 * (intensidade || 1), .25); }
-    function revelacao() { sino(784, 0, .05); sino(988, .11, .045); sino(1175, .22, .04, 3.2); }
-    function suave() { sino(659, 0, .04, 3); sino(988, .18, .03, 3); }
+    function tique(intensidade) { nota(880, 0, .014 * (intensidade || 1), .5); }
+    function revelacao() { nota(587, 0, .045, 2.8); nota(740, .12, .04, 2.8); nota(880, .24, .038, 3); nota(1175, .38, .028, 3.2); }
+    function suave() { nota(659, 0, .04, 2.6); nota(988, .16, .028, 2.6); }
     return {
-      sino: sino, folhear: folhear, tique: tique, revelacao: revelacao, suave: suave,
+      sino: nota, folhear: folhear, tique: tique, revelacao: revelacao, suave: suave,
       ligado: function () { return ligado; },
       alternar: function () { ligado = !ligado; try { localStorage.setItem('lar-som', ligado ? 'ligado' : 'desligado'); } catch (e) {} if (ligado) suave(); return ligado; }
     };
