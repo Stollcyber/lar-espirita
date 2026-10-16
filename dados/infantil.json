@@ -1,313 +1,970 @@
 {
-  "versao": 1,
-  "status": "Conferido pela IA com o texto de Kardec (trad. Guillon Ribeiro). Aguardando revisão de um evangelizador.",
-  "metodo": "Faixas alinhadas aos ciclos do Currículo da FEB para a Evangelização Espírita Infantojuvenil (Maternal 3-4, Jardim 5-6; 1º a 3º Ciclos da Infância 7-12; 1º e 2º Ciclos da Juventude 13-17). Cada versão traz o ensino central do trecho, uma pergunta para conversar e uma vivência para a semana, como no módulo de conduta espírita e vivência evangélica. Regras: nada que não esteja no trecho; sem imagens de medo para os pequenos; Deus apresentado como Pai justo e bom.",
-  "faixas": [
-    {
-      "id": "pequenos",
-      "nome": "Pequenos",
-      "idade": "3 a 6 anos"
-    },
-    {
-      "id": "criancas",
-      "nome": "Crianças",
-      "idade": "7 a 12 anos"
-    },
-    {
-      "id": "jovens",
-      "nome": "Jovens",
-      "idade": "13 a 17 anos"
-    }
-  ],
-  "trechos": [
-    {
-      "capitulo": "c6",
-      "itens": [
-        1,
-        2
-      ],
-      "base": "Capítulo VI, itens 1 e 2",
-      "titulo": "O jugo leve",
-      "pequenos": {
-        "texto": [
-          "Jesus disse: quando você estiver cansado ou triste, venha até mim, que eu te dou descanso.",
-          "Jesus é manso e tem o coração cheio de carinho.",
-          "Ele nos ensinou uma coisa bem levinha de carregar: amar as pessoas e ajudar quem precisa.",
-          "Quando a gente ama e ajuda, o coração fica em paz."
-        ],
-        "conversa": "O que deixa você mais tranquilo quando está triste?",
-        "vivencia": "Quando alguém da família estiver cansado, ofereça um abraço ou uma ajuda."
-      },
-      "criancas": {
-        "texto": [
-          "Jesus disse: \"Vinde a mim, todos vós que estais aflitos e sobrecarregados, que eu vos aliviarei.\" Ele falava com pessoas tristes, doentes e cansadas, e prometeu alívio.",
-          "Jesus também disse que o seu jugo é suave e o seu fardo é leve. Jugo era a peça de madeira que unia os bois para puxarem o arado juntos.",
-          "O jugo de Jesus é a lei que ele ensinou. Allan Kardec explica que essa lei só pede uma coisa: o amor e a caridade. Por isso ela é leve!",
-          "Quem confia em Deus, que é justo e bom, e acredita que a vida continua depois desta, encontra força para atravessar as tristezas."
-        ],
-        "conversa": "Por que será que amar e ajudar é um peso leve, e não pesado?",
-        "vivencia": "Pensem juntos em alguém que está passando por um momento difícil e façam algo para aliviar o dia dessa pessoa."
-      },
-      "jovens": {
-        "texto": [
-          "Jesus convida: \"Vinde a mim, todos vós que estais aflitos e sobrecarregados, que eu vos aliviarei.\" E acrescenta que seu jugo é suave e seu fardo, leve.",
-          "Kardec observa que todos os sofrimentos (decepções, dores físicas, a perda de quem amamos) encontram consolação na fé no futuro e na confiança na justiça de Deus. Para quem nada espera depois desta vida, as aflições pesam por inteiro.",
-          "Mas o alívio tem uma condição: viver a lei que Jesus ensinou. E essa lei, diz Kardec, \"apenas impõe, como dever, o amor e a caridade\"."
-        ],
-        "conversa": "Que peso da sua vida ficaria mais leve se você o carregasse com mais amor e menos cobrança?",
-        "vivencia": "Escolha uma atitude de caridade discreta (ouvir alguém com atenção, ajudar sem ser pedido) e repare em como você se sente depois."
-      },
-      "conferencia": {
-        "mantido": [
-          "O convite de Jesus aos aflitos (S. Mateus, XI, 28 a 30)",
-          "Jugo suave e fardo leve",
-          "Consolação pela fé no futuro e pela confiança na justiça de Deus (item 2)",
-          "A condição: a lei de amor e caridade (item 2)"
-        ],
-        "cuidado": [
-          "Para os pequenos, ficou de fora a frase sobre quem duvida carregar as aflições com todo o peso, para não gerar medo",
-          "A explicação da palavra 'jugo' é só de vocabulário, não acrescenta doutrina"
-        ]
-      }
-    },
-    {
-      "capitulo": "c10",
-      "itens": [
-        1,
-        2,
-        3
-      ],
-      "base": "Capítulo X, itens 1 a 3",
-      "titulo": "Perdoar setenta vezes sete",
-      "pequenos": {
-        "texto": [
-          "Jesus ensinou: quando alguém faz uma coisa que deixa a gente chateado, a gente pode perdoar.",
-          "Perdoar é deixar a raiva ir embora do coração.",
-          "Pedro perguntou a Jesus quantas vezes deveria perdoar: será que sete vezes bastavam? E Jesus respondeu: setenta vezes sete!",
-          "Isso quer dizer: sempre."
-        ],
-        "conversa": "Como a gente se sente depois que faz as pazes?",
-        "vivencia": "Quando houver uma briguinha em casa, convide: \"Vamos fazer as pazes?\""
-      },
-      "criancas": {
-        "texto": [
-          "Jesus disse: \"Bem-aventurados os que são misericordiosos, porque obterão misericórdia.\" Misericordioso é quem tem o coração aberto para perdoar.",
-          "Jesus ensinou que, se alguém errou com a gente, o melhor é conversar com essa pessoa com calma, só os dois, sem expor na frente dos outros.",
-          "Pedro quis saber se bastava perdoar sete vezes. Jesus respondeu: \"Até setenta vezes sete vezes\", ou seja, sem contar.",
-          "E Jesus lembrou que, quando perdoamos os outros, também o nosso Pai do céu nos perdoa."
-        ],
-        "conversa": "Por que Jesus pediu para conversar a sós com quem errou, e não na frente de todo mundo?",
-        "vivencia": "Se você estiver chateado com alguém, pense num jeito gentil de conversar só com essa pessoa."
-      },
-      "jovens": {
-        "texto": [
-          "\"Bem-aventurados os que são misericordiosos, porque obterão misericórdia.\" No Evangelho, o perdão que damos e o perdão que pedimos andam juntos: \"Se perdoardes aos homens as faltas que cometerem contra vós, também vosso Pai celestial vos perdoará os pecados.\"",
-          "Jesus propõe um caminho concreto: quando alguém nos ofende, ir até a pessoa \"em particular, a sós com ele\". Se ela nos ouvir, \"tereis ganho o vosso irmão\". O objetivo não é vencer a discussão, é recuperar a relação.",
-          "E à pergunta de Pedro, se sete vezes bastariam, Jesus responde: \"até setenta vezes sete vezes\". O perdão não tem cota."
-        ],
-        "conversa": "Qual a diferença entre perdoar e simplesmente fingir que nada aconteceu?",
-        "vivencia": "Se existe uma mágoa guardada, dê um primeiro passo: uma mensagem gentil ou uma conversa a sós."
-      },
-      "conferencia": {
-        "mantido": [
-          "Bem-aventurança dos misericordiosos (S. Mateus, V, 7)",
-          "Perdão recíproco (S. Mateus, VI, 14 e 15)",
-          "Conversar a sós com quem errou e perdoar setenta vezes sete (S. Mateus, XVIII, 15, 21 e 22)"
-        ],
-        "cuidado": [
-          "Para pequenos e crianças, a reciprocidade do perdão foi dita só na forma positiva; a forma negativa ('não vos perdoará') ficou para a versão jovem e para o texto adulto, para não associar Deus a ameaça"
-        ]
-      }
-    },
-    {
-      "capitulo": "c11",
-      "itens": [
-        1,
-        2
-      ],
-      "base": "Capítulo XI, itens 1 e 2",
-      "titulo": "O mandamento maior",
-      "pequenos": {
-        "texto": [
-          "Um dia perguntaram a Jesus: qual é o ensinamento mais importante?",
-          "Jesus respondeu: amar a Deus de todo o coração, e amar as outras pessoas como a gente ama a si mesmo.",
-          "E ensinou também: trate os outros do jeitinho que você gosta de ser tratado."
-        ],
-        "conversa": "Como você gosta que os seus amigos tratem você?",
-        "vivencia": "Cada dia desta semana, trate alguém do jeitinho que você gosta de ser tratado."
-      },
-      "criancas": {
-        "texto": [
-          "Um doutor da lei quis testar Jesus e perguntou: \"Mestre, qual o mandamento maior da lei?\"",
-          "Jesus respondeu com dois amores: amar a Deus de todo o coração, de toda a alma e de todo o espírito, e amar o próximo como a si mesmo. E disse que toda a lei e os profetas cabem nesses dois mandamentos.",
-          "Jesus deixou também uma regra fácil de lembrar: \"Fazei aos homens tudo o que queirais que eles vos façam.\" É como uma régua: antes de agir, a gente mede se gostaria de receber aquilo."
-        ],
-        "conversa": "Em que momento do dia é mais difícil lembrar dessa régua?",
-        "vivencia": "Antes de responder alguém com raiva, pergunte a si mesmo: \"Eu gostaria de ouvir isso?\""
-      },
-      "jovens": {
-        "texto": [
-          "Testado por um doutor da lei, Jesus resume tudo em dois mandamentos: amar a Deus de todo o coração, de toda a alma e de todo o espírito, e amar o próximo como a si mesmo. \"Toda a lei e os profetas se acham contidos nesses dois mandamentos.\"",
-          "E dá um critério prático para o dia a dia: \"Fazei aos homens tudo o que queirais que eles vos façam\", ou, como está em S. Lucas, \"Tratai todos os homens como quereríeis que eles vos tratassem\"."
-        ],
-        "conversa": "Em que lugar (casa, escola, internet) é mais difícil viver essa regra? Por quê?",
-        "vivencia": "Escolha uma conversa difícil desta semana e prepare a resposta pensando em como você gostaria de ser tratado."
-      },
-      "conferencia": {
-        "mantido": [
-          "O mandamento maior e o segundo semelhante a ele (S. Mateus, XXII, 34 a 40)",
-          "A regra: fazer aos outros o que queremos para nós (S. Mateus, VII, 12; S. Lucas, VI, 31)"
-        ],
-        "cuidado": [
-          "A imagem da 'régua' é só um recurso didático para a ideia do item 2"
-        ]
-      }
-    },
-    {
-      "capitulo": "c13",
-      "itens": [
-        1,
-        3
-      ],
-      "base": "Capítulo XIII, itens 1 e 3",
-      "titulo": "O bem feito em segredo",
-      "pequenos": {
-        "texto": [
-          "Jesus ensinou a fazer o bem bem quietinho, sem ficar contando para todo mundo.",
-          "Ele disse: \"Não saiba a vossa mão esquerda o que faz a vossa mão direita.\"",
-          "É como um presente-surpresa de carinho.",
-          "Deus vê tudo o que fazemos de bom, mesmo em segredo."
-        ],
-        "conversa": "Que coisa boa você poderia fazer em segredo para alguém da sua casa?",
-        "vivencia": "Façam um \"bem secreto\" esta semana: arrumar algo, deixar um bilhete de carinho, sem contar quem foi."
-      },
-      "criancas": {
-        "texto": [
-          "No tempo de Jesus, algumas pessoas faziam caridade tocando trombeta, para todos verem e elogiarem.",
-          "Jesus ensinou o contrário: fazer o bem sem se exibir. \"Não saiba a vossa mão esquerda o que faz a vossa mão direita\", e o Pai, que vê o que se passa em segredo, recompensará.",
-          "Allan Kardec explica que fazer o bem sem se mostrar tem grande valor. Quem faz o bem só para ser elogiado já recebeu o seu prêmio: o elogio."
-        ],
-        "conversa": "Por que fazer o bem em segredo pode deixar o coração mais feliz?",
-        "vivencia": "Escolha alguém para ajudar esta semana sem contar para ninguém. Só você e Deus vão saber."
-      },
-      "jovens": {
-        "texto": [
-          "Jesus alerta contra praticar o bem \"diante dos homens, para serem vistas\". Dos que tocam a trombeta da própria bondade, ele diz: \"eles já receberam sua recompensa\".",
-          "Kardec comenta que fazer o bem sem ostentação tem grande mérito, e ainda mais ocultar a mão que dá, porque é preferir a aprovação de Deus ao aplauso das pessoas.",
-          "E faz um alerta fino: quem procura a própria glorificação na Terra, pelo bem que pratica, \"já se pagou a si mesmo\"."
-        ],
-        "conversa": "Postar uma boa ação é sempre errado? O que muda quando a intenção é aparecer?",
-        "vivencia": "Faça uma boa ação que ninguém possa ver, curtir ou comentar."
-      },
-      "conferencia": {
-        "mantido": [
-          "Não fazer o bem para ser visto; a mão esquerda e a direita; o Pai que vê em segredo (S. Mateus, VI, 1 a 4)",
-          "Comentário de Kardec sobre o mérito da beneficência modesta (item 3)"
-        ],
-        "cuidado": [
-          "Ficou de fora, em todas as idades, a frase sobre 'a punição do seu orgulho' (item 3), para manter o foco no estímulo ao bem",
-          "A pergunta sobre redes sociais é uma ponte para o cotidiano do jovem; a resposta de Kardec é sobre a intenção"
-        ]
-      }
-    },
-    {
-      "capitulo": "c14",
-      "itens": [
-        2,
-        3
-      ],
-      "base": "Capítulo XIV, itens 2 e 3",
-      "titulo": "Honrar pai e mãe",
-      "pequenos": {
-        "texto": [
-          "Jesus lembrou um ensinamento muito antigo: honrar o pai e a mãe.",
-          "Honrar é amar, respeitar e cuidar.",
-          "Vale também para quem cuida da gente como pai e mãe: avós, tios, quem nos cria com amor.",
-          "Eles cuidaram de nós quando éramos bebês, e nós podemos cuidar deles também."
-        ],
-        "conversa": "Como você pode mostrar carinho para quem cuida de você?",
-        "vivencia": "Ajude numa tarefa de casa sem ninguém pedir."
-      },
-      "criancas": {
-        "texto": [
-          "\"Honrai a vosso pai e a vossa mãe\" é um dos mandamentos.",
-          "Allan Kardec explica que honrar é mais do que obedecer: é juntar ao amor o respeito e a atenção.",
-          "Esse cuidado vale também para quem faz o papel de pai e de mãe na nossa vida.",
-          "E honrar é também ajudar quando eles precisam e, quando ficarem velhinhos, cuidar deles com carinho, como eles cuidaram de nós quando éramos pequenos."
-        ],
-        "conversa": "Que cuidado você recebe todos os dias e quase nem percebe?",
-        "vivencia": "Escreva ou desenhe um agradecimento para quem cuida de você."
-      },
-      "jovens": {
-        "texto": [
-          "O mandamento \"Honrai a vosso pai e a vossa mãe\", diz Kardec, decorre da lei de caridade: não pode amar o próximo quem não ama o pai e a mãe.",
-          "Honrar inclui respeito e atenções, e se estende às pessoas que fazem as vezes de pai e de mãe, que têm ainda mais mérito por um devotamento que não era obrigação delas.",
-          "E vai além do respeito: \"é também assisti-los na necessidade; é proporcionar-lhes repouso na velhice; é cercá-los de cuidados como eles fizeram conosco, na infância\"."
-        ],
-        "conversa": "Que pequenos cuidados (os que Kardec chama de \"cuidados amáveis\") você poderia ter com eles, além do básico?",
-        "vivencia": "Dedique um tempo de qualidade a um dos seus pais, avós ou responsáveis, sem celular."
-      },
-      "conferencia": {
-        "mantido": [
-          "O mandamento (Êxodo, XX, 12)",
-          "Honrar soma amor, respeito e atenções (item 3)",
-          "Extensão a quem faz as vezes de pai e de mãe (item 3)",
-          "Assistir na necessidade e na velhice (item 3)"
-        ],
-        "cuidado": [
-          "Ficaram de fora a frase 'Deus pune sempre com rigor' e as palavras 'submissão' e 'condescendência' nas versões infantis, para não confundir honrar com obedecer a qualquer custo",
-          "A menção a quem faz as vezes de pai e de mãe acolhe as diferentes famílias, e está no próprio texto"
-        ]
-      }
-    },
-    {
-      "capitulo": "c15",
-      "itens": [
-        2,
-        3
-      ],
-      "base": "Capítulo XV, itens 2 e 3",
-      "titulo": "O bom samaritano",
-      "pequenos": {
-        "texto": [
-          "Um homem estava machucado no caminho.",
-          "Dois homens passaram, viram e foram embora.",
-          "Mas um samaritano, um homem de outro povo, parou. Cuidou das feridas, levou o homem para descansar e pagou para cuidarem dele.",
-          "Jesus disse: vai, e faze o mesmo. Próximo é todo mundo que precisa da nossa ajuda."
-        ],
-        "conversa": "Quem perto de você pode estar precisando de ajuda?",
-        "vivencia": "Esta semana, olhe com atenção para quem está sozinho ou triste e ofereça ajuda."
-      },
-      "criancas": {
-        "texto": [
-          "Um doutor da lei perguntou a Jesus: \"Quem é o meu próximo?\" E Jesus contou uma história.",
-          "Um homem foi assaltado e deixado ferido na estrada. Passou um sacerdote, e seguiu adiante. Passou um levita, e também seguiu.",
-          "Então passou um samaritano. Os samaritanos eram vistos com desconfiança por aquele povo. Ele sentiu compaixão, cuidou das feridas com óleo e vinho, levou o homem a uma hospedaria e ainda pagou pelos cuidados.",
-          "Jesus perguntou qual dos três foi o próximo do ferido. A resposta: aquele que teve misericórdia. Então Jesus disse: vai, e faze o mesmo.",
-          "Allan Kardec resume: toda a moral de Jesus está na caridade e na humildade."
-        ],
-        "conversa": "Por que Jesus escolheu justamente um samaritano para ser o herói da história?",
-        "vivencia": "Ajude alguém que não é do seu grupo de sempre: um colega novo, um vizinho, alguém que fica de lado."
-      },
-      "jovens": {
-        "texto": [
-          "À pergunta \"Quem é o meu próximo?\", Jesus responde com a parábola: o sacerdote e o levita passam ao largo; o samaritano para, cuida e se compromete com o ferido. E conclui: vai, e faze o mesmo.",
-          "Kardec destaca que \"toda a moral de Jesus se resume na caridade e na humildade\", as virtudes contrárias ao egoísmo e ao orgulho.",
-          "E chama a atenção para um detalhe: Jesus coloca o samaritano, considerado herético, acima de quem seguia a religião oficial mas faltava com a caridade. O que conta não é o rótulo, é o amor praticado."
-        ],
-        "conversa": "Quem é o \"samaritano\" que você costuma não enxergar, ou julgar pela aparência?",
-        "vivencia": "Pratique uma caridade com alguém que pensa ou vive de um jeito diferente do seu."
-      },
-      "conferencia": {
-        "mantido": [
-          "A pergunta 'quem é o meu próximo' e a parábola completa (S. Lucas, X, 25 a 37)",
-          "Caridade e humildade como resumo da moral de Jesus (item 3)",
-          "O samaritano, considerado herético, acima do ortodoxo sem caridade (item 3)"
-        ],
-        "cuidado": [
-          "O item 1 do capítulo (o juízo final, com 'fogo eterno') não foi usado; o próprio Kardec, no item 3, explica que essas imagens são figuras para a época"
-        ]
-      }
-    }
-  ]
+ "versao": 1,
+ "status": "Conferido pela IA com o texto de Kardec (trad. Guillon Ribeiro). Aguardando revisão de um evangelizador.",
+ "metodo": "Faixas alinhadas aos ciclos do Currículo da FEB para a Evangelização Espírita Infantojuvenil (Maternal 3-4, Jardim 5-6; 1º a 3º Ciclos da Infância 7-12; 1º e 2º Ciclos da Juventude 13-17). Cada versão traz o ensino central do trecho, uma pergunta para conversar e uma vivência para a semana, como no módulo de conduta espírita e vivência evangélica. Regras: nada que não esteja no trecho; sem imagens de medo para os pequenos; Deus apresentado como Pai justo e bom. Linguagem: acessível e concreta, partindo de imagens como as que Jesus usava, sem excesso de diminutivos e gírias (FEB/CFN, Orientação à Ação Evangelizadora Espírita da Infância: Subsídios e Diretrizes, 2016, p. 42; texto em trabalho/fontes-evangelho-no-lar/infancia-feb-diretrizes-2016.txt). Cada história nova traz 3 perguntas para o joguinho e a figurinha ([nome, desenho]).",
+ "faixas": [
+  {
+   "id": "pequenos",
+   "nome": "Pequenos",
+   "idade": "3 a 6 anos"
+  },
+  {
+   "id": "criancas",
+   "nome": "Crianças",
+   "idade": "7 a 12 anos"
+  },
+  {
+   "id": "jovens",
+   "nome": "Jovens",
+   "idade": "13 a 17 anos"
+  }
+ ],
+ "trechos": [
+  {
+   "capitulo": "c6",
+   "itens": [
+    1,
+    2
+   ],
+   "base": "Capítulo VI, itens 1 e 2",
+   "titulo": "O jugo leve",
+   "pequenos": {
+    "texto": [
+     "Jesus disse: quando você estiver cansado ou triste, venha até mim, que eu te dou descanso.",
+     "Jesus é manso e tem o coração cheio de carinho.",
+     "Ele nos ensinou uma coisa bem levinha de carregar: amar as pessoas e ajudar quem precisa.",
+     "Quando a gente ama e ajuda, o coração fica em paz."
+    ],
+    "conversa": "O que deixa você mais tranquilo quando está triste?",
+    "vivencia": "Quando alguém da família estiver cansado, ofereça um abraço ou uma ajuda."
+   },
+   "criancas": {
+    "texto": [
+     "Jesus disse: \"Vinde a mim, todos vós que estais aflitos e sobrecarregados, que eu vos aliviarei.\" Ele falava com pessoas tristes, doentes e cansadas, e prometeu alívio.",
+     "Jesus também disse que o seu jugo é suave e o seu fardo é leve. Jugo era a peça de madeira que unia os bois para puxarem o arado juntos.",
+     "O jugo de Jesus é a lei que ele ensinou. Allan Kardec explica que essa lei só pede uma coisa: o amor e a caridade. Por isso ela é leve!",
+     "Quem confia em Deus, que é justo e bom, e acredita que a vida continua depois desta, encontra força para atravessar as tristezas."
+    ],
+    "conversa": "Por que será que amar e ajudar é um peso leve, e não pesado?",
+    "vivencia": "Pensem juntos em alguém que está passando por um momento difícil e façam algo para aliviar o dia dessa pessoa."
+   },
+   "jovens": {
+    "texto": [
+     "Jesus convida: \"Vinde a mim, todos vós que estais aflitos e sobrecarregados, que eu vos aliviarei.\" E acrescenta que seu jugo é suave e seu fardo, leve.",
+     "Kardec observa que todos os sofrimentos (decepções, dores físicas, a perda de quem amamos) encontram consolação na fé no futuro e na confiança na justiça de Deus. Para quem nada espera depois desta vida, as aflições pesam por inteiro.",
+     "Mas o alívio tem uma condição: viver a lei que Jesus ensinou. E essa lei, diz Kardec, \"apenas impõe, como dever, o amor e a caridade\"."
+    ],
+    "conversa": "Que peso da sua vida ficaria mais leve se você o carregasse com mais amor e menos cobrança?",
+    "vivencia": "Escolha uma atitude de caridade discreta (ouvir alguém com atenção, ajudar sem ser pedido) e repare em como você se sente depois."
+   },
+   "conferencia": {
+    "mantido": [
+     "O convite de Jesus aos aflitos (S. Mateus, XI, 28 a 30)",
+     "Jugo suave e fardo leve",
+     "Consolação pela fé no futuro e pela confiança na justiça de Deus (item 2)",
+     "A condição: a lei de amor e caridade (item 2)"
+    ],
+    "cuidado": [
+     "Para os pequenos, ficou de fora a frase sobre quem duvida carregar as aflições com todo o peso, para não gerar medo",
+     "A explicação da palavra 'jugo' é só de vocabulário, não acrescenta doutrina"
+    ]
+   }
+  },
+  {
+   "capitulo": "c10",
+   "itens": [
+    1,
+    2,
+    3
+   ],
+   "base": "Capítulo X, itens 1 a 3",
+   "titulo": "Perdoar setenta vezes sete",
+   "pequenos": {
+    "texto": [
+     "Jesus ensinou: quando alguém faz uma coisa que deixa a gente chateado, a gente pode perdoar.",
+     "Perdoar é deixar a raiva ir embora do coração.",
+     "Pedro perguntou a Jesus quantas vezes deveria perdoar: será que sete vezes bastavam? E Jesus respondeu: setenta vezes sete!",
+     "Isso quer dizer: sempre."
+    ],
+    "conversa": "Como a gente se sente depois que faz as pazes?",
+    "vivencia": "Quando houver uma briguinha em casa, convide: \"Vamos fazer as pazes?\""
+   },
+   "criancas": {
+    "texto": [
+     "Jesus disse: \"Bem-aventurados os que são misericordiosos, porque obterão misericórdia.\" Misericordioso é quem tem o coração aberto para perdoar.",
+     "Jesus ensinou que, se alguém errou com a gente, o melhor é conversar com essa pessoa com calma, só os dois, sem expor na frente dos outros.",
+     "Pedro quis saber se bastava perdoar sete vezes. Jesus respondeu: \"Até setenta vezes sete vezes\", ou seja, sem contar.",
+     "E Jesus lembrou que, quando perdoamos os outros, também o nosso Pai do céu nos perdoa."
+    ],
+    "conversa": "Por que Jesus pediu para conversar a sós com quem errou, e não na frente de todo mundo?",
+    "vivencia": "Se você estiver chateado com alguém, pense num jeito gentil de conversar só com essa pessoa."
+   },
+   "jovens": {
+    "texto": [
+     "\"Bem-aventurados os que são misericordiosos, porque obterão misericórdia.\" No Evangelho, o perdão que damos e o perdão que pedimos andam juntos: \"Se perdoardes aos homens as faltas que cometerem contra vós, também vosso Pai celestial vos perdoará os pecados.\"",
+     "Jesus propõe um caminho concreto: quando alguém nos ofende, ir até a pessoa \"em particular, a sós com ele\". Se ela nos ouvir, \"tereis ganho o vosso irmão\". O objetivo não é vencer a discussão, é recuperar a relação.",
+     "E à pergunta de Pedro, se sete vezes bastariam, Jesus responde: \"até setenta vezes sete vezes\". O perdão não tem cota."
+    ],
+    "conversa": "Qual a diferença entre perdoar e simplesmente fingir que nada aconteceu?",
+    "vivencia": "Se existe uma mágoa guardada, dê um primeiro passo: uma mensagem gentil ou uma conversa a sós."
+   },
+   "conferencia": {
+    "mantido": [
+     "Bem-aventurança dos misericordiosos (S. Mateus, V, 7)",
+     "Perdão recíproco (S. Mateus, VI, 14 e 15)",
+     "Conversar a sós com quem errou e perdoar setenta vezes sete (S. Mateus, XVIII, 15, 21 e 22)"
+    ],
+    "cuidado": [
+     "Para pequenos e crianças, a reciprocidade do perdão foi dita só na forma positiva; a forma negativa ('não vos perdoará') ficou para a versão jovem e para o texto adulto, para não associar Deus a ameaça"
+    ]
+   }
+  },
+  {
+   "capitulo": "c11",
+   "itens": [
+    1,
+    2
+   ],
+   "base": "Capítulo XI, itens 1 e 2",
+   "titulo": "O mandamento maior",
+   "pequenos": {
+    "texto": [
+     "Um dia perguntaram a Jesus: qual é o ensinamento mais importante?",
+     "Jesus respondeu: amar a Deus de todo o coração, e amar as outras pessoas como a gente ama a si mesmo.",
+     "E ensinou também: trate os outros do jeitinho que você gosta de ser tratado."
+    ],
+    "conversa": "Como você gosta que os seus amigos tratem você?",
+    "vivencia": "Cada dia desta semana, trate alguém do jeitinho que você gosta de ser tratado."
+   },
+   "criancas": {
+    "texto": [
+     "Um doutor da lei quis testar Jesus e perguntou: \"Mestre, qual o mandamento maior da lei?\"",
+     "Jesus respondeu com dois amores: amar a Deus de todo o coração, de toda a alma e de todo o espírito, e amar o próximo como a si mesmo. E disse que toda a lei e os profetas cabem nesses dois mandamentos.",
+     "Jesus deixou também uma regra fácil de lembrar: \"Fazei aos homens tudo o que queirais que eles vos façam.\" É como uma régua: antes de agir, a gente mede se gostaria de receber aquilo."
+    ],
+    "conversa": "Em que momento do dia é mais difícil lembrar dessa régua?",
+    "vivencia": "Antes de responder alguém com raiva, pergunte a si mesmo: \"Eu gostaria de ouvir isso?\""
+   },
+   "jovens": {
+    "texto": [
+     "Testado por um doutor da lei, Jesus resume tudo em dois mandamentos: amar a Deus de todo o coração, de toda a alma e de todo o espírito, e amar o próximo como a si mesmo. \"Toda a lei e os profetas se acham contidos nesses dois mandamentos.\"",
+     "E dá um critério prático para o dia a dia: \"Fazei aos homens tudo o que queirais que eles vos façam\", ou, como está em S. Lucas, \"Tratai todos os homens como quereríeis que eles vos tratassem\"."
+    ],
+    "conversa": "Em que lugar (casa, escola, internet) é mais difícil viver essa regra? Por quê?",
+    "vivencia": "Escolha uma conversa difícil desta semana e prepare a resposta pensando em como você gostaria de ser tratado."
+   },
+   "conferencia": {
+    "mantido": [
+     "O mandamento maior e o segundo semelhante a ele (S. Mateus, XXII, 34 a 40)",
+     "A regra: fazer aos outros o que queremos para nós (S. Mateus, VII, 12; S. Lucas, VI, 31)"
+    ],
+    "cuidado": [
+     "A imagem da 'régua' é só um recurso didático para a ideia do item 2"
+    ]
+   }
+  },
+  {
+   "capitulo": "c13",
+   "itens": [
+    1,
+    3
+   ],
+   "base": "Capítulo XIII, itens 1 e 3",
+   "titulo": "O bem feito em segredo",
+   "pequenos": {
+    "texto": [
+     "Jesus ensinou a fazer o bem bem quietinho, sem ficar contando para todo mundo.",
+     "Ele disse: \"Não saiba a vossa mão esquerda o que faz a vossa mão direita.\"",
+     "É como um presente-surpresa de carinho.",
+     "Deus vê tudo o que fazemos de bom, mesmo em segredo."
+    ],
+    "conversa": "Que coisa boa você poderia fazer em segredo para alguém da sua casa?",
+    "vivencia": "Façam um \"bem secreto\" esta semana: arrumar algo, deixar um bilhete de carinho, sem contar quem foi."
+   },
+   "criancas": {
+    "texto": [
+     "No tempo de Jesus, algumas pessoas faziam caridade tocando trombeta, para todos verem e elogiarem.",
+     "Jesus ensinou o contrário: fazer o bem sem se exibir. \"Não saiba a vossa mão esquerda o que faz a vossa mão direita\", e o Pai, que vê o que se passa em segredo, recompensará.",
+     "Allan Kardec explica que fazer o bem sem se mostrar tem grande valor. Quem faz o bem só para ser elogiado já recebeu o seu prêmio: o elogio."
+    ],
+    "conversa": "Por que fazer o bem em segredo pode deixar o coração mais feliz?",
+    "vivencia": "Escolha alguém para ajudar esta semana sem contar para ninguém. Só você e Deus vão saber."
+   },
+   "jovens": {
+    "texto": [
+     "Jesus alerta contra praticar o bem \"diante dos homens, para serem vistas\". Dos que tocam a trombeta da própria bondade, ele diz: \"eles já receberam sua recompensa\".",
+     "Kardec comenta que fazer o bem sem ostentação tem grande mérito, e ainda mais ocultar a mão que dá, porque é preferir a aprovação de Deus ao aplauso das pessoas.",
+     "E faz um alerta fino: quem procura a própria glorificação na Terra, pelo bem que pratica, \"já se pagou a si mesmo\"."
+    ],
+    "conversa": "Postar uma boa ação é sempre errado? O que muda quando a intenção é aparecer?",
+    "vivencia": "Faça uma boa ação que ninguém possa ver, curtir ou comentar."
+   },
+   "conferencia": {
+    "mantido": [
+     "Não fazer o bem para ser visto; a mão esquerda e a direita; o Pai que vê em segredo (S. Mateus, VI, 1 a 4)",
+     "Comentário de Kardec sobre o mérito da beneficência modesta (item 3)"
+    ],
+    "cuidado": [
+     "Ficou de fora, em todas as idades, a frase sobre 'a punição do seu orgulho' (item 3), para manter o foco no estímulo ao bem",
+     "A pergunta sobre redes sociais é uma ponte para o cotidiano do jovem; a resposta de Kardec é sobre a intenção"
+    ]
+   }
+  },
+  {
+   "capitulo": "c14",
+   "itens": [
+    2,
+    3
+   ],
+   "base": "Capítulo XIV, itens 2 e 3",
+   "titulo": "Honrar pai e mãe",
+   "pequenos": {
+    "texto": [
+     "Jesus lembrou um ensinamento muito antigo: honrar o pai e a mãe.",
+     "Honrar é amar, respeitar e cuidar.",
+     "Vale também para quem cuida da gente como pai e mãe: avós, tios, quem nos cria com amor.",
+     "Eles cuidaram de nós quando éramos bebês, e nós podemos cuidar deles também."
+    ],
+    "conversa": "Como você pode mostrar carinho para quem cuida de você?",
+    "vivencia": "Ajude numa tarefa de casa sem ninguém pedir."
+   },
+   "criancas": {
+    "texto": [
+     "\"Honrai a vosso pai e a vossa mãe\" é um dos mandamentos.",
+     "Allan Kardec explica que honrar é mais do que obedecer: é juntar ao amor o respeito e a atenção.",
+     "Esse cuidado vale também para quem faz o papel de pai e de mãe na nossa vida.",
+     "E honrar é também ajudar quando eles precisam e, quando ficarem velhinhos, cuidar deles com carinho, como eles cuidaram de nós quando éramos pequenos."
+    ],
+    "conversa": "Que cuidado você recebe todos os dias e quase nem percebe?",
+    "vivencia": "Escreva ou desenhe um agradecimento para quem cuida de você."
+   },
+   "jovens": {
+    "texto": [
+     "O mandamento \"Honrai a vosso pai e a vossa mãe\", diz Kardec, decorre da lei de caridade: não pode amar o próximo quem não ama o pai e a mãe.",
+     "Honrar inclui respeito e atenções, e se estende às pessoas que fazem as vezes de pai e de mãe, que têm ainda mais mérito por um devotamento que não era obrigação delas.",
+     "E vai além do respeito: \"é também assisti-los na necessidade; é proporcionar-lhes repouso na velhice; é cercá-los de cuidados como eles fizeram conosco, na infância\"."
+    ],
+    "conversa": "Que pequenos cuidados (os que Kardec chama de \"cuidados amáveis\") você poderia ter com eles, além do básico?",
+    "vivencia": "Dedique um tempo de qualidade a um dos seus pais, avós ou responsáveis, sem celular."
+   },
+   "conferencia": {
+    "mantido": [
+     "O mandamento (Êxodo, XX, 12)",
+     "Honrar soma amor, respeito e atenções (item 3)",
+     "Extensão a quem faz as vezes de pai e de mãe (item 3)",
+     "Assistir na necessidade e na velhice (item 3)"
+    ],
+    "cuidado": [
+     "Ficaram de fora a frase 'Deus pune sempre com rigor' e as palavras 'submissão' e 'condescendência' nas versões infantis, para não confundir honrar com obedecer a qualquer custo",
+     "A menção a quem faz as vezes de pai e de mãe acolhe as diferentes famílias, e está no próprio texto"
+    ]
+   }
+  },
+  {
+   "capitulo": "c15",
+   "itens": [
+    2,
+    3
+   ],
+   "base": "Capítulo XV, itens 2 e 3",
+   "titulo": "O bom samaritano",
+   "pequenos": {
+    "texto": [
+     "Um homem estava machucado no caminho.",
+     "Dois homens passaram, viram e foram embora.",
+     "Mas um samaritano, um homem de outro povo, parou. Cuidou das feridas, levou o homem para descansar e pagou para cuidarem dele.",
+     "Jesus disse: vai, e faze o mesmo. Próximo é todo mundo que precisa da nossa ajuda."
+    ],
+    "conversa": "Quem perto de você pode estar precisando de ajuda?",
+    "vivencia": "Esta semana, olhe com atenção para quem está sozinho ou triste e ofereça ajuda."
+   },
+   "criancas": {
+    "texto": [
+     "Um doutor da lei perguntou a Jesus: \"Quem é o meu próximo?\" E Jesus contou uma história.",
+     "Um homem foi assaltado e deixado ferido na estrada. Passou um sacerdote, e seguiu adiante. Passou um levita, e também seguiu.",
+     "Então passou um samaritano. Os samaritanos eram vistos com desconfiança por aquele povo. Ele sentiu compaixão, cuidou das feridas com óleo e vinho, levou o homem a uma hospedaria e ainda pagou pelos cuidados.",
+     "Jesus perguntou qual dos três foi o próximo do ferido. A resposta: aquele que teve misericórdia. Então Jesus disse: vai, e faze o mesmo.",
+     "Allan Kardec resume: toda a moral de Jesus está na caridade e na humildade."
+    ],
+    "conversa": "Por que Jesus escolheu justamente um samaritano para ser o herói da história?",
+    "vivencia": "Ajude alguém que não é do seu grupo de sempre: um colega novo, um vizinho, alguém que fica de lado."
+   },
+   "jovens": {
+    "texto": [
+     "À pergunta \"Quem é o meu próximo?\", Jesus responde com a parábola: o sacerdote e o levita passam ao largo; o samaritano para, cuida e se compromete com o ferido. E conclui: vai, e faze o mesmo.",
+     "Kardec destaca que \"toda a moral de Jesus se resume na caridade e na humildade\", as virtudes contrárias ao egoísmo e ao orgulho.",
+     "E chama a atenção para um detalhe: Jesus coloca o samaritano, considerado herético, acima de quem seguia a religião oficial mas faltava com a caridade. O que conta não é o rótulo, é o amor praticado."
+    ],
+    "conversa": "Quem é o \"samaritano\" que você costuma não enxergar, ou julgar pela aparência?",
+    "vivencia": "Pratique uma caridade com alguém que pensa ou vive de um jeito diferente do seu."
+   },
+   "conferencia": {
+    "mantido": [
+     "A pergunta 'quem é o meu próximo' e a parábola completa (S. Lucas, X, 25 a 37)",
+     "Caridade e humildade como resumo da moral de Jesus (item 3)",
+     "O samaritano, considerado herético, acima do ortodoxo sem caridade (item 3)"
+    ],
+    "cuidado": [
+     "O item 1 do capítulo (o juízo final, com 'fogo eterno') não foi usado; o próprio Kardec, no item 3, explica que essas imagens são figuras para a época"
+    ]
+   }
+  },
+  {
+   "capitulo": "c5",
+   "itens": [
+    21
+   ],
+   "base": "Capítulo V, item 21",
+   "titulo": "Quem partiu continua a amar",
+   "pequenos": {
+    "texto": [
+     "Às vezes, alguém que a gente ama morre. O corpo para de funcionar, mas a pessoa continua viva: ela é um Espírito, e o Espírito não morre.",
+     "Quem partiu continua amando a gente. Os Espíritos que amamos ficam perto de nós e pensam em nós com carinho.",
+     "Quando sentimos saudade, podemos pedir a Deus que abençoe essa pessoa. Isso consola o nosso coração.",
+     "No mundo dos Espíritos, quem partiu continua a viver."
+    ],
+    "conversa": "De quem você sente saudade? Vamos lembrar uma coisa boa dessa pessoa?",
+    "vivencia": "Façam juntos uma prece curta pedindo a Deus que abençoe alguém querido que já partiu."
+   },
+   "criancas": {
+    "texto": [
+     "Quando alguém que amamos morre, muita gente pergunta: por que Deus deixou isso acontecer? O Espírito Sanson responde que nada acontece por acaso: \"Nada se faz sem um fim inteligente\".",
+     "A morte não é o fim. Os espíritas sabem \"que a alma vive melhor quando desembaraçada do seu invólucro corpóreo\", isto é, livre do corpo.",
+     "E os que partiram continuam perto: \"seus pensamentos vos protegem\". Eles ficam felizes quando nos lembramos deles com amor.",
+     "Quando a saudade apertar, podemos pedir a Deus que os abençoe. Assim, sentimos consolo no coração."
+    ],
+    "conversa": "O que você gostaria de dizer a alguém que já partiu, se ele estivesse aqui?",
+    "vivencia": "Escrevam ou desenhem uma lembrança boa de alguém querido que partiu e façam uma prece por ele."
+   },
+   "jovens": {
+    "texto": [
+     "Diante da morte de alguém jovem, é comum pensar que Deus foi injusto. O Espírito Sanson convida a olhar mais alto: \"o bem, muitas vezes, está onde julgais ver o mal\".",
+     "Ele explica que a vida não acaba no corpo e que a morte cedo pode ser um benefício para quem parte, que assim se preserva das misérias da vida ou de seduções que talvez o perdessem. Não sabemos como seria a vida dele na Terra; Deus sabe.",
+     "Os que partiram estão perto: \"seus corpos fluídicos vos envolvem, seus pensamentos vos protegem\". A dor desesperada os entristece; a lembrança com amor os alegra. E pedir a Deus que os abençoe traz consolações \"que secam as lágrimas\"."
+    ],
+    "conversa": "Como a ideia de que a vida continua muda o jeito de lidar com a saudade?",
+    "vivencia": "Quando lembrar de alguém que partiu, troque a pergunta \"por quê?\" por uma prece de carinho por essa pessoa."
+   },
+   "conferencia": {
+    "mantido": [
+     "Nada acontece sem um fim inteligente; o bem está muitas vezes onde vemos o mal",
+     "A alma vive melhor livre do corpo; quem partiu continua vivo",
+     "Os que partiram estão perto, e a lembrança com amor os alegra",
+     "Pedir a Deus que os abençoe traz consolação"
+    ],
+    "cuidado": [
+     "Para pequenos e crianças ficaram de fora a ideia de que a morte cedo pode ser um benefício e a frase sobre os 'desregramentos', para não confundir nem assustar",
+     "Em todas as idades ficou de fora a frase de que as dores 'desarrazoadas' mostram falta de fé e revolta: a criança enlutada não deve se sentir culpada pela tristeza",
+     "Com uma criança que acabou de perder alguém, os pais podem adaptar a conversa e ir no ritmo dela"
+    ]
+   },
+   "perguntas": [
+    [
+     "Quando alguém morre, o Espírito...",
+     [
+      "continua vivo",
+      "desaparece",
+      "vai embora para sempre"
+     ],
+     0
+    ],
+    [
+     "Quem partiu e nos ama...",
+     [
+      "continua perto de nós com carinho",
+      "esquece a gente",
+      "fica bravo"
+     ],
+     0
+    ],
+    [
+     "Quando sentimos saudade, podemos...",
+     [
+      "pedir a Deus que abençoe a pessoa",
+      "ficar com raiva de Deus",
+      "nunca mais falar nela"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Saudade com amor",
+    0
+   ]
+  },
+  {
+   "capitulo": "c10",
+   "itens": [
+    14
+   ],
+   "base": "Capítulo X, item 14",
+   "titulo": "Perdoar sem contar",
+   "pequenos": {
+    "texto": [
+     "Pedro perguntou a Jesus: quantas vezes eu devo perdoar o meu irmão? E Jesus respondeu: setenta vezes sete. Quer dizer: sempre.",
+     "Deus perdoa a gente muitas e muitas vezes. Por isso, a gente também perdoa.",
+     "Antes de dormir, é bom poder dizer: não estou com raiva de ninguém."
+    ],
+    "conversa": "Como a gente se sente quando faz as pazes?",
+    "vivencia": "Antes de dormir, cada um diz: \"Não estou com raiva de ninguém\". Se estiver, faz as pazes no dia seguinte."
+   },
+   "criancas": {
+    "texto": [
+     "Jesus ensinou a Pedro a perdoar \"não sete vezes, mas setenta vezes sete vezes\". O Espírito Simeão explica que isso quer dizer perdoar sem contar, cada vez que alguém nos ofender.",
+     "Ele lembra que Deus nos perdoa muitas vezes, sem contar. Por isso, devemos fazer pelos outros \"o que desejas que o Pai celestial por ti faça\".",
+     "Perdoar não é só falar: é esquecer o mal e pensar \"no bem que podeis fazer\".",
+     "Simeão termina com uma frase bonita: \"Feliz, pois, daquele que pode todas as noites adormecer, dizendo: Nada tenho contra o meu próximo\"."
+    ],
+    "conversa": "Por que será que é mais fácil dormir em paz quando a gente perdoa?",
+    "vivencia": "Se alguém da família estiver magoado com outro, ajudem os dois a fazer as pazes ainda nesta semana."
+   },
+   "jovens": {
+    "texto": [
+     "\"Quantas vezes perdoarei a meu irmão?\" A resposta de Jesus a Pedro, setenta vezes sete, quer dizer perdoar sem limite. O Espírito Simeão liga essa resposta ao Pai-Nosso: perdoar como queremos ser perdoados.",
+     "Ele observa que \"o mérito do perdão é proporcionado à gravidade do mal\": perdoar arranhões é fácil; o valor está em perdoar o que realmente doeu.",
+     "E vai além das palavras: somos responsáveis até pelos pensamentos, e o perdão pede limpar o coração de todo rancor."
+    ],
+    "conversa": "Existe alguém que você ainda não conseguiu perdoar? O que ajudaria a dar o primeiro passo?",
+    "vivencia": "Escolha uma mágoa antiga e, em vez de remoê-la, faça uma prece pela pessoa que a causou."
+   },
+   "conferencia": {
+    "mantido": [
+     "Perdoar setenta vezes sete, isto é, sem limite (pergunta de Pedro)",
+     "Deus nos perdoa sempre; perdoar como queremos ser perdoados",
+     "O mérito do perdão cresce com a gravidade do mal (versão jovem)",
+     "Responsabilidade pelos pensamentos; dormir sem nada contra o próximo"
+    ],
+    "cuidado": [
+     "Para os pequenos, só a ideia central e a frase final de Simeão, em palavras simples",
+     "Perdoar não quer dizer aceitar que alguém continue fazendo mal: em situação de violência, a criança deve contar a um adulto de confiança. Esta nota é da equipe do app, não do texto"
+    ]
+   },
+   "perguntas": [
+    [
+     "Jesus disse para perdoar quantas vezes?",
+     [
+      "Setenta vezes sete: sempre",
+      "Só uma vez",
+      "Três vezes"
+     ],
+     0
+    ],
+    [
+     "Quem nos perdoa muitas e muitas vezes?",
+     [
+      "Deus",
+      "Ninguém",
+      "Só os amigos"
+     ],
+     0
+    ],
+    [
+     "É bom dormir dizendo:",
+     [
+      "Não estou com raiva de ninguém",
+      "Amanhã eu me vingo",
+      "Ninguém gosta de mim"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Perdão sem contar",
+    1
+   ]
+  },
+  {
+   "capitulo": "c14",
+   "itens": [
+    9
+   ],
+   "base": "Capítulo XIV, item 9",
+   "titulo": "A família de Espíritos",
+   "pequenos": {
+    "texto": [
+     "Antes de nascer, cada um de nós já era um Espírito. Deus junta numa família Espíritos que vão aprender a se amar.",
+     "Na família, uns ajudam os outros a ficar melhores, com carinho e bons exemplos.",
+     "Quando alguém da família está difícil, a gente não desiste dele: acolhe como irmão e ajuda."
+    ],
+    "conversa": "Como você pode ajudar alguém da sua família hoje?",
+    "vivencia": "Cada um faz um gesto de carinho para a pessoa da família com quem mais briga."
+   },
+   "criancas": {
+    "texto": [
+     "Santo Agostinho explica que as famílias são formadas por Espíritos que se amam e que se procuram para viver juntos, aqui e no mundo espiritual.",
+     "Às vezes, Deus coloca na família alguém que ainda precisa aprender mais, para receber \"conselhos e bons exemplos\". Essa pessoa pode dar trabalho, mas é uma oportunidade para todos crescerem.",
+     "O conselho é: \"Acolhei-os, portanto, como irmãos; auxiliai-os\". E o amor da família não se quebra: os laços do Espírito continuam depois desta vida."
+    ],
+    "conversa": "Por que será que Deus junta pessoas tão diferentes na mesma família?",
+    "vivencia": "Pensem juntos numa forma de ajudar quem anda com dificuldade em casa: uma conversa, uma ajuda na tarefa, paciência."
+   },
+   "jovens": {
+    "texto": [
+     "Santo Agostinho analisa a ingratidão, \"um dos frutos mais diretos do egoísmo\", e mostra que muitas antipatias em família vêm de outras existências: Espíritos que se desentenderam podem renascer juntos para aprender a se perdoar.",
+     "Para chegar a Deus, diz ele, \"uma só é a senha: caridade\". E a família é o lugar onde isso se aprende: os pais educam, os filhos aprendem, e todos têm a chance de trocar antigas mágoas por amor.",
+     "Os laços verdadeiros são \"os laços duradouros do Espírito\", que se fortalecem em vez de se quebrar. Por isso, quem dá trabalho em casa deve ser acolhido como irmão."
+    ],
+    "conversa": "O que muda na sua forma de ver um conflito em família quando você pensa que todos estão ali para aprender?",
+    "vivencia": "Escolha alguém da família com quem você tem atrito e faça, nesta semana, um gesto de paciência ou de gratidão."
+   },
+   "conferencia": {
+    "mantido": [
+     "Famílias formadas por Espíritos que se amam e se buscam",
+     "Espíritos menos adiantados encarnam entre eles para receber conselhos e bons exemplos",
+     "Acolhê-los como irmãos e auxiliá-los",
+     "Os laços do Espírito duram além da vida; a caridade é a senha para chegar a Deus (versão jovem)"
+    ],
+    "cuidado": [
+     "Ficaram de fora, em todas as idades, as frases dirigidas às mães ('Um de nós dois é culpado') e as que falam de castigo aos pais, que são orientação para adultos",
+     "Para pequenos e crianças, nada sobre ódios de vidas passadas; fica só a ideia do acolhimento e do amor que une a família",
+     "O momento 'Um filho com dificuldades' é sobretudo para os pais, que podem ler o texto completo"
+    ]
+   },
+   "perguntas": [
+    [
+     "Quem Deus junta numa família?",
+     [
+      "Espíritos que vão aprender a se amar",
+      "Só quem nunca briga",
+      "Pessoas por acaso"
+     ],
+     0
+    ],
+    [
+     "Quando alguém da família está difícil, a gente...",
+     [
+      "acolhe e ajuda",
+      "desiste dele",
+      "briga mais"
+     ],
+     0
+    ],
+    [
+     "O amor da família acaba quando a vida termina?",
+     [
+      "Não, continua no mundo dos Espíritos",
+      "Sim, acaba",
+      "Só se a gente esquecer"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Família unida",
+    4
+   ]
+  },
+  {
+   "capitulo": "c25",
+   "itens": [
+    6,
+    7
+   ],
+   "base": "Capítulo XXV, itens 6 e 7",
+   "titulo": "Os pássaros e os lírios",
+   "pequenos": {
+    "texto": [
+     "Jesus disse: olhem os pássaros do céu. Eles não plantam nem guardam comida, e Deus cuida deles.",
+     "Olhem os lírios do campo. Nem o rei mais rico se vestiu tão bonito como um deles.",
+     "Se Deus cuida dos pássaros e das flores, cuida muito mais de nós. Não precisamos ter medo.",
+     "E Deus quer que a gente também faça a nossa parte: estudar, ajudar e trabalhar."
+    ],
+    "conversa": "O que deixa você preocupado? Vamos contar isso a Deus numa prece?",
+    "vivencia": "Quando sentir medo, respire devagar e diga: \"Deus cuida de mim\"."
+   },
+   "criancas": {
+    "texto": [
+     "Jesus ensinou: \"Observai os pássaros do céu: não semeiam, não ceifam, nada guardam em celeiros; mas, vosso Pai celestial os alimenta\". E falou dos lírios do campo: nem o rei Salomão, com toda a sua riqueza, se vestiu como um deles.",
+     "Ele concluiu: \"Buscai primeiramente o reino de Deus e a sua justiça\", e o resto virá. E disse: \"A cada dia basta o seu mal\": não adianta sofrer hoje pelo que talvez aconteça amanhã.",
+     "Allan Kardec explica que isso não quer dizer ficar parado esperando. Deus nunca abandona quem confia nele, mas quer que cada um faça a sua parte. Às vezes, a ajuda vem como uma boa ideia para resolver o problema."
+    ],
+    "conversa": "Qual é a sua parte para resolver aquilo que preocupa você?",
+    "vivencia": "Façam uma lista com duas partes: o que depende de nós (e vamos fazer) e o que entregamos a Deus na prece."
+   },
+   "jovens": {
+    "texto": [
+     "Jesus aponta os pássaros e os lírios para ensinar confiança: \"Não vos inquieteis, pois, dizendo: Que comeremos?\" O Pai sabe do que precisamos, e \"A cada dia basta o seu mal\".",
+     "Kardec adverte que, ao pé da letra, essas palavras \"seriam a negação de toda previdência, de todo trabalho\". São uma alegoria da Providência, que não abandona quem confia, mas quer que cada um trabalhe e, quando não dá ajuda material, \"inspira as idéias com que se encontram os meios de sair da dificuldade\".",
+     "Ele lembra ainda que muito da nossa inquietação vem de querer mais do que precisamos: \"o necessário não lhe basta; reclama o supérfluo\"."
+    ],
+    "conversa": "Quanto da sua ansiedade vem do que você precisa e quanto vem do que você gostaria de ter?",
+    "vivencia": "Antes de dormir, entregue a Deus numa prece uma preocupação e escolha um passo concreto para dar no dia seguinte."
+   },
+   "conferencia": {
+    "mantido": [
+     "Pássaros do céu e lírios do campo (S. Mateus, VI, 25 a 34)",
+     "Buscar primeiro o reino de Deus; a cada dia basta o seu mal",
+     "Não é convite à inércia: a Providência quer que trabalhemos e inspira ideias (item 7)",
+     "O necessário e o supérfluo (item 7, versão jovem)"
+    ],
+    "cuidado": [
+     "Para os pequenos, a ideia de que Deus cuida veio junto com a de que cada um faz a sua parte, como Kardec explica",
+     "Ficou de fora a imagem da erva lançada na fornalha, para não assustar",
+     "Em ansiedade forte e persistente, a família deve procurar também um profissional de saúde. Esta nota é da equipe do app, não do texto"
+    ]
+   },
+   "perguntas": [
+    [
+     "Quem alimenta os pássaros do céu?",
+     [
+      "Deus, nosso Pai",
+      "Ninguém",
+      "Eles mesmos guardam comida"
+     ],
+     0
+    ],
+    [
+     "Jesus disse que, mais bonito que o rei, era...",
+     [
+      "o lírio do campo",
+      "um castelo",
+      "uma coroa de ouro"
+     ],
+     0
+    ],
+    [
+     "Deus cuida de nós e quer que a gente...",
+     [
+      "também faça a nossa parte",
+      "fique parado esperando",
+      "tenha medo"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Lírio do campo",
+    6
+   ]
+  },
+  {
+   "capitulo": "c25",
+   "itens": [
+    1,
+    2,
+    3
+   ],
+   "base": "Capítulo XXV, itens 1 a 3",
+   "titulo": "Buscai e achareis",
+   "pequenos": {
+    "texto": [
+     "Jesus disse: peçam, e vocês vão receber; procurem, e vão achar; batam à porta, e ela vai se abrir.",
+     "Nenhum pai dá uma pedra ao filho que pede pão. Deus, o Pai do céu, dá coisas boas a quem pede.",
+     "Mas Deus também quer que a gente se esforce: quem procura acha. Por isso a gente estuda, ajuda em casa e trabalha."
+    ],
+    "conversa": "O que você gostaria de pedir a Deus? E o que você pode fazer para ajudar?",
+    "vivencia": "Cada um escolhe uma tarefa de casa para fazer com capricho nesta semana."
+   },
+   "criancas": {
+    "texto": [
+     "Jesus ensinou: \"Pedi e se vos dará; buscai e achareis; batei à porta e se vos abrirá\". E comparou: nenhum pai dá uma pedra ao filho que pede pão; Deus, nosso Pai, sabe dar coisas boas.",
+     "Allan Kardec explica que isso é como o ditado \"Ajuda-te a ti mesmo, que o céu te ajudará\": Deus ajuda, mas quer que a gente se esforce.",
+     "Por isso Deus fez do trabalho uma necessidade e disse: \"Procura e acharás; trabalha e produzirás\". Quem se esforça cresce e tem o mérito do que conquistou."
+    ],
+    "conversa": "Lembra de alguma vez em que você se esforçou e conseguiu algo difícil?",
+    "vivencia": "Quando a família estiver passando por uma dificuldade, cada um pensa em como pode ajudar, além de orar."
+   },
+   "jovens": {
+    "texto": [
+     "\"Buscai e achareis\" é, segundo Kardec, a mesma lição de \"Ajuda-te a ti mesmo, que o céu te ajudará\": a lei do trabalho, que é também a lei do progresso, porque \"o progresso é filho do trabalho\".",
+     "Deus deu ao ser humano \"o desejo incessante do melhor\", que o leva a pesquisar, inventar e crescer. E, como uma só vida é pouco, a alma volta, reencarnando, com o que já conquistou.",
+     "Sem o trabalho, o corpo e a inteligência ficariam parados; por isso Deus fez dele uma necessidade: \"Procura e acharás; trabalha e produzirás\"."
+    ],
+    "conversa": "Em que área da sua vida você está esperando que as coisas caiam do céu?",
+    "vivencia": "Escolha um objetivo seu (estudo, trabalho, um talento) e dê nesta semana um passo concreto em direção a ele, pedindo a Deus força para continuar."
+   },
+   "conferencia": {
+    "mantido": [
+     "Pedi e obtereis; buscai e achareis (S. Mateus, VII, 7 a 11)",
+     "Ajuda-te, que o céu te ajudará: lei do trabalho e do progresso (item 2)",
+     "O desejo do melhor e o progresso pela reencarnação (item 2, versão jovem)",
+     "Deus fez do trabalho uma necessidade (item 3)"
+    ],
+    "cuidado": [
+     "No aperto financeiro, a mensagem para as crianças é de confiança e de colaboração em casa, sem colocar sobre elas o peso dos problemas dos adultos. Esta nota é da equipe do app"
+    ]
+   },
+   "perguntas": [
+    [
+     "Jesus disse: buscai e...",
+     [
+      "achareis",
+      "chorareis",
+      "esquecereis"
+     ],
+     0
+    ],
+    [
+     "Um pai bom, quando o filho pede pão, dá...",
+     [
+      "pão",
+      "uma pedra",
+      "nada"
+     ],
+     0
+    ],
+    [
+     "Deus ajuda, e quer que a gente...",
+     [
+      "também se esforce",
+      "fique esperando sem fazer nada",
+      "desista"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Mão que trabalha",
+    5
+   ]
+  },
+  {
+   "capitulo": "c28",
+   "itens": [
+    28,
+    29
+   ],
+   "base": "Capítulo XXVIII, itens 28 e 29",
+   "titulo": "Obrigado, meu Deus",
+   "pequenos": {
+    "texto": [
+     "Todos os dias acontecem coisas boas: um abraço, a comida na mesa, uma brincadeira, uma boa ideia.",
+     "Às vezes a gente esquece de agradecer. Mas é bom dizer: obrigado, meu Deus!",
+     "Não precisa de muitas palavras. Um obrigado de coração já chega até Deus."
+    ],
+    "conversa": "Qual foi a coisa mais gostosa que aconteceu hoje?",
+    "vivencia": "Todas as noites desta semana, antes de dormir, cada um conta uma coisa boa do dia e diz: obrigado, meu Deus!"
+   },
+   "criancas": {
+    "texto": [
+     "Allan Kardec observa que \"O homem facilmente esquece o bem\" e lembra mais do que o aflige. Se anotássemos cada dia as coisas boas que recebemos, ficaríamos espantados de ver quantas são.",
+     "Por isso, todas as noites, é bom lembrar os presentes do dia e agradecer a Deus. Até as boas ideias são presentes!",
+     "Não precisa de frases longas: \"Obrigado, meu Deus, pelo bom pensamento que me foi inspirado\" já diz muito. Quem agradece mostra humildade e reconhece de onde vem o bem."
+    ],
+    "conversa": "Por que será que a gente lembra mais das coisas ruins do que das boas?",
+    "vivencia": "Façam juntos um pote da gratidão: cada dia, alguém escreve num pedaço de papel uma coisa boa que aconteceu."
+   },
+   "jovens": {
+    "texto": [
+     "Kardec nota que coisas que parecem pequenas muitas vezes são as que mais influem no nosso destino, e que \"O homem facilmente esquece o bem\", lembrando mais do que o aflige.",
+     "Ele propõe recordar, toda noite, os favores recebidos durante o dia, e agradecer no momento em que se sente a ajuda de Deus, sem precisar parar o que se está fazendo.",
+     "Enquanto o egoísta atribui tudo aos próprios méritos e o incrédulo ao acaso, quem tem fé agradece a Deus e aos bons Espíritos. Na prece da coletânea, isso aparece assim: \"Indigno eu seria, se os atribuísse ao acaso dos acontecimentos, ou ao meu próprio mérito\"."
+    ],
+    "conversa": "O que você costuma atribuir só ao seu esforço ou à sorte e poderia também agradecer?",
+    "vivencia": "Durante a semana, anote três coisas boas por dia e, no fim, leia a lista numa prece de agradecimento."
+   },
+   "conferencia": {
+    "mantido": [
+     "Esquecemos o bem e lembramos o que aflige (item 28)",
+     "Recordar à noite os favores do dia e agradecer (item 28)",
+     "Agradecer também as boas ideias, com poucas palavras (item 28)",
+     "Não atribuir o bem ao acaso nem ao próprio mérito (item 29, versão jovem)"
+    ],
+    "cuidado": [
+     "O pote da gratidão é só uma sugestão prática para a vivência, não uma prática doutrinária"
+    ]
+   },
+   "perguntas": [
+    [
+     "Para agradecer a Deus, precisa de muitas palavras?",
+     [
+      "Não, um obrigado de coração já chega",
+      "Sim, uma oração bem comprida",
+      "Só se for cantando"
+     ],
+     0
+    ],
+    [
+     "Além das coisas, também é presente de Deus...",
+     [
+      "uma boa ideia",
+      "uma briga",
+      "uma mentira"
+     ],
+     0
+    ],
+    [
+     "Uma boa hora para lembrar as coisas boas do dia é...",
+     [
+      "antes de dormir",
+      "nunca",
+      "só no aniversário"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Presente do dia",
+    3
+   ]
+  },
+  {
+   "capitulo": "c28",
+   "itens": [
+    53,
+    54,
+    55,
+    56
+   ],
+   "base": "Capítulo XXVIII, itens 53 a 56",
+   "titulo": "Um Espírito chega à família",
+   "pequenos": {
+    "texto": [
+     "Antes de nascer, o bebê já é um Espírito. Ele vem morar na nossa família para aprender e crescer.",
+     "Deus confia o bebê aos pais, que vão cuidar dele e ensinar o caminho do bem.",
+     "E toda a família ajuda: com carinho, paciência e bons exemplos.",
+     "Podemos dizer ao bebê: seja bem-vindo!"
+    ],
+    "conversa": "O que você vai fazer para o bebê se sentir amado?",
+    "vivencia": "Façam juntos uma prece dando as boas-vindas ao Espírito que vai chegar."
+   },
+   "criancas": {
+    "texto": [
+     "Allan Kardec explica que os Espíritos voltam à Terra para progredir, e que cabe aos pais \"guiar os primeiros passos\" deles e encaminhá-los para o bem.",
+     "Para ajudar nessa tarefa, Deus fez do amor dos pais e do amor dos filhos \"uma lei da Natureza\".",
+     "Na prece pelo bebê, os pais dizem: \"Espírito que encarnaste no corpo do nosso filho, sê bem-vindo\". E pedem aos bons Espíritos que acompanhem a criança a vida inteira.",
+     "Toda a família pode ajudar com carinho e bons exemplos."
+    ],
+    "conversa": "O que você gostaria de ensinar ao bebê quando ele crescer?",
+    "vivencia": "Cada um prepara uma surpresa de boas-vindas para o bebê: um desenho, uma música ou uma prece."
+   },
+   "jovens": {
+    "texto": [
+     "Kardec ensina que os Espíritos chegam à perfeição passando pelas provas da vida corpórea, e que cada nascimento é um Espírito voltando para progredir, seja reparando faltas, seja cumprindo uma missão útil.",
+     "Aos pais cabe \"guiar os primeiros passos\" do filho e encaminhá-lo para o bem; por isso, na prece, o filho é chamado de \"um depósito que nos foi confiado\".",
+     "Outra prece pede que a criança aprenda \"a conhecer-te, amar-te e adorar-te\" e cresça \"sob a égide do seu anjo guardião\", até poder elevar-se sozinha para Deus."
+    ],
+    "conversa": "Que tipo de irmão, primo ou tio você quer ser para quem está chegando?",
+    "vivencia": "Escreva uma mensagem de boas-vindas para o bebê, para ser lida quando ele crescer."
+   },
+   "conferencia": {
+    "mantido": [
+     "Os Espíritos reencarnam para progredir; os pais guiam os primeiros passos (item 53)",
+     "O amor de pais e filhos como lei da Natureza (item 53)",
+     "As boas-vindas ao Espírito e o filho como depósito confiado (item 54)",
+     "O pedido de luz e do amparo do anjo guardião (item 56, versão jovem)"
+    ],
+    "cuidado": [
+     "Ficou de fora, para as crianças, a frase sobre os pais responderem perante Deus se o filho cair no mal por culpa deles, que é orientação para adultos",
+     "A participação dos irmãos e da família toda é sugestão de vivência, não está no texto"
+    ]
+   },
+   "perguntas": [
+    [
+     "Antes de nascer, o bebê já é...",
+     [
+      "um Espírito",
+      "um sonho",
+      "ninguém"
+     ],
+     0
+    ],
+    [
+     "Quem cuida do bebê e ensina o bem?",
+     [
+      "Os pais e toda a família",
+      "Ninguém",
+      "Só a televisão"
+     ],
+     0
+    ],
+    [
+     "O que dizemos ao Espírito que chega?",
+     [
+      "Seja bem-vindo!",
+      "Vai embora!",
+      "Não faz barulho!"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Bem-vindo!",
+    4
+   ]
+  },
+  {
+   "capitulo": "c28",
+   "itens": [
+    77,
+    78,
+    79
+   ],
+   "base": "Capítulo XXVIII, itens 77 a 79",
+   "titulo": "Quando alguém fica doente",
+   "pequenos": {
+    "texto": [
+     "Às vezes alguém da família fica doente. O corpo precisa de cuidado para melhorar.",
+     "Deus deixou ao nosso alcance os remédios e os médicos para ajudar. Por isso a gente cuida, leva ao médico e segue o tratamento.",
+     "E também podemos orar. A prece leva consolo e força para quem está doente.",
+     "Quem está doente precisa de paciência, e a família ajuda com amor."
+    ],
+    "conversa": "O que você pode fazer para alegrar alguém que está doente?",
+    "vivencia": "Façam um desenho ou um cartão para alguém doente e uma prece pela saúde dele."
+   },
+   "criancas": {
+    "texto": [
+     "Allan Kardec explica que \"As doenças fazem parte das provas e das vicissitudes da vida terrena\". Em mundos mais adiantados, o corpo não adoece como aqui.",
+     "Mas devemos procurar a cura: se Deus não quisesse que as dores diminuíssem, não teria posto ao nosso alcance os meios de cura. Ao lado do tratamento médico, há também a força da prece.",
+     "Na prece pelo doente, pedimos aos bons Espíritos que levem \"um bálsamo salutar em seu corpo e a consolação em sua alma\", e que ele tenha paciência."
+    ],
+    "conversa": "Como podemos ajudar quem está doente, além de orar?",
+    "vivencia": "Cada noite desta semana, a família faz uma prece curta pela pessoa doente e pensa num jeito de ajudá-la."
+   },
+   "jovens": {
+    "texto": [
+     "Kardec ensina que as doenças fazem parte das provas da vida na Terra e estão ligadas à nossa inferioridade: as paixões e os excessos \"semeiam em nós germens malsãos\". Mas resignar-se não é cruzar os braços: é dever procurar os meios de cura.",
+     "Ao lado \"da medicação ordinária, elaborada pela Ciência\", Kardec cita a ação fluídica e a prece. Na prece do doente, ele se confia à misericórdia de Deus e pede que a enfermidade seja \"um aviso salutar\" que o leve a refletir sobre a própria conduta.",
+     "E quem ora por outro pede que o seu pensamento leve ao doente consolo e paciência, para que ele não perca \"o fruto desta prova\"."
+    ],
+    "conversa": "Como equilibrar a confiança em Deus com o cuidado responsável com a saúde?",
+    "vivencia": "Visite, ligue ou mande uma mensagem para alguém doente nesta semana, e ore por ele."
+   },
+   "conferencia": {
+    "mantido": [
+     "As doenças fazem parte das provas da vida terrena (item 77)",
+     "O dever de buscar os meios de cura: medicina, ação fluídica e prece (item 77)",
+     "A prece do doente: confiança e a doença como aviso (item 78, versão jovem)",
+     "A prece pelo doente: bálsamo, consolação e paciência (item 79)"
+    ],
+    "cuidado": [
+     "Para os pequenos ficou de fora a ligação entre doença e expiação, para a criança não pensar que o doente é culpado",
+     "Em todas as idades, o tratamento médico vem junto com a prece, como Kardec ensina"
+    ]
+   },
+   "perguntas": [
+    [
+     "Quando alguém fica doente, a família...",
+     [
+      "cuida, leva ao médico e ora",
+      "não faz nada",
+      "fica brava"
+     ],
+     0
+    ],
+    [
+     "Os remédios e os médicos estão aí para...",
+     [
+      "ajudar a curar",
+      "dar medo",
+      "nada"
+     ],
+     0
+    ],
+    [
+     "A prece leva para quem está doente...",
+     [
+      "consolo e força",
+      "barulho",
+      "medo"
+     ],
+     0
+    ]
+   ],
+   "figurinha": [
+    "Cuidar com amor",
+    0
+   ]
+  }
+ ]
 }

@@ -2794,7 +2794,8 @@ h1, h2 { text-wrap: balance; }
     ['A régua do amor', '<rect x="8" y="24" width="44" height="14" rx="4" fill="#F7D79C"/><path d="M16 24 v6 M24 24 v8 M32 24 v6 M40 24 v8" stroke="#A0702F" stroke-width="2"/>'],
     ['Bem secreto', '<rect x="14" y="24" width="32" height="24" rx="4" fill="#C9B6E4"/><rect x="12" y="18" width="36" height="9" rx="3" fill="#B39BD8"/><path d="M30 18 v30" stroke="#F7D79C" stroke-width="4"/>'],
     ['Cuidar de quem cuida', '<path d="M12 30 L30 16 L48 30 V48 H12 Z" fill="#F7D79C"/><path d="M30 44 C 22 38, 22 32, 26 31 C 28 30, 30 32, 30 34 C 30 32, 32 30, 34 31 C 38 32, 38 38, 30 44 Z" fill="#F29A8E"/>'],
-    ['Mão que ajuda', '<path d="M18 46 V26 a4 4 0 0 1 8 0 V22 a4 4 0 0 1 8 0 V26 a4 4 0 0 1 8 0 V38 C 42 46, 36 50, 28 50 C 22 50, 18 48, 18 46 Z" fill="#F4CDA8" stroke="#C98E62" stroke-width="2"/>']
+    ['Mão que ajuda', '<path d="M18 46 V26 a4 4 0 0 1 8 0 V22 a4 4 0 0 1 8 0 V26 a4 4 0 0 1 8 0 V38 C 42 46, 36 50, 28 50 C 22 50, 18 48, 18 46 Z" fill="#F4CDA8" stroke="#C98E62" stroke-width="2"/>'],
+    ['Lírio do campo', '<path d="M30 54 V30" stroke="#6E9A5A" stroke-width="3" stroke-linecap="round"/><path d="M30 44 C 22 42, 17 36, 16 31 C 23 32, 28 37, 30 44 Z" fill="#8DB874"/><path d="M30 31 C 21 28, 17 18, 20 10 C 25 15, 29 22, 30 31 Z" fill="#F3ECF8" stroke="#C9B6E4" stroke-width="1.5"/><path d="M30 31 C 39 28, 43 18, 40 10 C 35 15, 31 22, 30 31 Z" fill="#F3ECF8" stroke="#C9B6E4" stroke-width="1.5"/><path d="M30 31 C 25 23, 26 13, 30 7 C 34 13, 35 23, 30 31 Z" fill="#FFFFFF" stroke="#C9B6E4" stroke-width="1.5"/><circle cx="30" cy="24" r="2.2" fill="#E8B646"/>']
   ];
   var inf = { cena: 0, look: lerLocal('lar-cisco', 0), faixa: 'criancas', trecho: 0, par: 0, perg: 0, acertos: 0, luz: {}, pontos: 0, linhaPN: 0, volta: 'inicio' };
   var CENAS_INF = ['oi', 'prece', 'historia', 'pensar', 'luz', 'jogo', 'tchau'];
@@ -2858,6 +2859,9 @@ h1, h2 { text-wrap: balance; }
     }
   }
   function historiaInf() { return INFANTIL && INFANTIL.trechos[inf.trecho]; }
+  // As histórias novas trazem em infantil.json as próprias perguntas e a figurinha ([nome, desenho]); as 6 primeiras usam PERGUNTAS_INF.
+  function perguntasInf() { var h = historiaInf(); return (h && h.perguntas) || PERGUNTAS_INF[inf.trecho] || []; }
+  function figurinhaInf() { var h = historiaInf(), f = h && h.figurinha; return f ? [f[0], FIGURINHAS[f[1]][1]] : FIGURINHAS[inf.trecho % FIGURINHAS.length]; }
   function pontosInf() { $('#pontos-inf').innerHTML = CENAS_INF.map(function (_, i) { return '<i class="' + (i < inf.cena ? 'feito' : i === inf.cena ? 'agora' : '') + '"></i>'; }).join(''); }
   function mostrarInf(dir) {
     var cena = CENAS_INF[inf.cena], el = $('#cena-inf'), h = historiaInf(), html = '', fala = '';
@@ -2884,7 +2888,7 @@ h1, h2 { text-wrap: balance; }
         '<p class="ref-inf">Baseado em O Evangelho segundo o Espiritismo, ' + esc(h.base.charAt(0).toLowerCase() + h.base.slice(1)) + '</p>' +
         (inf.par < ps.length - 1 ? '<button class="btn btn-luz" data-par-inf>Continuar a história</button>' : '<button class="btn btn-luz" data-seguir-inf>Vamos pensar juntos</button>');
     } else if (cena === 'pensar') {
-      var qs = PERGUNTAS_INF[inf.trecho], q = qs[inf.perg];
+      var qs = perguntasInf(), q = qs[inf.perg];
       if (inf.perg === 0 && !inf.conversou) {
         fala = h[inf.faixa].conversa;
         html = '<div class="conversa-inf"><b>Para conversar</b><p>' + esc(h[inf.faixa].conversa) + '</p><small>Cada um conta o que pensa. Não tem resposta errada!</small></div><button class="btn btn-luz" data-conversou>Já conversamos! Quero as perguntas</button>';
@@ -2909,10 +2913,10 @@ h1, h2 { text-wrap: balance; }
       html = inf.jogoFim ? '<div class="placar-inf"><b>' + inf.pontos + '</b><span>' + (inf.pontos === 1 ? 'bolha' : 'bolhas') + ' do bem</span></div><button class="btn btn-luz" data-seguir-inf>Ver a minha figurinha</button><button class="btn-texto claro-inf" data-jogar-de-novo>Jogar de novo</button>'
         : '<div class="jogo-inf" id="jogo-inf"><p class="tempo-inf" id="tempo-inf">30</p></div><button class="btn btn-luz" data-jogar>Começar!</button>';
     } else if (cena === 'tchau') {
-      var fig = FIGURINHAS[inf.trecho % FIGURINHAS.length], album = lerLocal('lar-figurinhas', {});
+      var fig = figurinhaInf(), album = lerLocal('lar-figurinhas', {});
       fala = 'Antes de ir: sabia que cada um de nós tem um anjo da guarda de verdade? É um Espírito bom que cuida da gente, como um pai cuida do filho.';
       var vozT = fala + ' Para viver esta semana: ' + h[inf.faixa].vivencia;
-      html = '<div class="figurinha-inf"><svg viewBox="0 0 60 60" aria-hidden="true">' + fig[1] + '</svg><b>' + fig[0] + '</b><small>Figurinha nova no álbum: ' + Object.keys(album).length + ' de ' + FIGURINHAS.length + '</small></div>' +
+      html = '<div class="figurinha-inf"><svg viewBox="0 0 60 60" aria-hidden="true">' + fig[1] + '</svg><b>' + fig[0] + '</b><small>Figurinha nova no álbum: ' + Object.keys(album).length + ' de ' + INFANTIL.trechos.length + '</small></div>' +
         '<div class="conversa-inf"><b>Para viver esta semana</b><p>' + esc(h[inf.faixa].vivencia) + '</p></div>' +
         '<p class="cit-inf">“A de um pai com relação aos filhos; a de guiar o seu protegido pela senda do bem…”<small>O Livro dos Espíritos, questão 491, sobre a missão do Espírito protetor</small></p>' +
         '<p class="rot-inf">Para terminar, cada um diz um obrigado a Jesus, bem do coração.</p><button class="btn btn-luz" data-fim-inf>Obrigado, Jesus! Tchau, Cisquinho!</button>';
@@ -2957,7 +2961,7 @@ h1, h2 { text-wrap: balance; }
     if (b.hasAttribute('data-par-inf')) { inf.par++; mostrarInf(); Som.folhear(1); return; }
     if (b.hasAttribute('data-conversou')) { inf.conversou = true; mostrarInf(1); return; }
     if (b.dataset.op !== undefined) {
-      var q = PERGUNTAS_INF[inf.trecho][inf.perg], certa = +b.dataset.op === q[2];
+      var q = perguntasInf()[inf.perg], certa = +b.dataset.op === q[2];
       $$('.ops-inf button').forEach(function (x) { x.disabled = true; if (+x.dataset.op === q[2]) x.classList.add('certa'); });
       if (certa) { inf.acertos++; festejar(); falar(['Isso mesmo!', 'Acertou!', 'Muito bem!'][inf.perg]); }
       else { b.classList.add('errada'); falar('Quase! A resposta é: ' + q[1][q[2]] + '.'); }
