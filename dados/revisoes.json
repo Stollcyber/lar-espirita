@@ -1,0 +1,1195 @@
+{
+ "versao": 1,
+ "nota": "Perguntas de revisão das trilhas, 3 por capítulo, preparadas com antecedência. Cada uma aponta o bloco do livro (b) e traz um trecho literal (trecho) que o verificador confere no texto. Chave: obra:índice do capítulo em prototipo/dados.",
+ "capitulos": {
+  "espiritos:0": [
+   {
+    "p": "Por que Kardec deu nomes novos, espírita e Espiritismo, à doutrina dos Espíritos?",
+    "o": [
+     "Para coisas novas são precisos termos novos, e assim se evita confusão",
+     "Porque a palavra espiritualista era proibida na época",
+     "Para separar os espíritas das outras pessoas"
+    ],
+    "c": 0,
+    "e": "Espiritualista é quem crê haver em si alguma coisa mais do que matéria, o que não quer dizer que creia nos Espíritos e em suas comunicações. Por isso a doutrina dos Espíritos precisava de nome próprio.",
+    "b": 1,
+    "trecho": "Para se designarem coisas novas são precisos termos novos",
+    "ref": "O Livro dos Espíritos, Introdução, item I"
+   },
+   {
+    "p": "Como se deram as primeiras manifestações inteligentes?",
+    "o": [
+     "Mesas se levantavam e davam pancadas com um dos pés, respondendo sim ou não",
+     "Vozes ouvidas por todos ao mesmo tempo",
+     "Livros que se escreviam sozinhos durante a noite"
+    ],
+    "c": 0,
+    "e": "Depois vieram respostas mais desenvolvidas: o móvel dava um número de pancadas correspondente a cada letra do alfabeto, e assim se formavam palavras e frases.",
+    "b": 31,
+    "trecho": "mesas que se levantavam e, com um dos pés, davam certo número de pancadas",
+    "ref": "O Livro dos Espíritos, Introdução, item IV"
+   },
+   {
+    "p": "Entre os pontos principais da doutrina, como Kardec resume o que é a alma?",
+    "o": [
+     "Um Espírito encarnado, sendo o corpo apenas o seu envoltório",
+     "O princípio vital, que se apaga com a morte",
+     "Uma parte de Deus que volta a se misturar ao todo"
+    ],
+    "c": 0,
+    "e": "É um dos pontos principais da doutrina que Kardec resume na Introdução.",
+    "b": 52,
+    "trecho": "A alma é um Espírito encarnado, sendo o corpo apenas o seu envoltório",
+    "ref": "O Livro dos Espíritos, Introdução, item VI"
+   }
+  ],
+  "espiritos:2": [
+   {
+    "p": "Segundo O Livro dos Espíritos, o que é Deus?",
+    "o": [
+     "A inteligência suprema, causa primária de todas as coisas",
+     "A soma de todas as forças do Universo",
+     "O próprio infinito"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 1. Na questão 14, os Espíritos explicam que Deus não é a soma das forças do Universo, porque então seria efeito, e não causa.",
+    "b": 3,
+    "trecho": "Deus é a inteligência suprema, causa primária de todas as coisas",
+    "ref": "O Livro dos Espíritos, questão 1"
+   },
+   {
+    "p": "Onde, segundo os Espíritos, se encontra a prova da existência de Deus?",
+    "o": [
+     "No princípio de que não há efeito sem causa",
+     "Só nas tradições religiosas",
+     "Nas visões de alguns médiuns"
+    ],
+    "c": 0,
+    "e": "Procurai a causa de tudo o que não é obra do homem, dizem os Espíritos, e a vossa razão responderá.",
+    "b": 11,
+    "trecho": "Não há efeito sem causa",
+    "ref": "O Livro dos Espíritos, questão 4"
+   },
+   {
+    "p": "Por que o homem ainda não compreende a natureza íntima de Deus?",
+    "o": [
+     "Falta-lhe para isso o sentido",
+     "Porque é proibido pensar nisso",
+     "Porque Deus não quer ser conhecido"
+    ],
+    "c": 0,
+    "e": "Na questão 11, os Espíritos acrescentam que o compreenderá quando não tiver mais o espírito obscurecido pela matéria.",
+    "b": 30,
+    "trecho": "falta-lhe para isso o sentido",
+    "ref": "O Livro dos Espíritos, questão 10"
+   }
+  ],
+  "espiritos:6": [
+   {
+    "p": "Que definição se pode dar dos Espíritos?",
+    "o": [
+     "Os seres inteligentes da criação, que povoam o Universo fora do mundo material",
+     "Forças da natureza sem individualidade",
+     "Pessoas que nunca viveram na Terra"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 76.",
+    "b": 3,
+    "trecho": "Pode dizer-se que os Espíritos são os seres inteligentes da criação",
+    "ref": "O Livro dos Espíritos, questão 76"
+   },
+   {
+    "p": "O Espírito está envolvido por alguma substância?",
+    "o": [
+     "Sim, uma substância vaporosa para nós, que Kardec chama perispírito",
+     "Não, é pura luz, sem envoltório algum",
+     "Sim, um corpo de carne invisível"
+    ],
+    "c": 0,
+    "e": "Kardec compara: assim como o perisperma envolve o gérmen de um fruto, essa substância se pode chamar perispírito.",
+    "b": 50,
+    "trecho": "Envolve-o uma substância, vaporosa para os teus olhos",
+    "ref": "O Livro dos Espíritos, questão 93"
+   },
+   {
+    "p": "Os Espíritos são todos iguais?",
+    "o": [
+     "Não: são de diferentes ordens, conforme o grau de perfeição alcançado",
+     "Sim, todos sabem e podem o mesmo",
+     "Não, uns foram criados bons e outros maus para sempre"
+    ],
+    "c": 0,
+    "e": "A escala espírita os agrupa em três grandes ordens, e nenhum Espírito ocupa para sempre a mesma categoria.",
+    "b": 60,
+    "trecho": "São de diferentes ordens, conforme o grau de perfeição que tenham alcançado",
+    "ref": "O Livro dos Espíritos, questão 96"
+   }
+  ],
+  "espiritos:7": [
+   {
+    "p": "Qual o objetivo da encarnação dos Espíritos?",
+    "o": [
+     "Chegar à perfeição; para uns é expiação, para outros missão",
+     "Castigo eterno pelo que fizeram",
+     "Apenas descansar entre duas vidas espirituais"
+    ],
+    "c": 0,
+    "e": "Deus lhes impõe a encarnação para fazê-los chegar à perfeição, e para isso passam pelas vicissitudes da vida no corpo.",
+    "b": 3,
+    "trecho": "Deus lhes impõe a encarnação com o fim de fazê-los chegar à perfeição",
+    "ref": "O Livro dos Espíritos, questão 132"
+   },
+   {
+    "p": "De que partes o homem é formado, segundo Kardec?",
+    "o": [
+     "Corpo, alma e perispírito, que liga a alma ao corpo",
+     "Corpo, mente e coração",
+     "Alma, anjo da guarda e corpo"
+    ],
+    "c": 0,
+    "e": "Kardec compara com um fruto, que tem o gérmen, o perisperma e a casca.",
+    "b": 23,
+    "trecho": "o princípio intermediário, ou perispírito, substância semimaterial",
+    "ref": "O Livro dos Espíritos, comentário à questão 135"
+   },
+   {
+    "p": "Um Espírito pode encarnar ao mesmo tempo em dois corpos?",
+    "o": [
+     "Não, o Espírito é indivisível",
+     "Sim, se for muito elevado",
+     "Sim, em mundos diferentes"
+    ],
+    "c": 0,
+    "e": "Ele não pode animar simultaneamente dois seres distintos. A bicorporeidade é outro fenômeno, estudado em O Livro dos Médiuns.",
+    "b": 31,
+    "trecho": "o Espírito é indivisível e não pode animar simultaneamente dois seres distintos",
+    "ref": "O Livro dos Espíritos, questão 137"
+   }
+  ],
+  "evangelho:16": [
+   {
+    "p": "Segundo Kardec, em que se resume toda a moral de Jesus?",
+    "o": [
+     "Na caridade e na humildade",
+     "No jejum e na penitência",
+     "Na obediência a uma igreja"
+    ],
+    "c": 0,
+    "e": "São as duas virtudes contrárias ao egoísmo e ao orgulho.",
+    "b": 12,
+    "trecho": "Toda a moral de Jesus se resume na caridade e na humildade",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XV, item 3"
+   },
+   {
+    "p": "Na parábola do bom samaritano, quem foi o próximo do homem ferido?",
+    "o": [
+     "Aquele que usou de misericórdia para com ele",
+     "O sacerdote, por ser religioso",
+     "O levita, por conhecer a lei"
+    ],
+    "c": 0,
+    "e": "E Jesus concluiu: Então, vai, e faze o mesmo.",
+    "b": 11,
+    "trecho": "Aquele que usou de misericórdia para com ele",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XV, item 2"
+   },
+   {
+    "p": "Por que a máxima \"Fora da caridade não há salvação\" vale para todos?",
+    "o": [
+     "Porque assenta num princípio universal e abre a todos o acesso à suprema felicidade",
+     "Porque só os espíritas a conhecem",
+     "Porque dispensa o esforço de cada um"
+    ],
+    "c": 0,
+    "e": "Ela não depende de uma crença especial, mas da prática do bem, ao alcance de todos os filhos de Deus.",
+    "b": 25,
+    "trecho": "assenta num princípio universal e abre a todos os filhos de Deus acesso à suprema felicidade",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XV, item 8"
+   }
+  ],
+  "espiritos:8": [
+   {
+    "p": "Depois da morte, a alma conserva a sua individualidade?",
+    "o": [
+     "Sim, jamais a perde",
+     "Não, mistura-se ao todo universal",
+     "Só durante alguns anos"
+    ],
+    "c": 0,
+    "e": "Que seria ela, se não a conservasse?, respondem os Espíritos.",
+    "b": 5,
+    "trecho": "Sim; jamais a perde",
+    "ref": "O Livro dos Espíritos, questão 150"
+   },
+   {
+    "p": "É dolorosa a separação da alma e do corpo?",
+    "o": [
+     "Não; o corpo quase sempre sofre mais durante a vida do que no momento da morte",
+     "Sim, é a maior dor que existe",
+     "Só para quem não acredita em Deus"
+    ],
+    "c": 0,
+    "e": "A alma nenhuma parte toma nesses sofrimentos, que são até um alívio para o Espírito que vê chegar o fim do seu exílio.",
+    "b": 22,
+    "trecho": "o corpo quase sempre sofre mais durante a vida do que no momento da morte",
+    "ref": "O Livro dos Espíritos, questão 154"
+   },
+   {
+    "p": "O que mais ajuda a abreviar a perturbação que se segue à morte?",
+    "o": [
+     "A prática do bem e a consciência pura",
+     "Ter tido muitos bens na Terra",
+     "Uma cerimônia bonita no enterro"
+    ],
+    "c": 0,
+    "e": "Conhecer o Espiritismo influi muito, porque o Espírito já compreende a sua situação; mas o que mais pesa é o bem que se fez.",
+    "b": 50,
+    "trecho": "a prática do bem e a consciência pura são o que maior influência exercem",
+    "ref": "O Livro dos Espíritos, questão 165"
+   }
+  ],
+  "espiritos:11": [
+   {
+    "p": "A alma reencarna logo depois de deixar o corpo?",
+    "o": [
+     "De ordinário, só depois de intervalos mais ou menos longos",
+     "Sempre no mesmo instante",
+     "Nunca mais reencarna"
+    ],
+    "c": 0,
+    "e": "Algumas vezes reencarna imediatamente; nos mundos superiores, quase sempre.",
+    "b": 3,
+    "trecho": "de ordinário só o faz depois de intervalos mais ou menos longos",
+    "ref": "O Livro dos Espíritos, questão 223"
+   },
+   {
+    "p": "Que é a alma no intervalo das encarnações?",
+    "o": [
+     "Espírito errante, que aspira a novo destino, que espera",
+     "Um ser adormecido até o fim dos tempos",
+     "Uma sombra sem consciência"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 224.",
+    "b": 5,
+    "trecho": "Espírito errante, que aspira a novo destino, que espera",
+    "ref": "O Livro dos Espíritos, questão 224"
+   },
+   {
+    "p": "Quem escolhe o gênero de provas por que o Espírito vai passar?",
+    "o": [
+     "O próprio Espírito, e nisso consiste o seu livre-arbítrio",
+     "Outros Espíritos, sem consultá-lo",
+     "Ninguém: tudo acontece ao acaso"
+    ],
+    "c": 0,
+    "e": "A escolha é feita na erraticidade, antes de começar nova existência corporal.",
+    "b": 113,
+    "trecho": "Ele próprio escolhe o gênero de provas por que há de passar",
+    "ref": "O Livro dos Espíritos, questão 258"
+   }
+  ],
+  "evangelho:4": [
+   {
+    "p": "Para Kardec, o que são as muitas moradas na casa do Pai?",
+    "o": [
+     "Os mundos do Universo, conforme o adiantamento dos Espíritos",
+     "Os templos das diferentes religiões",
+     "As casas onde moramos"
+    ],
+    "c": 0,
+    "e": "A casa do Pai é o Universo; as moradas são os mundos que circulam no espaço infinito.",
+    "b": 3,
+    "trecho": "A casa do Pai é o Universo",
+    "ref": "O Evangelho segundo o Espiritismo, cap. III, item 2"
+   },
+   {
+    "p": "Que tipo de mundo é a Terra?",
+    "o": [
+     "Um mundo de expiações e de provas",
+     "Um mundo feliz, sem dores",
+     "Um mundo regenerador"
+    ],
+    "c": 0,
+    "e": "Pela lei do progresso, a Terra também se elevará, material e moralmente.",
+    "b": 27,
+    "trecho": "A Terra, conseguintemente, oferece um dos tipos de mundos expiatórios",
+    "ref": "O Evangelho segundo o Espiritismo, cap. III, item 15"
+   },
+   {
+    "p": "Para que servem os mundos regeneradores?",
+    "o": [
+     "São a transição entre os mundos de expiação e os mundos felizes",
+     "São prisões para os Espíritos maus",
+     "São mundos onde não existe mais corpo"
+    ],
+    "c": 0,
+    "e": "Neles a alma penitente encontra a calma e o repouso e acaba por depurar-se.",
+    "b": 30,
+    "trecho": "Os mundos regeneradores servem de transição entre os mundos de expiação e os mundos felizes",
+    "ref": "O Evangelho segundo o Espiritismo, cap. III, item 17"
+   }
+  ],
+  "evangelho:6": [
+   {
+    "p": "De onde vêm as vicissitudes da vida, segundo Kardec?",
+    "o": [
+     "De duas fontes: umas têm causa na vida presente, outras fora desta vida",
+     "Só de castigos de Deus",
+     "Só do acaso"
+    ],
+    "c": 0,
+    "e": "Kardec pede que se distingam as duas fontes antes de julgar qualquer sofrimento.",
+    "b": 7,
+    "trecho": "Umas têm sua causa na vida presente; outras, fora desta vida",
+    "ref": "O Evangelho segundo o Espiritismo, cap. V, item 4"
+   },
+   {
+    "p": "Em grande número de casos, quem causa os próprios infortúnios?",
+    "o": [
+     "O próprio homem",
+     "A má sorte",
+     "Os Espíritos inferiores"
+    ],
+    "c": 0,
+    "e": "Em vez de reconhecê-lo, o homem acha mais simples acusar a sorte, a Providência ou a má fortuna.",
+    "b": 16,
+    "trecho": "O homem, pois, em grande número de casos, é o causador de seus próprios infortúnios",
+    "ref": "O Evangelho segundo o Espiritismo, cap. V, item 4"
+   },
+   {
+    "p": "Se não lembramos o passado, o que Deus nos deu para nos melhorarmos?",
+    "o": [
+     "A voz da consciência e as tendências instintivas",
+     "A lembrança completa de todas as vidas",
+     "Um aviso escrito a cada nascimento"
+    ],
+    "c": 0,
+    "e": "Ao nascer, o homem traz consigo o que adquiriu. E o esquecimento acontece só durante a vida no corpo.",
+    "b": 36,
+    "trecho": "a voz da consciência e as tendências instintivas",
+    "ref": "O Evangelho segundo o Espiritismo, cap. V, item 11"
+   }
+  ],
+  "espiritos:30": [
+   {
+    "p": "As penas e os gozos da alma depois da morte têm algo de material?",
+    "o": [
+     "Não; nada têm de carnal, mas são mais vivos do que os da Terra",
+     "Sim, são castigos e prêmios físicos",
+     "Não existem penas nem gozos depois da morte"
+    ],
+    "c": 0,
+    "e": "O Espírito liberto é mais impressionável, porque a matéria já não lhe embota as sensações.",
+    "b": 30,
+    "trecho": "Nada têm de carnal essas penas e gozos",
+    "ref": "O Livro dos Espíritos, questão 965"
+   },
+   {
+    "p": "Em que consiste a felicidade dos bons Espíritos?",
+    "o": [
+     "Em conhecer as coisas, não sentir ódio nem inveja, amar e fazer o bem",
+     "Em descansar sem fazer nada",
+     "Em ter tudo o que desejavam na Terra"
+    ],
+    "c": 0,
+    "e": "O amor que os une é fonte de suprema felicidade, e são felizes pelo bem que fazem.",
+    "b": 35,
+    "trecho": "O amor que os une lhes é fonte de suprema felicidade",
+    "ref": "O Livro dos Espíritos, questão 967"
+   },
+   {
+    "p": "É preciso ser espírita para ter boa sorte depois da morte?",
+    "o": [
+     "Não: só o bem assegura a sorte futura",
+     "Sim, só os espíritas são felizes",
+     "Basta crer nas manifestações dos Espíritos"
+    ],
+    "c": 0,
+    "e": "O bem é sempre o bem, qualquer que seja o caminho que a ele conduza.",
+    "b": 84,
+    "trecho": "Só o bem assegura a sorte futura",
+    "ref": "O Livro dos Espíritos, questão 982"
+   }
+  ],
+  "espiritos:9": [
+   {
+    "p": "Como a alma que não alcançou a perfeição numa vida pode se depurar?",
+    "o": [
+     "Passando pela prova de uma nova existência",
+     "Sofrendo para sempre",
+     "Esperando o juízo final"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 166.",
+    "b": 3,
+    "trecho": "Sofrendo a prova de uma nova existência",
+    "ref": "O Livro dos Espíritos, questão 166"
+   },
+   {
+    "p": "Qual o fim da reencarnação?",
+    "o": [
+     "Expiação e melhoramento progressivo da Humanidade",
+     "Repetir sempre os mesmos erros",
+     "Apenas conhecer outros lugares"
+    ],
+    "c": 0,
+    "e": "Sem isto, perguntam os Espíritos, onde a justiça?",
+    "b": 11,
+    "trecho": "Expiação, melhoramento progressivo da Humanidade",
+    "ref": "O Livro dos Espíritos, questão 167"
+   },
+   {
+    "p": "Em que se torna o Espírito depois da última encarnação?",
+    "o": [
+     "Espírito bem-aventurado, puro Espírito",
+     "Um anjo criado à parte",
+     "Volta a ser como no começo"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 170.",
+    "b": 17,
+    "trecho": "Espírito bem-aventurado; puro Espírito",
+    "ref": "O Livro dos Espíritos, questão 170"
+   }
+  ],
+  "espiritos:10": [
+   {
+    "p": "Que fato Kardec aponta como difícil de explicar com uma só existência?",
+    "o": [
+     "A aptidão fora do comum que muitas crianças revelam cedo para uma arte ou ciência",
+     "O tamanho das cidades",
+     "A mudança das estações do ano"
+    ],
+    "c": 0,
+    "e": "É uma das perguntas que Kardec faz a quem admite uma só existência.",
+    "b": 9,
+    "trecho": "Donde vem a aptidão extranormal que muitas crianças em tenra idade revelam",
+    "ref": "O Livro dos Espíritos, questão 222, comentário de Kardec"
+   },
+   {
+    "p": "O que se explica admitindo existências anteriores?",
+    "o": [
+     "Que, ao nascer, os homens trazem a intuição do que aprenderam antes",
+     "Que todos nascem iguais e sem passado",
+     "Que as diferenças entre as pessoas são sorte"
+    ],
+    "c": 0,
+    "e": "Os homens são mais ou menos adiantados conforme o caminho que já percorreram.",
+    "b": 15,
+    "trecho": "Ao nascerem, trazem os homens a intuição do que aprenderam antes",
+    "ref": "O Livro dos Espíritos, questão 222, comentário de Kardec"
+   },
+   {
+    "p": "Qual destas perguntas Kardec faz a quem crê numa única existência?",
+    "o": [
+     "Que sorte aguarda os que morrem na infância, antes de fazer o bem ou o mal?",
+     "Por que o céu é azul?",
+     "Por que existem tantas línguas?"
+    ],
+    "c": 0,
+    "e": "Admitidas as existências sucessivas, diz Kardec, tudo se explica conforme a justiça de Deus.",
+    "b": 22,
+    "trecho": "Que sorte aguarda os que morrem na infância",
+    "ref": "O Livro dos Espíritos, questão 222, comentário de Kardec"
+   }
+  ],
+  "espiritos:12": [
+   {
+    "p": "Em que momento a alma se une ao corpo?",
+    "o": [
+     "A união começa na concepção, mas só é completa no nascimento",
+     "Só aos sete anos de idade",
+     "Só depois do primeiro aniversário"
+    ],
+    "c": 0,
+    "e": "Desde a concepção, o Espírito se liga ao corpo por um laço fluídico, que vai se apertando até a criança ver a luz.",
+    "b": 38,
+    "trecho": "A união começa na concepção, mas só é completa por ocasião do nascimento",
+    "ref": "O Livro dos Espíritos, questão 344"
+   },
+   {
+    "p": "O Espírito pode escolher o corpo em que vai encarnar?",
+    "o": [
+     "Pode, e as imperfeições do corpo serão provas que o ajudam a progredir",
+     "Nunca, tudo lhe é imposto",
+     "Sim, e sempre escolhe o corpo mais bonito"
+    ],
+    "c": 0,
+    "e": "Nem sempre isso lhe é permitido; às vezes, só pode pedir.",
+    "b": 15,
+    "trecho": "Pode também escolher o corpo",
+    "ref": "O Livro dos Espíritos, questão 335"
+   },
+   {
+    "p": "De onde vêm as qualidades morais, boas ou más, do homem?",
+    "o": [
+     "São as do Espírito nele encarnado",
+     "Vêm só da família e da educação",
+     "São sorteadas ao nascer"
+    ],
+    "c": 0,
+    "e": "Quanto mais puro é esse Espírito, tanto mais propenso ao bem é o homem.",
+    "b": 79,
+    "trecho": "São as do Espírito nele encarnado",
+    "ref": "O Livro dos Espíritos, questão 361"
+   }
+  ],
+  "evangelho:5": [
+   {
+    "p": "O que Jesus disse a Nicodemos?",
+    "o": [
+     "Ninguém pode ver o reino de Deus se não nascer de novo",
+     "Ninguém precisa mudar para ser salvo",
+     "Basta conhecer a lei para entrar no reino"
+    ],
+    "c": 0,
+    "e": "Kardec mostra que essas palavras exprimem o princípio da reencarnação.",
+    "b": 7,
+    "trecho": "Ninguém pode ver o reino de Deus se não nascer de novo",
+    "ref": "O Evangelho segundo o Espiritismo, cap. IV, item 5"
+   },
+   {
+    "p": "Sob que nome a reencarnação fazia parte das crenças dos judeus?",
+    "o": [
+     "Ressurreição",
+     "Transfiguração",
+     "Batismo"
+    ],
+    "c": 0,
+    "e": "Só os saduceus, que pensavam que tudo acabava com a morte, não acreditavam nisso.",
+    "b": 5,
+    "trecho": "A reencarnação fazia parte dos dogmas dos judeus, sob o nome de ressurreição",
+    "ref": "O Evangelho segundo o Espiritismo, cap. IV, item 4"
+   },
+   {
+    "p": "Em renascer da água e do Espírito, o que a água simbolizava?",
+    "o": [
+     "A natureza material, o corpo",
+     "O batismo num templo",
+     "As lágrimas do arrependimento"
+    ],
+    "c": 0,
+    "e": "Para os antigos, a água era o símbolo da natureza material, como o Espírito era o da natureza inteligente.",
+    "b": 15,
+    "trecho": "a água se tornara o símbolo da natureza material",
+    "ref": "O Evangelho segundo o Espiritismo, cap. IV, item 8"
+   }
+  ],
+  "espiritos:17": [
+   {
+    "p": "Que se deve entender por lei natural?",
+    "o": [
+     "A lei de Deus, a única verdadeira para a felicidade do homem",
+     "As leis feitas pelos governos",
+     "Os costumes de cada povo"
+    ],
+    "c": 0,
+    "e": "Ela indica o que o homem deve fazer ou deixar de fazer, e ele só é infeliz quando dela se afasta.",
+    "b": 3,
+    "trecho": "A lei natural é a lei de Deus",
+    "ref": "O Livro dos Espíritos, questão 614"
+   },
+   {
+    "p": "Onde está escrita a lei de Deus?",
+    "o": [
+     "Na consciência",
+     "Só nos livros sagrados",
+     "Nas estrelas"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 621.",
+    "b": 24,
+    "trecho": "Na consciência",
+    "ref": "O Livro dos Espíritos, questão 621"
+   },
+   {
+    "p": "Qual o tipo mais perfeito que Deus ofereceu ao homem, para lhe servir de guia e modelo?",
+    "o": [
+     "Jesus",
+     "Os sábios da Grécia antiga",
+     "Os reis da Terra"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 625.",
+    "b": 34,
+    "trecho": "Jesus",
+    "ref": "O Livro dos Espíritos, questão 625"
+   }
+  ],
+  "espiritos:19": [
+   {
+    "p": "Por trabalho só se devem entender as ocupações materiais?",
+    "o": [
+     "Não; toda ocupação útil é trabalho",
+     "Sim, só o trabalho com as mãos",
+     "Só o que dá dinheiro"
+    ],
+    "c": 0,
+    "e": "O Espírito trabalha, assim como o corpo.",
+    "b": 5,
+    "trecho": "Toda ocupação útil é trabalho",
+    "ref": "O Livro dos Espíritos, questão 675"
+   },
+   {
+    "p": "Por que o trabalho se impõe ao homem?",
+    "o": [
+     "É expiação e, ao mesmo tempo, meio de aperfeiçoar a inteligência",
+     "Para que uns mandem nos outros",
+     "Por castigo eterno"
+    ],
+    "c": 0,
+    "e": "Sem o trabalho, o homem permaneceria sempre na infância quanto à inteligência.",
+    "b": 7,
+    "trecho": "É expiação e, ao mesmo tempo, meio de aperfeiçoamento da sua inteligência",
+    "ref": "O Livro dos Espíritos, questão 676"
+   },
+   {
+    "p": "Qual o limite do trabalho?",
+    "o": [
+     "O das forças",
+     "Não há limite algum",
+     "Exatamente oito horas por dia"
+    ],
+    "c": 0,
+    "e": "A esse respeito, dizem os Espíritos, Deus deixa o homem inteiramente livre.",
+    "b": 22,
+    "trecho": "O das forças",
+    "ref": "O Livro dos Espíritos, questão 683"
+   }
+  ],
+  "espiritos:23": [
+   {
+    "p": "A vida social está na Natureza?",
+    "o": [
+     "Sim: Deus fez o homem para viver em sociedade",
+     "Não, o ideal é viver isolado",
+     "Só para alguns povos"
+    ],
+    "c": 0,
+    "e": "Deus não lhe deu inutilmente a palavra e as outras faculdades da vida de relação.",
+    "b": 3,
+    "trecho": "Deus fez o homem para viver em sociedade",
+    "ref": "O Livro dos Espíritos, questão 766"
+   },
+   {
+    "p": "O isolamento absoluto é contrário à lei da Natureza?",
+    "o": [
+     "Sim: todos devem concorrer para o progresso, ajudando-se uns aos outros",
+     "Não, é o caminho mais perfeito",
+     "Só para quem tem família"
+    ],
+    "c": 0,
+    "e": "Por instinto, os homens buscam a sociedade.",
+    "b": 5,
+    "trecho": "todos devem concorrer para o progresso, auxiliando-se mutuamente",
+    "ref": "O Livro dos Espíritos, questão 767"
+   },
+   {
+    "p": "Qual seria o resultado do relaxamento dos laços de família?",
+    "o": [
+     "Uma recrudescência do egoísmo",
+     "Mais liberdade e felicidade",
+     "Nenhuma mudança"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 775.",
+    "b": 29,
+    "trecho": "Uma recrudescência do egoísmo",
+    "ref": "O Livro dos Espíritos, questão 775"
+   }
+  ],
+  "espiritos:24": [
+   {
+    "p": "Como o homem progride?",
+    "o": [
+     "Por si mesmo, naturalmente, e os mais adiantados ajudam os outros pelo contato social",
+     "Só quando é obrigado",
+     "Só quem nasce rico progride"
+    ],
+    "c": 0,
+    "e": "Nem todos progridem ao mesmo tempo e do mesmo modo.",
+    "b": 11,
+    "trecho": "os mais adiantados auxiliam o progresso dos outros",
+    "ref": "O Livro dos Espíritos, questão 779"
+   },
+   {
+    "p": "O progresso moral acompanha sempre o intelectual?",
+    "o": [
+     "Decorre dele, mas nem sempre o segue imediatamente",
+     "Sim, sempre ao mesmo tempo",
+     "Não há relação entre eles"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 780.",
+    "b": 13,
+    "trecho": "Decorre deste, mas nem sempre o segue imediatamente",
+    "ref": "O Livro dos Espíritos, questão 780"
+   },
+   {
+    "p": "Qual o maior obstáculo ao progresso moral?",
+    "o": [
+     "O orgulho e o egoísmo",
+     "A falta de dinheiro",
+     "As diferenças de idioma"
+    ],
+    "c": 0,
+    "e": "O progresso intelectual, dizem os Espíritos, se efetua sempre.",
+    "b": 32,
+    "trecho": "O orgulho e o egoísmo",
+    "ref": "O Livro dos Espíritos, questão 785"
+   }
+  ],
+  "espiritos:27": [
+   {
+    "p": "Como se pode definir a justiça?",
+    "o": [
+     "Cada um respeitar os direitos dos demais",
+     "Dar a cada um o que ele pede",
+     "Seguir sempre a maioria"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 875.",
+    "b": 7,
+    "trecho": "A justiça consiste em cada um respeitar os direitos dos demais",
+    "ref": "O Livro dos Espíritos, questão 875"
+   },
+   {
+    "p": "Qual o primeiro de todos os direitos naturais do homem?",
+    "o": [
+     "O de viver",
+     "O de possuir bens",
+     "O de mandar nos outros"
+    ],
+    "c": 0,
+    "e": "Por isso ninguém tem o direito de atentar contra a vida do seu semelhante.",
+    "b": 22,
+    "trecho": "O de viver",
+    "ref": "O Livro dos Espíritos, questão 880"
+   },
+   {
+    "p": "Qual o verdadeiro sentido da palavra caridade, como Jesus a entendia?",
+    "o": [
+     "Benevolência para com todos, indulgência para as imperfeições dos outros, perdão das ofensas",
+     "Dar esmola de vez em quando",
+     "Ajudar só quem merece"
+    ],
+    "c": 0,
+    "e": "É a resposta da questão 886.",
+    "b": 39,
+    "trecho": "Benevolência para com todos, indulgência para as imperfeições dos outros, perdão das ofensas",
+    "ref": "O Livro dos Espíritos, questão 886"
+   }
+  ],
+  "espiritos:28": [
+   {
+    "p": "Onde está a sublimidade da virtude?",
+    "o": [
+     "No sacrifício do interesse pessoal pelo bem do próximo, sem pensamento oculto",
+     "Em ser admirado pelos outros",
+     "Em nunca ter tido defeitos"
+    ],
+    "c": 0,
+    "e": "Toda virtude tem seu mérito, porque indica progresso na senda do bem.",
+    "b": 3,
+    "trecho": "A sublimidade da virtude, porém, está no sacrifício do interesse pessoal",
+    "ref": "O Livro dos Espíritos, questão 893"
+   },
+   {
+    "p": "Qual o vício radical, de onde deriva todo mal?",
+    "o": [
+     "O egoísmo",
+     "A preguiça",
+     "A gula"
+    ],
+    "c": 0,
+    "e": "No fundo de todos os vícios há egoísmo; por isso é preciso atacar o mal pela raiz.",
+    "b": 57,
+    "trecho": "o egoísmo. Daí deriva todo mal",
+    "ref": "O Livro dos Espíritos, questão 913"
+   },
+   {
+    "p": "Qual o meio prático mais eficaz para se melhorar nesta vida?",
+    "o": [
+     "Conhecer-se a si mesmo",
+     "Fugir do convívio com as pessoas",
+     "Esperar que os outros mudem"
+    ],
+    "c": 0,
+    "e": "Na sequência, Santo Agostinho conta que, ao fim de cada dia, interrogava a própria consciência sobre o que tinha feito.",
+    "b": 83,
+    "trecho": "Conhece-te a ti mesmo",
+    "ref": "O Livro dos Espíritos, questão 919"
+   }
+  ],
+  "evangelho:28": [
+   {
+    "p": "O que Deus concede sempre a quem pede com confiança?",
+    "o": [
+     "Coragem, paciência e resignação",
+     "Tudo o que se pedir, sem exceção",
+     "Riqueza imediata"
+    ],
+    "c": 0,
+    "e": "Concede também os meios de sair das dificuldades por si mesmo, com ideias que os bons Espíritos sugerem, deixando-lhe o mérito da ação.",
+    "b": 15,
+    "trecho": "é a coragem, a paciência, a resignação",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVII, item 7"
+   },
+   {
+    "p": "Que é a prece?",
+    "o": [
+     "Uma invocação pela qual o homem entra, pelo pensamento, em comunicação com o ser a quem se dirige",
+     "Uma fórmula que só funciona com as palavras certas",
+     "Um ritual que só vale no templo"
+    ],
+    "c": 0,
+    "e": "Pode ser um pedido, um agradecimento ou uma glorificação, por nós, pelos outros, pelos vivos ou pelos mortos.",
+    "b": 20,
+    "trecho": "A prece é uma invocação, mediante a qual o homem entra, pelo pensamento, em comunicação com o ser a quem se dirige",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVII, item 9"
+   },
+   {
+    "p": "Onde está o poder da prece?",
+    "o": [
+     "No pensamento; não depende das palavras, do lugar nem do momento",
+     "Nas palavras decoradas",
+     "No lugar onde se ora"
+    ],
+    "c": 0,
+    "e": "Pode-se orar em toda parte e a qualquer hora, a sós ou em comum.",
+    "b": 33,
+    "trecho": "Está no pensamento o poder da prece",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVII, item 15"
+   }
+  ],
+  "espiritos:18": [
+   {
+    "p": "Em que consiste a adoração?",
+    "o": [
+     "Na elevação do pensamento a Deus",
+     "Em ofertas e cerimônias",
+     "Em repetir orações sem pensar"
+    ],
+    "c": 0,
+    "e": "Pela adoração, o homem aproxima de Deus a sua alma.",
+    "b": 3,
+    "trecho": "Na elevação do pensamento a Deus",
+    "ref": "O Livro dos Espíritos, questão 649"
+   },
+   {
+    "p": "Quando a prece é agradável a Deus?",
+    "o": [
+     "Quando ditada pelo coração, pois para Ele a intenção é tudo",
+     "Só quando é longa",
+     "Só quando é lida num livro bonito"
+    ],
+    "c": 0,
+    "e": "A prece do íntimo vale mais do que a prece lida só com os lábios.",
+    "b": 30,
+    "trecho": "A prece é sempre agradável a Deus, quando ditada pelo coração",
+    "ref": "O Livro dos Espíritos, questão 658"
+   },
+   {
+    "p": "Como a prece por outra pessoa pode ser útil?",
+    "o": [
+     "Quem ora atrai os bons Espíritos, que se associam ao bem que deseja fazer",
+     "Ela obriga Deus a mudar as suas leis",
+     "Não tem utilidade nenhuma"
+    ],
+    "c": 0,
+    "e": "O Espírito de quem ora atua pela sua vontade de praticar o bem.",
+    "b": 40,
+    "trecho": "Atrai a si, mediante a prece, os bons Espíritos",
+    "ref": "O Livro dos Espíritos, questão 662"
+   }
+  ],
+  "evangelho:29": [
+   {
+    "p": "O que os Espíritos sempre disseram sobre a forma da prece?",
+    "o": [
+     "A forma nada vale, o pensamento é tudo",
+     "Só valem as fórmulas oficiais",
+     "É preciso rezar numa língua antiga"
+    ],
+    "c": 0,
+    "e": "Um bom pensamento vale mais do que muitas palavras sem coração.",
+    "b": 1,
+    "trecho": "A forma nada vale, o pensamento é tudo",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVIII, item 1"
+   },
+   {
+    "p": "Como o Espiritismo vê as preces de outros cultos?",
+    "o": [
+     "Reconhece como boas as preces de todos os cultos, ditas de coração",
+     "Só aceita as preces espíritas",
+     "Proíbe as preces das outras religiões"
+    ],
+    "c": 0,
+    "e": "Nenhuma impõe, nem reprova nenhuma.",
+    "b": 5,
+    "trecho": "O Espiritismo reconhece como boas as preces de todos os cultos",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVIII, item 1"
+   },
+   {
+    "p": "Qual a qualidade principal da prece?",
+    "o": [
+     "Ser clara, simples e concisa",
+     "Ser longa e cheia de palavras difíceis",
+     "Ser dita em voz bem alta"
+    ],
+    "c": 0,
+    "e": "Cada palavra deve ter alcance próprio e despertar uma ideia.",
+    "b": 7,
+    "trecho": "A qualidade principal da prece é ser clara, simples e concisa",
+    "ref": "O Evangelho segundo o Espiritismo, cap. XXVIII, item 1"
+   }
+  ],
+  "mediuns:3": [
+   {
+    "p": "Para conhecer o Espiritismo, qual a primeira condição?",
+    "o": [
+     "Dispor-se a um estudo sério",
+     "Assistir a fenômenos espantosos",
+     "Ter um médium em casa"
+    ],
+    "c": 0,
+    "e": "O Espiritismo, como nenhuma outra ciência, não pode ser aprendido a brincar.",
+    "b": 1,
+    "trecho": "dispor-se a um estudo sério",
+    "ref": "O Livro dos Médiuns, item 18"
+   },
+   {
+    "p": "Basta apresentar fatos para convencer alguém?",
+    "o": [
+     "Nem sempre: há pessoas que os fatos mais evidentes não convenceram",
+     "Sim, os fatos convencem todos",
+     "Não, nada convence ninguém"
+    ],
+    "c": 0,
+    "e": "Por isso Kardec propõe começar pelo estudo da teoria.",
+    "b": 4,
+    "trecho": "a cada passo se encontram pessoas que os mais patentes fatos absolutamente não convenceram",
+    "ref": "O Livro dos Médiuns, item 19"
+   },
+   {
+    "p": "Que vantagem tem estudar primeiro a teoria?",
+    "o": [
+     "Mostrar logo a grandeza do objetivo e o alcance do Espiritismo",
+     "Dispensar a moral",
+     "Garantir fenômenos sempre que se quiser"
+    ],
+    "c": 0,
+    "e": "Quem começa vendo uma mesa a girar tende ao gracejo e dificilmente imagina que dali saia uma doutrina regeneradora.",
+    "b": 34,
+    "trecho": "a de mostrar imediatamente a grandeza do objetivo e o alcance desta ciência",
+    "ref": "O Livro dos Médiuns, item 32"
+   }
+  ],
+  "mediuns:18": [
+   {
+    "p": "Quem é médium, no sentido amplo?",
+    "o": [
+     "Todo aquele que sente, num grau qualquer, a influência dos Espíritos",
+     "Só quem vê Espíritos",
+     "Só quem trabalha numa casa espírita"
+    ],
+    "c": 0,
+    "e": "A faculdade é inerente ao homem e não é privilégio exclusivo; por isso se pode dizer que todos são, mais ou menos, médiuns.",
+    "b": 1,
+    "trecho": "Todo aquele que sente, num grau qualquer, a influência dos Espíritos é, por esse fato, médium",
+    "ref": "O Livro dos Médiuns, item 159"
+   },
+   {
+    "p": "Que faculdade têm os médiuns videntes?",
+    "o": [
+     "A de ver os Espíritos",
+     "A de ouvir música de longe",
+     "A de escrever muito depressa"
+    ],
+    "c": 0,
+    "e": "Alguns veem em estado normal, acordados, e guardam lembrança precisa do que viram.",
+    "b": 24,
+    "trecho": "Os médiuns videntes são dotados da faculdade de ver os Espíritos",
+    "ref": "O Livro dos Médiuns, item 167"
+   },
+   {
+    "p": "Que fenômenos produzem os médiuns de efeitos físicos?",
+    "o": [
+     "Fenômenos materiais, como movimentos de corpos inertes ou ruídos",
+     "Curas instantâneas garantidas",
+     "Previsões do futuro"
+    ],
+    "c": 0,
+    "e": "Podem ser facultativos ou involuntários.",
+    "b": 3,
+    "trecho": "Os médiuns de efeitos físicos são particularmente aptos a produzir fenômenos materiais",
+    "ref": "O Livro dos Médiuns, item 160"
+   }
+  ],
+  "mediuns:21": [
+   {
+    "p": "O que basta ao médium aprendiz, mais do que a fé?",
+    "o": [
+     "A pureza de intenção, o desejo e a boa-vontade",
+     "Muito dinheiro",
+     "Um lugar especial"
+    ],
+    "c": 0,
+    "e": "A fé ajuda, mas não é indispensável.",
+    "b": 19,
+    "trecho": "a pureza de intenção, o desejo e a boa-vontade bastam",
+    "ref": "O Livro dos Médiuns, item 209"
+   },
+   {
+    "p": "Qual o maior risco para a maioria dos médiuns principiantes?",
+    "o": [
+     "Ter de lidar com Espíritos inferiores, que podem assumir predomínio",
+     "Ficar famoso depressa demais",
+     "Esquecer as próprias orações"
+    ],
+    "c": 0,
+    "e": "Toda atenção é pouca para que esses Espíritos não dominem o médium.",
+    "b": 23,
+    "trecho": "o de terem de haver-se com Espíritos inferiores",
+    "ref": "O Livro dos Médiuns, item 211"
+   },
+   {
+    "p": "Qual o primeiro indício de disposição para escrever?",
+    "o": [
+     "Uma espécie de frêmito no braço e na mão",
+     "Um sonho com o Espírito",
+     "Uma dor de cabeça forte"
+    ],
+    "c": 0,
+    "e": "Pouco a pouco a mão é arrastada por uma impulsão; primeiro vêm riscos, depois as letras se desenham mais nitidamente.",
+    "b": 20,
+    "trecho": "O primeiro indício de disposição para escrever é uma espécie de frêmito no braço e na mão",
+    "ref": "O Livro dos Médiuns, item 210"
+   }
+  ],
+  "mediuns:24": [
+   {
+    "p": "O desenvolvimento da mediunidade depende do desenvolvimento moral do médium?",
+    "o": [
+     "Não; a faculdade se radica no organismo, mas o seu uso depende das qualidades do médium",
+     "Sim, só pessoas perfeitas são médiuns",
+     "Não, e o uso também não importa"
+    ],
+    "c": 0,
+    "e": "O uso da faculdade pode ser bom ou mau, conforme as qualidades de quem a tem.",
+    "b": 2,
+    "trecho": "a faculdade propriamente dita se radica no organismo; independe do moral",
+    "ref": "O Livro dos Médiuns, item 226"
+   },
+   {
+    "p": "Qual imperfeição os maus Espíritos exploram com mais habilidade nos médiuns?",
+    "o": [
+     "O orgulho",
+     "A timidez",
+     "O cansaço"
+    ],
+    "c": 0,
+    "e": "É a que a criatura menos confessa a si mesma, e já perdeu muitos médiuns de belas faculdades.",
+    "b": 30,
+    "trecho": "A que, porém, eles exploram com mais habilidade é o orgulho",
+    "ref": "O Livro dos Médiuns, item 228"
+   },
+   {
+    "p": "O que são as imperfeições morais para um médium?",
+    "o": [
+     "Portas abertas ao acesso dos maus Espíritos",
+     "Detalhes sem importância",
+     "Provas de que ele é forte"
+    ],
+    "c": 0,
+    "e": "Por isso a influência moral do médium pesa tanto nas comunicações.",
+    "b": 30,
+    "trecho": "Todas as imperfeições morais são outras tantas portas abertas ao acesso dos maus Espíritos",
+    "ref": "O Livro dos Médiuns, item 228"
+   }
+  ],
+  "mediuns:27": [
+   {
+    "p": "Quando se dá a obsessão simples?",
+    "o": [
+     "Quando um Espírito malfazejo se impõe a um médium e se mete nas comunicações",
+     "Quando o médium fica cansado",
+     "Quando a pessoa sonha muito"
+    ],
+    "c": 0,
+    "e": "É o grau mais leve de obsessão.",
+    "b": 3,
+    "trecho": "Dá-se a obsessão simples, quando um Espírito malfazejo se impõe a um médium",
+    "ref": "O Livro dos Médiuns, item 238"
+   },
+   {
+    "p": "Por que a fascinação é mais grave?",
+    "o": [
+     "É uma ilusão que, de certa maneira, paralisa o raciocínio do médium sobre as comunicações",
+     "Porque dá dor física",
+     "Porque só acontece com crianças"
+    ],
+    "c": 0,
+    "e": "A ação é direta sobre o pensamento do médium.",
+    "b": 7,
+    "trecho": "lhe paralisa o raciocínio, relativamente às comunicações",
+    "ref": "O Livro dos Médiuns, item 239"
+   },
+   {
+    "p": "O que é a subjugação?",
+    "o": [
+     "Uma constrição que paralisa a vontade e faz a pessoa agir contra a vontade",
+     "Um tipo de prece",
+     "Uma faculdade rara e desejável"
+    ],
+    "c": 0,
+    "e": "O paciente fica sob um verdadeiro jugo.",
+    "b": 10,
+    "trecho": "A subjugação é uma constrição que paralisa a vontade daquele que a sofre",
+    "ref": "O Livro dos Médiuns, item 240"
+   }
+  ],
+  "mediuns:33": [
+   {
+    "p": "Que vantagem oferecem as reuniões espíritas?",
+    "o": [
+     "Os participantes se esclarecem pela troca de ideias, perguntas e observações",
+     "Garantem fenômenos espetaculares",
+     "Dispensam o estudo pessoal"
+    ],
+    "c": 0,
+    "e": "Todos aproveitam das questões e observações que se façam.",
+    "b": 2,
+    "trecho": "As reuniões espíritas oferecem grandíssimas vantagens",
+    "ref": "O Livro dos Médiuns, item 324"
+   },
+   {
+    "p": "Como Kardec descreve uma reunião?",
+    "o": [
+     "Um ser coletivo, cuja força cresce quanto mais homogêneo for",
+     "Uma plateia que só assiste",
+     "Um encontro sem regras"
+    ],
+    "c": 0,
+    "e": "As qualidades da reunião são a resultante das de seus membros.",
+    "b": 19,
+    "trecho": "Uma reunião é um ser coletivo",
+    "ref": "O Livro dos Médiuns, item 331"
+   },
+   {
+    "p": "Quais as condições essenciais a toda reunião séria?",
+    "o": [
+     "O recolhimento e a comunhão dos pensamentos",
+     "Muitas pessoas e muito barulho",
+     "Luzes apagadas e silêncio absoluto"
+    ],
+    "c": 0,
+    "e": "Por isso o número excessivo de assistentes prejudica a homogeneidade.",
+    "b": 22,
+    "trecho": "Sendo o recolhimento e a comunhão dos pensamentos as condições essenciais a toda reunião séria",
+    "ref": "O Livro dos Médiuns, item 332"
+   }
+  ]
+ }
+}

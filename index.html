@@ -279,6 +279,17 @@ h1, h2 { text-wrap: balance; }
 .colunas > * { break-inside: auto; }
 .colunas h2 { font-weight: 500; font-size: 1.45em; line-height: 1.2; text-align: center; margin: .2em 0 .2em; break-after: avoid; }
 .colunas .rot { text-align: center; color: var(--suave); font-family: var(--f-ui); font-size: .72em; font-weight: 600; margin: 1.4em 0 .2em; }
+/* Folha de rosto: ocupa a primeira página do livro, como no volume impresso. */
+.colunas .rosto { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7em; text-align: center; hyphens: manual; -webkit-hyphens: manual; break-after: column; -webkit-column-break-after: always; padding: 0 .4em; box-sizing: border-box; }
+.rosto .sobre { font-family: var(--f-ui); font-size: .68em; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); margin: 0; }
+.rosto .titulo-r { font-size: 1.7em; font-weight: 500; line-height: 1.15; margin: 0; text-wrap: balance; }
+.rosto .ou { font-style: italic; font-size: .9em; margin: -.3em 0 0; color: var(--suave); }
+.rosto .sub { font-size: .8em; line-height: 1.5; margin: 0; text-wrap: balance; }
+.rosto .por { font-family: var(--f-ui); font-size: .72em; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin: .4em 0 0; }
+.rosto .epigrafes { margin: .8em 0 0; padding: .8em 0 0; border-top: 1px solid var(--linha); display: flex; flex-direction: column; gap: .5em; }
+.rosto .epigrafes p { font-style: italic; font-size: .8em; line-height: 1.5; margin: 0; }
+.rosto .epigrafes small { display: block; font-style: normal; font-size: .85em; color: var(--suave); margin-top: .2em; }
+.rosto .trad { font-family: var(--f-ui); font-size: .62em; color: var(--suave); margin: .8em 0 0; }
 .colunas .parte-nome { text-align: center; color: var(--suave); font-size: .82em; font-style: italic; margin: 0; }
 .colunas .resumo { font-style: italic; color: var(--suave); font-size: .86em; text-align: center; margin: .8em 0 1.4em; }
 .colunas h3 { font-weight: 600; font-size: 1.02em; text-align: center; margin: 1.5em 0 .7em; break-after: avoid; }
@@ -1483,11 +1494,33 @@ h1, h2 { text-wrap: balance; }
     if (livroId === 'espiritos' && bl.t === 'p' && i > 0 && !/^[“"]/.test(semTags(bl.h))) cls = 'comentario-k';
     return '<p' + (cls ? ' class="' + cls + '"' : '') + d + '>' + bl.h + '</p>' + (bl.a ? '<p class="assin">' + esc(bl.a) + '</p>' : '');
   }
+  // Folhas de rosto copiadas dos volumes da FEB (Guillon Ribeiro; O Céu e o Inferno, Manuel Quintão): sobretítulo,
+  // título, subtítulo e epígrafes de Kardec. Sem os dados da editora.
+  var ROSTOS = {
+    evangelho: { titulo: 'O Evangelho segundo o Espiritismo', sub: 'com a explicação das máximas morais do Cristo em concordância com o Espiritismo e suas aplicações às diversas circunstâncias da vida',
+      epigrafes: [['Fé inabalável só o é a que pode encarar frente a frente a razão, em todas as épocas da Humanidade.']] },
+    espiritos: { sobre: 'Filosofia espiritualista', titulo: 'O Livro dos Espíritos', sub: 'Princípios da Doutrina Espírita sobre a imortalidade da alma, a natureza dos Espíritos e suas relações com os homens, as leis morais, a vida presente, a vida futura e o porvir da Humanidade — segundo os ensinos dados por Espíritos superiores com o concurso de diversos médiuns — recebidos e coordenados' },
+    mediuns: { sobre: 'Espiritismo experimental', titulo: 'O Livro dos Médiuns', ou: 'ou Guia dos médiuns e dos evocadores',
+      sub: 'Ensino especial dos Espíritos sobre a teoria de todos os gêneros de manifestações, os meios de comunicação com o mundo invisível, o desenvolvimento da mediunidade, as dificuldades e os tropeços que se podem encontrar na prática do Espiritismo', sub2: 'constituindo o seguimento d’O Livro dos Espíritos' },
+    genese: { titulo: 'A Gênese', sub: 'Os milagres e as predições segundo o Espiritismo',
+      epigrafes: [['A Doutrina Espírita há resultado do ensino coletivo e concordante dos Espíritos.'], ['A Ciência é chamada a constituir a Gênese de acordo com as leis da Natureza.'],
+        ['Deus prova a sua grandeza e seu poder pela imutabilidade das suas leis e não pela ab-rogação delas.'], ['Para Deus, o passado e o futuro são o presente.']] },
+    ceu: { titulo: 'O Céu e o Inferno', ou: 'ou A justiça divina segundo o Espiritismo',
+      sub: 'Exame comparado das doutrinas sobre a passagem da vida corporal à vida espiritual, sobre as penalidades e recompensas futuras, sobre os anjos e demônios, sobre as penas, etc., seguido de numerosos exemplos acerca da situação real da alma durante e depois da morte',
+      epigrafes: [['“Por mim mesmo juro — disse o Senhor Deus — que não quero a morte do ímpio, senão que ele se converta, que deixe o mau caminho e que viva.”', 'Ezequiel, 33:11']] }
+  };
+  function htmlRosto(livro) {
+    var r = ROSTOS[livro.id]; if (!r) return '';
+    return '<div class="rosto">' + (r.sobre ? '<p class="sobre">' + r.sobre + '</p>' : '') + '<p class="titulo-r">' + r.titulo + '</p>' + (r.ou ? '<p class="ou">' + r.ou + '</p>' : '') +
+      '<p class="sub">' + r.sub + '</p>' + (r.sub2 ? '<p class="sub"><i>' + r.sub2 + '</i></p>' : '') + '<p class="por">por Allan Kardec</p>' +
+      (r.epigrafes ? '<div class="epigrafes">' + r.epigrafes.map(function (e) { return '<p>' + e[0] + (e[1] ? '<small>' + e[1] + '</small>' : '') + '</p>'; }).join('') + '</div>' : '') +
+      (livro.tradutor ? '<p class="trad">Tradução de ' + esc(livro.tradutor) + '</p>' : '') + '</div>';
+  }
   function mostrarCap(c, alvo, modoAlvo) {
     var livro = L.livro, cap = livro.capitulos[c]; if (!cap) return;
     L.c = c; marcarVisto(livro.id, c);
     var marcas = lerLocal('lar-marca-' + livro.id, []);
-    var h = (cap.parte ? '<p class="parte-nome">' + esc(cap.parte) + '</p>' : '') + '<p class="rot">' + esc(cap.rotulo !== cap.titulo ? cap.rotulo : '') + '</p><h2>' + esc(cap.titulo) + '</h2>' +
+    var h = (c === 0 ? htmlRosto(livro) : '') + (cap.parte ? '<p class="parte-nome">' + esc(cap.parte) + '</p>' : '') + '<p class="rot">' + esc(cap.rotulo !== cap.titulo ? cap.rotulo : '') + '</p><h2>' + esc(cap.titulo) + '</h2>' +
       (c === 0 && livro.aviso ? '<p class="aviso-obra">' + esc(livro.aviso) + '</p>' : '') +
       (livro.id === 'espiritos' && cap.id === 'p4c2' ? '<p class="aviso-obra">' + esc(livro.aviso1011) + '</p>' : '') +
       cap.blocos.map(function (bl, i) { return htmlBloco(bl, i, livro.id); }).join('') +
@@ -2646,7 +2679,7 @@ h1, h2 { text-wrap: balance; }
       return '<div class="trilha-k" data-aberta="' + (aberta === i) + '"><button type="button" data-trilha="' + i + '" aria-expanded="' + (aberta === i) + '"><span class="motivo" style="--c1:' + t.c1 + ';--c2:' + t.c2 + '"><svg viewBox="0 0 60 60" aria-hidden="true">' + MOTIVOS[t.m] + '</svg></span><span class="meio"><b><span class="num-t">' + (i + 1) + '</span>' + t.t + (i === prox ? '<span class="prox-t">' + (Object.keys(v).length ? 'Próxima' : 'Comece aqui') + '</span>' : '') + '</b><small>' + (completa ? 'Trilha completa: ' + feitos + ' estrelas acesas' : feitos ? feitos + ' de ' + t.passos.length + ' estrelas acesas' : t.passos.length + ' capítulos, ' + t.passos.length + ' estrelas') + '</small>' + estrelas + '</span><svg class="seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
         (aberta === i ? (t.aviso ? '<p class="aviso-t">' + t.aviso + '</p>' : '') + '<ol class="passos-t">' + t.passos.map(function (p) {
           var lido = (v[p[0]] || []).indexOf(p[1]) >= 0;
-          return '<li class="' + (lido ? 'lido' : '') + '"><button type="button" data-passo="' + p[0] + ',' + p[1] + '"><i class="ponto" aria-hidden="true"></i><span>' + p[2] + '<small>' + OBRAS_NOME[p[0]] + (lido ? ', já aberto' : '') + '</small></span></button>' + (lido && IA ? '<button type="button" class="revisar" data-revisar="' + p[0] + ',' + p[1] + '" data-titulo="' + esc(p[2]) + '">Revisar</button>' : '') + '</li>';
+          return '<li class="' + (lido ? 'lido' : '') + '"><button type="button" data-passo="' + p[0] + ',' + p[1] + '"><i class="ponto" aria-hidden="true"></i><span>' + p[2] + '<small>' + OBRAS_NOME[p[0]] + (lido ? ', já aberto' : '') + '</small></span></button>' + (lido && (IA || (REVISOES && REVISOES[p[0] + ':' + p[1]])) ? '<button type="button" class="revisar" data-revisar="' + p[0] + ',' + p[1] + '" data-titulo="' + esc(p[2]) + '">Revisar</button>' : '') + '</li>';
         }).join('') + '</ol>' : '') + '</div>';
     }).join('');
     gravarLocal('lar-trilha-estrelas', vistas);
@@ -2661,7 +2694,7 @@ h1, h2 { text-wrap: balance; }
     if (t) { var i = +t.dataset.trilha; gravarLocal('lar-trilha', lerLocal('lar-trilha', -1) === i ? -1 : i); montarTrilhas(); Som.tique(); var lst = $('.passos-t'); if (lst && anima) G.from(lst.children, { y: 8, opacity: 0, duration: .45, stagger: .05, ease: 'power2.out', clearProps: 'all' }); return; }
     if (p) { var x = p.dataset.passo.split(','); abrirLivro(x[0], +x[1], 0, 'estudos'); }
   });
-  aoEntrar.estudos = function () { montarEsde(); montarTrilhas(); entrarTexto($('[data-tela="estudos"]')); if (anima) G.from('#form-k', { y: 24, opacity: 0, duration: .9, ease: 'expo.out', delay: .25, clearProps: 'transform,opacity' }); };
+  aoEntrar.estudos = function () { montarEsde(); montarTrilhas(); carregarRevisoes().then(function () { if (telaAtual === 'estudos') montarTrilhas(); }); entrarTexto($('[data-tela="estudos"]')); if (anima) G.from('#form-k', { y: 24, opacity: 0, duration: .9, ease: 'expo.out', delay: .25, clearProps: 'transform,opacity' }); };
 
   /* ---------- Evangelhinho: o Evangelho no Lar das crianças, com o Cisquinho ---------- */
   // O Cisquinho é um personagem de faz de conta: um anjinho com os traços conhecidos de Chico Xavier, em versão de criança
@@ -3434,7 +3467,47 @@ h1, h2 { text-wrap: balance; }
   }
 
   /* ---------- Estudos: revisar um capítulo com três perguntas ---------- */
+  // Perguntas de revisão prontas (dados/revisoes.json, conferidas no texto por ferramentas/kardec/conferir-revisoes.mjs):
+  // funcionam sem IA e sem internet. Com IA, "Outras perguntas" pede perguntas novas ao vivo.
+  var REVISOES = null;
+  function carregarRevisoes() {
+    if (REVISOES) return Promise.resolve(REVISOES);
+    return fetch('dados/revisoes.json').then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { REVISOES = j.capitulos || {}; return REVISOES; }).catch(function () { REVISOES = {}; return REVISOES; });
+  }
+  function revisarPronto(livro, c, titulo, base) {
+    abrirGaveta('<h2>Revisar: ' + esc(titulo) + '</h2><div class="quiz" id="quiz"></div>', function (g) {
+      var q = g.querySelector('#quiz'), k = 0, acertos = 0;
+      // As opções vêm embaralhadas a cada vez (no arquivo, a certa é sempre a primeira).
+      var lista = base.map(function (p) {
+        var ordem = p.o.map(function (_, i) { return i; }).sort(function () { return Math.random() - .5; });
+        return { p: p.p, o: ordem.map(function (i) { return p.o[i]; }), c: ordem.indexOf(p.c), e: p.e, b: p.b, ref: p.ref };
+      });
+      var mostrar = function () {
+        if (k >= lista.length) {
+          q.innerHTML = '<p class="pergunta-q">Você acertou ' + acertos + ' de ' + lista.length + '.</p><p class="explic">' + (acertos === lista.length ? 'Muito bem. Que tal levar uma destas ideias para o próximo Evangelho no Lar?' : 'Releia os trechos indicados; o estudo vai assentando aos poucos.') + '</p><button class="btn btn-luz" id="q-denovo">' + (IA ? 'Outras perguntas, com a IA' : 'Fazer de novo') + '</button>';
+          q.querySelector('#q-denovo').addEventListener('click', function () { if (IA) revisarCapitulo(livro, c, titulo, true); else revisarPronto(livro, c, titulo, base); });
+          Som.suave(); return;
+        }
+        var p = lista[k];
+        q.innerHTML = '<p class="contagem">Pergunta ' + (k + 1) + ' de ' + lista.length + '</p><p class="pergunta-q">' + esc(p.p) + '</p><div class="ops">' + p.o.map(function (o, i) { return '<button type="button" data-op="' + i + '">' + esc(o) + '</button>'; }).join('') + '</div><div id="q-depois"></div>';
+        if (anima) G.from(q.children, { y: 10, opacity: 0, duration: .45, stagger: .05, ease: 'power2.out', clearProps: 'all' });
+        q.querySelector('.ops').addEventListener('click', function (e) {
+          var b = e.target.closest('[data-op]'); if (!b || q.querySelector('.ops').dataset.feito) return;
+          q.querySelector('.ops').dataset.feito = 1;
+          var certo = +b.dataset.op === p.c; if (certo) { acertos++; Som.revelacao(); } else Som.tique();
+          $$('[data-op]', q).forEach(function (x) { if (+x.dataset.op === p.c) x.classList.add('certa'); else if (x === b) x.classList.add('errada'); });
+          q.querySelector('#q-depois').innerHTML = '<p class="explic">' + (certo ? 'Isso mesmo. ' : 'A resposta é: ' + esc(p.o[p.c]) + '. ') + esc(p.e) + '<small style="display:block;margin-top:6px;opacity:.75">' + esc(p.ref) + '</small></p>' +
+            '<div class="linha-botoes"><button class="btn btn-papel" id="q-ler">Ler no livro</button><button class="btn btn-luz" id="q-prox">' + (k + 1 < lista.length ? 'Próxima' : 'Ver resultado') + '</button></div>';
+          q.querySelector('#q-ler').addEventListener('click', function () { fecharGaveta(); abrirLivro(livro, c, p.b, 'estudos'); });
+          q.querySelector('#q-prox').addEventListener('click', function () { k++; mostrar(); });
+        });
+      };
+      mostrar();
+    });
+  }
   function revisarCapitulo(livro, c, titulo, deNovo) {
+    var pronta = REVISOES && REVISOES[livro + ':' + c];
+    if (pronta && (!deNovo || !IA)) { revisarPronto(livro, c, titulo, pronta); return; }
     if (!IA) return;
     abrirGaveta('<h2>Revisar: ' + esc(titulo) + '</h2><div class="quiz" id="quiz"></div>', function (g) {
       var q = g.querySelector('#quiz'), ctl = ctlGaveta = new AbortController();
