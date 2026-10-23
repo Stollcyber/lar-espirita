@@ -332,7 +332,7 @@ h1, h2 { text-wrap: balance; }
 .licao span { display: inline-block; }
 .licao.pousou { text-shadow: 0 0 22px rgba(255,200,110,.9); }
 .botao-som { width: 44px; height: 44px; border-radius: 22px; border: 0; background: none; display: grid; place-items: center; color: inherit; }
-.aviso { position: absolute; left: 50%; bottom: 120px; z-index: 20; transform: translateX(-50%); padding: 12px 18px; border-radius: 999px; font-size: 15px; font-weight: 600; white-space: nowrap; pointer-events: none; color: #FFF8EE; background: rgba(30,22,40,.82); backdrop-filter: blur(12px); }
+.aviso { position: absolute; left: 50%; bottom: 120px; z-index: 20; transform: translateX(-50%); width: max-content; max-width: calc(100% - 40px); padding: 12px 18px; border-radius: 22px; font-size: 15px; font-weight: 600; line-height: 1.35; text-align: center; pointer-events: none; color: #FFF8EE; background: rgba(30,22,40,.82); backdrop-filter: blur(12px); }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 @media (max-height: 760px) { .titulo { font-size: 30px; } .marca { font-size: 50px; } .perguntas li { font-size: 19px; } .vib-titulo { font-size: 26px; } .vib-frase { font-size: 19px; } }
@@ -673,6 +673,51 @@ h1, h2 { text-wrap: balance; }
 
 /* ---------- Abertura: o ramo de videira ---------- */
 .ramo { display: block; width: 228px; height: 46px; margin: 2px 0 -6px -6px; overflow: visible; }
+
+/* ---------- Apostilas em PDF ---------- */
+.apostilas .estante { padding: 20px 0 4px; }
+.apostilas .linha-k span b { font-weight: inherit; }
+.apostilas .linha-k[aria-busy="true"] { opacity: .75; }
+.capa-ap { background: #FFFDF8; overflow: hidden; position: relative; }
+.capa-ap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.capa-ap:empty::after { content: ""; position: absolute; inset: 18% 16%; background: repeating-linear-gradient(180deg, rgba(43,34,54,.16) 0 2px, transparent 2px 11px); }
+.folhas-ap { touch-action: pan-y; }
+.texto-ap { position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 6px 0 44px; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.texto-ap::-webkit-scrollbar { display: none; }
+.miolo-ap { max-width: 36em; margin: 0 auto; padding: 0 24px; font-family: var(--f-leitura); font-size: var(--tam-letra, 19px); line-height: 1.7; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.miolo-ap p { margin: 0 0 .75em; text-indent: 1.4em; border-radius: 4px; transition: background .3s; }
+.miolo-ap p.lista-ap { text-indent: 0; padding-left: 1.2em; }
+.miolo-ap p.nota-ap { font-size: .82em; line-height: 1.55; text-indent: 0; color: var(--suave); }
+.miolo-ap p.traco-ap { border-top: 1px solid var(--linha); padding-top: .7em; margin-top: 1.2em; border-radius: 0; }
+.miolo-ap h3 { font-weight: 600; font-size: 1.04em; line-height: 1.35; text-align: left; margin: 1.3em 0 .6em; hyphens: manual; -webkit-hyphens: manual; }
+.miolo-ap h3:first-of-type { margin-top: .2em; }
+.miolo-ap .marcado { background: var(--marca); box-shadow: 0 0 0 3px var(--marca); }
+.miolo-ap mark { background: #FFD98F; color: inherit; border-radius: 3px; padding: 0 1px; }
+.miolo-ap .num-ap { text-indent: 0; text-align: center; font-family: var(--f-ui); font-size: 12px; font-weight: 600; color: var(--suave); margin: 0 0 1.1em; }
+.miolo-ap .fim-ap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; margin-top: 1.4em; padding-top: .7em; border-top: 1px solid var(--linha); font-family: var(--f-ui); font-size: 14px; text-align: left; }
+.fim-ap button { border: 0; background: none; padding: 10px 0; color: var(--texto); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--suave); }
+.espera-ap { margin-top: 30vh; text-align: center; text-indent: 0; font-family: var(--f-ui); font-size: 14px; color: var(--suave); }
+.pagina-ap { position: absolute; inset: 0; overflow: hidden; touch-action: none; }
+.chapa-ap { position: absolute; left: 0; top: 0; transform-origin: 0 0; background: #FFF; box-shadow: 0 10px 28px rgba(43,34,54,.2); }
+.chapa-ap canvas { display: block; width: 100%; height: 100%; }
+.t-leitor[data-tema="sepia"] .chapa-ap canvas { filter: sepia(.32) brightness(.97); }
+.t-leitor[data-tema="noite"] .chapa-ap { background: #E9E2D6; box-shadow: none; }
+.t-leitor[data-tema="noite"] .chapa-ap canvas { filter: invert(.88) hue-rotate(180deg) brightness(.96); }
+.selo-ap { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); margin: 0; padding: 7px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap; color: #FFF8EE; background: rgba(30,22,40,.72); pointer-events: none; }
+.leitor-pe .pag-ap, .leitor-pe .nota-ap { min-height: 44px; border: 0; background: none; padding: 0 2px; color: inherit; font: inherit; font-variant-numeric: tabular-nums; }
+.leitor-pe .nota-ap { display: inline-flex; align-items: center; gap: 6px; }
+.leitor-pe .nota-ap[data-tem="true"] { color: #C98A3A; font-weight: 700; }
+.gaveta .ir-ap { display: flex; align-items: center; gap: 10px; }
+.gaveta .ir-ap label { font-weight: 600; flex: 1; }
+.gaveta input[type="number"] { width: 110px; min-height: 52px; border-radius: 16px; border: 1px solid #E2D2B6; background: #FFFBF4; padding: 0 14px; font-size: 17px; color: var(--tinta); }
+.gaveta .ir-ap .btn { min-height: 52px; padding: 0 20px; }
+.gaveta .lista-caps .nivel-1 span { padding-left: 14px; }
+.gaveta .lista-caps .nivel-2 span { padding-left: 28px; font-size: 14px; }
+.gaveta .sobre-ap { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #EADCC4; padding-top: 14px; }
+.gaveta .sobre-ap small { color: var(--tinta-suave); font-size: 13.5px; line-height: 1.45; }
+.gaveta .tirar-ap { align-self: flex-start; border: 0; background: none; padding: 8px 0; color: #9A3B2A; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.gaveta .busca-prog { color: var(--tinta-suave); font-size: 14px; margin: 0; }
+.ap-e { background: rgba(255,248,236,.12); }
 </style>
 
 <div id="palco">
@@ -815,13 +860,14 @@ h1, h2 { text-wrap: balance; }
       <div class="mais-livros">
         <button class="linha-k" data-ir="estudos"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 16h.01"/></svg><span>Pergunte a Kardec<small>Dúvidas respondidas com trechos destas cinco obras</small></span></button>
         <button class="linha-k" id="abrir-preces"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5c3-1 6-1 10 1v14c-4-2-7-2-10-1z"/><path d="M22 5c-3-1-6-1-10 1v14c4-2 7-2 10-1z"/></svg><span>Coletânea de Preces Espíritas<small>O Evangelho segundo o Espiritismo, capítulo XXVIII</small></span></button>
+        <button class="linha-k" id="ir-apostilas"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/></svg><span>Suas apostilas da FEB<small>Leia o PDF da sua apostila com a página guardada</small></span></button>
         <p class="nota-livros">Fonte Viva, Pão Nosso, Alerta e os outros livros da leitura inicial têm direitos autorais. A família lê no próprio exemplar; o app sorteia a lição ou pede para abrir ao acaso.</p>
       </div>
     </div>
   </section>
 
   <!-- LEITOR -->
-  <section class="tela t-leitor" data-tela="leitor" aria-label="Leitor" hidden>
+  <section class="tela t-leitor" data-tela="leitor" aria-label="Leitor" lang="pt-BR" hidden>
     <div class="leitor-topo">
       <button class="icone" id="leitor-voltar" aria-label="Voltar à biblioteca"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <button class="icone" id="leitor-indice" aria-label="Sumário"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
@@ -833,6 +879,24 @@ h1, h2 { text-wrap: balance; }
     </div>
     <div class="folhas-leitor" id="folhas-leitor"><div class="colunas" id="colunas"></div></div>
     <div class="leitor-pe"><span id="leitor-pagina"></span><span class="progr"><i id="leitor-progr"></i></span><span id="leitor-pct"></span></div>
+  </section>
+
+  <!-- APOSTILA EM PDF (o arquivo da própria pessoa, guardado só no aparelho) -->
+  <section class="tela t-leitor t-apostila" data-tela="apostila" aria-label="Apostila" lang="pt-BR" hidden>
+    <div class="leitor-topo">
+      <button class="icone" id="ap-voltar" aria-label="Voltar aos estudos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="icone" id="ap-indice" aria-label="Sumário, marcações e anotações"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
+      <span class="onde" id="ap-onde"></span>
+      <button class="icone" id="ap-ouvir" aria-label="Ouvir em voz alta" aria-pressed="false"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+      <button class="icone" id="ap-busca" aria-label="Buscar na apostila"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+      <button class="icone" id="ap-letra" aria-label="Letra, cor e modo de leitura"><span style="font-family: var(--f-leitura); font-size: 18px; font-weight: 600">Aa</span></button>
+      <button class="icone" id="ap-marcador" aria-label="Marcar esta página" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg></button>
+    </div>
+    <div class="folhas-leitor folhas-ap" id="folhas-ap">
+      <div class="texto-ap" id="texto-ap" hidden></div>
+      <div class="pagina-ap" id="pagina-ap" hidden><div class="chapa-ap" id="chapa-ap"></div><p class="selo-ap" id="selo-ap" hidden></p></div>
+    </div>
+    <div class="leitor-pe"><button type="button" class="pag-ap" id="ap-pagina" aria-label="Ir para outra página"></button><span class="progr"><i id="ap-progr"></i></span><button type="button" class="nota-ap" id="ap-nota"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg><span>Anotar</span></button></div>
   </section>
 
   <!-- ESTUDOS -->
@@ -876,8 +940,10 @@ h1, h2 { text-wrap: balance; }
       </section>
       <section class="apostilas" aria-labelledby="t-apostilas">
         <h2 id="t-apostilas" class="rotulo-secao">Apostilas da FEB</h2>
-        <p class="sub-k">O ESDE e os outros cursos da FEB têm direitos da editora. Você vai importar o PDF da sua apostila e ler aqui, com a página guardada.</p>
-        <button class="linha-k" data-aviso="A importação de apostilas entra na fase 2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M12 11v6M9 14l3 3 3-3"/></svg><span>Importar apostila em PDF<small>Fase 2, junto com o pedido de parceria à FEB</small></span></button>
+        <p class="sub-k">O ESDE, o EADE e os outros cursos da FEB têm direitos da editora, por isso não vêm no app. Coloque aqui o PDF da sua apostila: ele fica só neste aparelho, e o app guarda a página onde você parou, as marcações e as anotações.</p>
+        <div class="estante" id="estante-ap" hidden></div>
+        <button type="button" class="linha-k" id="por-apostila"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M12 17v-6M9 14l3-3 3 3"/></svg><span><b id="por-apostila-t">Colocar uma apostila em PDF</b><small id="por-apostila-s">Escolha o arquivo no celular; ele não sai do aparelho</small></span></button>
+        <input type="file" id="arquivo-ap" accept="application/pdf,.pdf" multiple hidden>
       </section>
     </div>
   </section>
@@ -1152,7 +1218,8 @@ h1, h2 { text-wrap: balance; }
   function aviso(txt) {
     var el = $('#aviso'); el.textContent = txt; el.hidden = false;
     if (anima) G.fromTo(el, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .35, ease: 'power3.out' });
-    clearTimeout(tAviso); tAviso = setTimeout(function () { el.hidden = true; }, 2200);
+    // Aviso longo fica mais tempo: dá para ler até o fim.
+    clearTimeout(tAviso); tAviso = setTimeout(function () { el.hidden = true; }, Math.max(2200, txt.length * 60));
   }
 
   /* ---------- Troca de telas ---------- */
@@ -1472,15 +1539,22 @@ h1, h2 { text-wrap: balance; }
   var pref = lerLocal('lar-leitor', { tam: 19, tema: noite ? 'noite' : 'papel' });
   function aplicarPref() { $('.t-leitor').dataset.tema = pref.tema; $('#colunas').style.setProperty('--tam-letra', pref.tam + 'px'); }
 
+  // Sem capítulo, o livro abre onde a pessoa parou. Com um capítulo e sem parágrafo (os roteiros do ESDE, as
+  // trilhas, as preces), abre onde ela parou DENTRO desse capítulo (lar-pos-cap-<livro>), a não ser que já o
+  // tenha lido até o fim. Com um parágrafo (busca, Pergunte a Kardec, encontro), vai direto a ele.
   function abrirLivro(id, c, b, voltar) {
     L.voltar = voltar || 'biblioteca';
     if (id === 'evangelho') carregarExplicacoes().catch(function () {});
     carregarLivro(id).then(function (livro) {
       L.livro = livro;
-      var pos = lerLocal('lar-pos-' + id, null);
-      if (c === undefined && pos) { c = pos.c; b = pos.b; }
+      var pos = lerLocal('lar-pos-' + id, null), off = 0, retomou = false;
+      if (c === undefined && pos) { c = pos.c; b = pos.b; off = pos.o || 0; }
+      else if (c !== undefined && b === undefined) {
+        var pc = lerLocal('lar-pos-cap-' + id, {})[c];
+        if (pc && !pc.fim && (pc.b || pc.o)) { b = pc.b; off = pc.o || 0; retomou = true; }
+      }
       irA('leitor'); aplicarPref();
-      setTimeout(function () { mostrarCap(c || 0, b || 0, 'ancora'); }, 30);
+      setTimeout(function () { mostrarCap(c || 0, b || 0, 'ancora', off); if (retomou && L.pag > 0) aviso('Você continua de onde parou'); }, 30);
     }).catch(function (err) { aviso('Não foi possível abrir o livro agora'); console.warn(err); });
   }
   $('#leitor-voltar').addEventListener('click', function () { if (L.voltar === 'encontro') estado.retomar = true; irA(L.voltar); });
@@ -1516,7 +1590,7 @@ h1, h2 { text-wrap: balance; }
       (r.epigrafes ? '<div class="epigrafes">' + r.epigrafes.map(function (e) { return '<p>' + e[0] + (e[1] ? '<small>' + e[1] + '</small>' : '') + '</p>'; }).join('') + '</div>' : '') +
       (livro.tradutor ? '<p class="trad">Tradução de ' + esc(livro.tradutor) + '</p>' : '') + '</div>';
   }
-  function mostrarCap(c, alvo, modoAlvo) {
+  function mostrarCap(c, alvo, modoAlvo, off) {
     var livro = L.livro, cap = livro.capitulos[c]; if (!cap) return;
     L.c = c; marcarVisto(livro.id, c);
     var marcas = lerLocal('lar-marca-' + livro.id, []);
@@ -1530,7 +1604,15 @@ h1, h2 { text-wrap: balance; }
     diagramar();
     var pag = 0;
     if (modoAlvo === 'fim') pag = L.pags - 1;
-    else if (alvo) { var el = col.querySelector('[data-b="' + alvo + '"]'); if (el) pag = Math.min(L.pags - 1, Math.floor((el.offsetLeft + 2) / L.passo)); if (modoAlvo === 'brilhar' && el) setTimeout(function () { el.classList.add('marcado'); setTimeout(function () { if (!marcas.some(function (m) { return m.c === c && m.b === alvo; })) el.classList.remove('marcado'); }, 1600); }, 300); }
+    else if (alvo || off) {
+      var el = col.querySelector('[data-b="' + (alvo || 0) + '"]');
+      if (el) {
+        // off: quantas páginas já tinham passado dentro desse parágrafo; sem passar do começo do parágrafo seguinte.
+        var ini = Math.floor((el.offsetLeft + 2) / L.passo), seg = el.nextElementSibling;
+        while (seg && !seg.hasAttribute('data-b')) seg = seg.nextElementSibling;
+        pag = Math.min(L.pags - 1, ini + (off || 0), seg ? Math.floor((seg.offsetLeft + 2) / L.passo) : L.pags - 1);
+      }
+      if (modoAlvo === 'brilhar' && el) setTimeout(function () { el.classList.add('marcado'); setTimeout(function () { if (!marcas.some(function (m) { return m.c === c && m.b === alvo; })) el.classList.remove('marcado'); }, 1600); }, 300); }
     irPagina(pag, 0);
   }
   function diagramar() {
@@ -1546,6 +1628,14 @@ h1, h2 { text-wrap: balance; }
     for (var i = 0; i < els.length; i++) { var x = els[i].offsetLeft; if (x >= inicio - 2) return +els[i].dataset.b; ultimoAntes = +els[i].dataset.b; }
     return ultimoAntes;
   }
+  // Onde a página está, para voltar exatamente a ela: o parágrafo que ocupa o alto da página (mesmo que tenha
+  // começado na anterior) e quantas páginas já se passaram dentro dele. Parágrafos longos ocupam várias páginas.
+  function posicaoDaPagina() {
+    var els = $$('#colunas [data-b]'), achado = null;
+    for (var i = 0; i < els.length; i++) { var p = Math.floor((els[i].offsetLeft + 2) / L.passo); if (p <= L.pag) achado = { b: +els[i].dataset.b, p: p }; else break; }
+    if (!achado || L.pag === 0) return { b: 0, o: 0 };
+    return { b: achado.b, o: L.pag - achado.p };
+  }
   function irPagina(n, dir) {
     L.pag = Math.max(0, Math.min(L.pags - 1, n));
     var x = -L.pag * L.passo;
@@ -1557,8 +1647,10 @@ h1, h2 { text-wrap: balance; }
     var pct = (L.c + (L.pag + 1) / L.pags) / livro.capitulos.length;
     $('#leitor-progr').style.width = Math.round(pct * 100) + '%';
     $('#leitor-pct').textContent = Math.round(pct * 100) + '%';
-    var b = ancoraDaPagina();
-    gravarLocal('lar-pos-' + livro.id, { c: L.c, b: b, pct: pct, rotulo: cap.rotulo });
+    var pos = posicaoDaPagina(), pc = lerLocal('lar-pos-cap-' + livro.id, {});
+    gravarLocal('lar-pos-' + livro.id, { c: L.c, b: pos.b, o: pos.o, pct: pct, rotulo: cap.rotulo });
+    pc[L.c] = { b: pos.b, o: pos.o, fim: L.pag === L.pags - 1 && L.pags > 1 };
+    gravarLocal('lar-pos-cap-' + livro.id, pc);
     var favs = lerLocal('lar-fav-' + livro.id, []);
     var tem = favs.some(function (f) { return f.c === L.c && f.pag === L.pag; });
     $('#leitor-marcador').setAttribute('aria-pressed', tem);
@@ -1589,7 +1681,7 @@ h1, h2 { text-wrap: balance; }
       if (Date.now() - i0.t < 400 && Math.abs(dx) < 8) { var x = e.clientX - r.left; if (x > r.width * .62) proxima(); else if (x < r.width * .38) anterior(); }
     });
     document.addEventListener('keydown', function (e) { if (telaAtual !== 'leitor' || $('.gaveta')) return; if (e.key === 'ArrowRight') proxima(); if (e.key === 'ArrowLeft') anterior(); });
-    window.addEventListener('resize', function () { if (telaAtual === 'leitor') { var b = ancoraDaPagina(); mostrarCap(L.c, b, 'ancora'); } });
+    window.addEventListener('resize', function () { if (telaAtual === 'leitor') { var p = posicaoDaPagina(); mostrarCap(L.c, p.b, 'ancora', p.o); } });
   })();
   function marcarTrecho(p) {
     var id = L.livro.id, b = +p.dataset.b, marcas = lerLocal('lar-marca-' + id, []);
@@ -1646,12 +1738,12 @@ h1, h2 { text-wrap: balance; }
       '<div class="ajuste-linha"><b>Cor</b><div class="seg">' + temas.map(function (t) { return '<button data-tema="' + t[0] + '" aria-pressed="' + (pref.tema === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div>', function (g) {
       g.addEventListener('click', function (e) {
         var b = e.target.closest('[data-tam],[data-tema]'); if (!b) return;
-        var anc = ancoraDaPagina();
+        var anc = posicaoDaPagina();
         if (b.dataset.tam) pref.tam = +b.dataset.tam; if (b.dataset.tema) pref.tema = b.dataset.tema;
         gravarLocal('lar-leitor', pref); aplicarPref();
         $$('[data-tam]', g).forEach(function (x) { x.setAttribute('aria-pressed', +x.dataset.tam === pref.tam); });
         $$('[data-tema]', g).forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.tema === pref.tema); });
-        mostrarCap(L.c, anc, 'ancora');
+        mostrarCap(L.c, anc.b, 'ancora', anc.o);
       });
     });
   });
@@ -2506,7 +2598,7 @@ h1, h2 { text-wrap: balance; }
     if (prox) {
       var m = ESDE[prox.i], r = m.r[prox.k];
       $('#esde-agora').innerHTML = '<p class="passo-e">' + (feitos ? 'Seu próximo roteiro' : 'Comece aqui') + ' · Módulo ' + m.n + ', roteiro ' + (prox.k + 1) + '</p>' +
-        '<h3>' + esc(r[0]) + '</h3><p class="modulo-e-nome">' + esc(m.t) + '</p>' + leiturasEsde(r[1]) + botaoIAEsde(chaveEsde(m, prox.k)) +
+        '<h3>' + esc(r[0]) + '</h3><p class="modulo-e-nome">' + esc(m.t) + '</p>' + leiturasEsde(r[1]) + botaoApEsde(chaveEsde(m, prox.k)) + botaoIAEsde(chaveEsde(m, prox.k)) +
         '<button type="button" class="btn btn-luz" data-estudei="' + chaveEsde(m, prox.k) + '">Estudei este roteiro</button>';
     } else $('#esde-agora').innerHTML = '<p class="passo-e">ESDE concluído</p><h3>Vocês estudaram os ' + TOTAL_ESDE + ' roteiros do Programa Fundamental.</h3><p class="modulo-e-nome">O passo seguinte, na FEB, é o Programa Complementar (Tomo III) e, depois, o Estudo Aprofundado da Doutrina Espírita (EADE).</p>';
     $('#esde-conta').textContent = feitos + ' de ' + TOTAL_ESDE + ' roteiros';
@@ -2518,15 +2610,16 @@ h1, h2 { text-wrap: balance; }
         '<svg class="seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
         (ab ? '<ol class="roteiros-e">' + m.r.map(function (r, k) {
           var ch = chaveEsde(m, k), ok = !!f[ch];
-          return '<li class="' + (ok ? 'feito' : '') + '"><div class="cab-r"><span class="num-r">' + (k + 1) + '</span><b>' + esc(r[0]) + '</b><button type="button" class="marca-r" data-estudei="' + ch + '" aria-pressed="' + ok + '" aria-label="' + (ok ? 'Estudado. Tocar para desmarcar' : 'Marcar como estudado') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></button></div>' + leiturasEsde(r[1]) + botaoIAEsde(ch) + '</li>';
+          return '<li class="' + (ok ? 'feito' : '') + '"><div class="cab-r"><span class="num-r">' + (k + 1) + '</span><b>' + esc(r[0]) + '</b><button type="button" class="marca-r" data-estudei="' + ch + '" aria-pressed="' + ok + '" aria-label="' + (ok ? 'Estudado. Tocar para desmarcar' : 'Marcar como estudado') + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></button></div>' + leiturasEsde(r[1]) + botaoApEsde(ch) + botaoIAEsde(ch) + '</li>';
         }).join('') + '</ol>' : '') + '</div>';
     }).join('');
     montarCeuEstudos();
   }
   function clicarEsde(e) {
-    var ler = e.target.closest('[data-ler]'), est = e.target.closest('[data-estudei]'), mod = e.target.closest('[data-modulo]'), ia = e.target.closest('[data-estudar]');
+    var ler = e.target.closest('[data-ler]'), est = e.target.closest('[data-estudei]'), mod = e.target.closest('[data-modulo]'), ia = e.target.closest('[data-estudar]'), ap = e.target.closest('[data-ap-esde]');
+    if (ap) { abrirApEsde(ap.dataset.apEsde); return; }
     if (ia) { estudarComIA(ia.dataset.estudar); return; }
-    if (ler) { var x = ler.dataset.ler.split(','); if (x[0] === 'manual') irA('manual'); else abrirLivro(x[0], +x[1], 0, 'estudos'); return; }
+    if (ler) { var x = ler.dataset.ler.split(','); if (x[0] === 'manual') irA('manual'); else abrirLivro(x[0], +x[1], undefined, 'estudos'); return; }
     if (est) {
       var f = feitosEsde(), ch = est.dataset.estudei, novo = !f[ch];
       if (novo) f[ch] = Date.now(); else delete f[ch];
@@ -2692,9 +2785,9 @@ h1, h2 { text-wrap: balance; }
   $('#lista-trilhas').addEventListener('click', function (e) {
     var t = e.target.closest('[data-trilha]'), p = e.target.closest('[data-passo]');
     if (t) { var i = +t.dataset.trilha; gravarLocal('lar-trilha', lerLocal('lar-trilha', -1) === i ? -1 : i); montarTrilhas(); Som.tique(); var lst = $('.passos-t'); if (lst && anima) G.from(lst.children, { y: 8, opacity: 0, duration: .45, stagger: .05, ease: 'power2.out', clearProps: 'all' }); return; }
-    if (p) { var x = p.dataset.passo.split(','); abrirLivro(x[0], +x[1], 0, 'estudos'); }
+    if (p) { var x = p.dataset.passo.split(','); abrirLivro(x[0], +x[1], undefined, 'estudos'); }
   });
-  aoEntrar.estudos = function () { montarEsde(); montarTrilhas(); carregarRevisoes().then(function () { if (telaAtual === 'estudos') montarTrilhas(); }); entrarTexto($('[data-tela="estudos"]')); if (anima) G.from('#form-k', { y: 24, opacity: 0, duration: .9, ease: 'expo.out', delay: .25, clearProps: 'transform,opacity' }); };
+  aoEntrar.estudos = function () { montarEsde(); montarTrilhas(); montarApostilas(); carregarRevisoes().then(function () { if (telaAtual === 'estudos') montarTrilhas(); }); entrarTexto($('[data-tela="estudos"]')); if (anima) G.from('#form-k', { y: 24, opacity: 0, duration: .9, ease: 'expo.out', delay: .25, clearProps: 'transform,opacity' }); };
 
   /* ---------- Evangelhinho: o Evangelho no Lar das crianças, com o Cisquinho ---------- */
   // O Cisquinho é um personagem de faz de conta: um anjinho com os traços conhecidos de Chico Xavier, em versão de criança
@@ -3582,7 +3675,7 @@ h1, h2 { text-wrap: balance; }
   $('#resumo-mes').addEventListener('click', resumoDoMes);
 
   /* ---------- Biblioteca: preces ---------- */
-  $('#abrir-preces').addEventListener('click', function () { abrirLivro('evangelho', 29, 0, 'biblioteca'); });
+  $('#abrir-preces').addEventListener('click', function () { abrirLivro('evangelho', 29, undefined, 'biblioteca'); });
 
   /* ---------- Abertura: o ramo de videira se desenha sob o nome ---------- */
   (function () {
@@ -3794,6 +3887,773 @@ h1, h2 { text-wrap: balance; }
     });
   })();
   $('#mudar-dias').addEventListener('click', abrirDias);
+
+  /* ================= APOSTILAS EM PDF ================= */
+  // As apostilas da FEB (ESDE, EADE e outras) têm direitos da editora: o app não as traz. A pessoa coloca o PDF que já
+  // tem; o arquivo fica só neste aparelho (IndexedDB) e não é enviado para lugar nenhum. A lista fica em lar-apostilas;
+  // a página onde parou, os marcadores, os trechos marcados e as anotações, em lar-ap-<id>. Esse estado continua
+  // guardado mesmo se a apostila sair: colocando o mesmo arquivo de novo, tudo volta.
+  // O pdf.js (Mozilla, licença Apache 2.0) vai em lib/ e só é carregado quando uma apostila é aberta.
+  var pdfjs = null, memoriaAp = {};
+  function carregarPdfjs() {
+    if (!pdfjs) {
+      pdfjs = import(new URL('lib/pdf.min.js', document.baseURI).href).then(function (m) {
+        m.GlobalWorkerOptions.workerSrc = new URL('lib/pdf.worker.min.js', document.baseURI).href;
+        return m;
+      });
+      pdfjs.catch(function () { pdfjs = null; });
+    }
+    return pdfjs;
+  }
+  function abrirPdf(lib, dados) { return lib.getDocument({ data: new Uint8Array(dados), isEvalSupported: false, enableXfa: false }).promise; }
+
+  // O arquivo inteiro vai para o IndexedDB; se o navegador não deixar, fica na memória só até fechar o app.
+  var BancoAp = (function () {
+    var aberto = null;
+    function abrir() {
+      if (!aberto) {
+        aberto = new Promise(function (ok, erro) {
+          var r; try { r = indexedDB.open('lar-apostilas', 1); } catch (e) { erro(e); return; }
+          r.onupgradeneeded = function () { r.result.createObjectStore('arquivos'); };
+          r.onsuccess = function () { ok(r.result); };
+          r.onerror = function () { erro(r.error); };
+          r.onblocked = function () { erro(new Error('banco bloqueado')); };
+        });
+        aberto.catch(function () { aberto = null; });
+      }
+      return aberto;
+    }
+    function fazer(modo, acao) {
+      return abrir().then(function (db) {
+        return new Promise(function (ok, erro) {
+          var tx = db.transaction('arquivos', modo), pedido = acao(tx.objectStore('arquivos'));
+          tx.oncomplete = function () { ok(pedido.result); };
+          tx.onerror = tx.onabort = function () { erro(tx.error || new Error('falha no banco')); };
+        });
+      });
+    }
+    return {
+      guardar: function (id, dados) { return fazer('readwrite', function (st) { return st.put(dados, id); }); },
+      ler: function (id) { return fazer('readonly', function (st) { return st.get(id); }); },
+      tirar: function (id) { return fazer('readwrite', function (st) { return st.delete(id); }); }
+    };
+  })();
+
+  function listaAp() { return lerLocal('lar-apostilas', []); }
+  function estadoAp(id) {
+    var e = lerLocal('lar-ap-' + id, null) || {};
+    return { pag: e.pag || 1, modo: e.modo || null, marcas: e.marcas || [], trechos: e.trechos || [], notas: e.notas || {}, lida: e.lida || 0 };
+  }
+  // Identidade do arquivo: o tamanho e uma amostra espalhada dos bytes. O mesmo PDF colocado de novo é reconhecido.
+  function idDoArquivo(buf) {
+    var b = new Uint8Array(buf), h1 = 2166136261, h2 = b.length, passo = Math.max(1, Math.floor(b.length / 65536));
+    for (var i = 0; i < b.length; i += passo) { h1 = Math.imul(h1 ^ b[i], 16777619); h2 = Math.imul(h2 ^ b[i], 2654435761) + (h2 >>> 15); }
+    return 'ap' + b.length.toString(36) + '-' + (h1 >>> 0).toString(36) + (h2 >>> 0).toString(36);
+  }
+  // O título do PDF, quando é um título de verdade; senão, o nome do arquivo ("ESDE_tomo1.doc" ou "Untitled" não ajudam).
+  function tituloAp(info, nome) {
+    var t = String(info && info.Title || '').replace(/^microsoft (word|powerpoint) - /i, '').trim();
+    if (t.length < 4 || !/\s/.test(t) || /\.(docx?|pdf|odt|indd|p65|qxd)$/i.test(t) || /^(untitled|sem t[ií]tulo|documento)/i.test(t)) t = '';
+    if (!t) t = String(nome || '').replace(/\.pdf$/i, '').replace(/_+/g, ' ').replace(/\s+/g, ' ').trim();
+    return (t || 'Apostila').slice(0, 90);
+  }
+  function lerArquivoAp(f) {
+    if (f.arrayBuffer) return f.arrayBuffer();
+    return new Promise(function (ok, erro) { var r = new FileReader(); r.onload = function () { ok(r.result); }; r.onerror = function () { erro(r.error); }; r.readAsArrayBuffer(f); });
+  }
+  function capaDoPdf(doc) {
+    return doc.getPage(1).then(function (pg) {
+      var v1 = pg.getViewport({ scale: 1 }), vp = pg.getViewport({ scale: 220 / v1.width }), c = document.createElement('canvas');
+      c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+      return pg.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise.then(function () { var url = c.toDataURL('image/jpeg', .72); c.width = c.height = 0; return url; });
+    }).catch(function () { return ''; });
+  }
+  function erroPdf(e) {
+    var n = e && e.name, m = e && e.message;
+    if (n === 'PasswordException') return 'Este PDF tem senha. Salve uma cópia sem senha e coloque de novo.';
+    if (n === 'InvalidPDFException' || n === 'FormatError') return 'Este arquivo não parece um PDF que dê para abrir.';
+    if (m === 'sem-arquivo') return 'O arquivo desta apostila não está mais neste aparelho. Coloque o mesmo PDF de novo: a página, as marcações e as anotações continuam guardadas.';
+    if (m === 'sem-leitor') return 'Não foi possível carregar o leitor de PDF agora. Feche e abra o app de novo.';
+    return 'Não foi possível abrir a apostila agora.';
+  }
+  function avisoLongoAp(txt) { abrirGaveta('<h2>Apostila</h2><p style="font-size:17px;line-height:1.55">' + esc(txt) + '</p>'); }
+
+  var importandoAp = false;
+  function importarApostilas(arquivos) {
+    var fs = arquivos.filter(function (f) { return /pdf/i.test(f.type) || /\.pdf$/i.test(f.name); });
+    if (!fs.length) { if (arquivos.length) aviso('Escolha um arquivo em PDF'); return; }
+    if (importandoAp) return;
+    importandoAp = true;
+    var bt = $('#por-apostila'), t = $('#por-apostila-t'), ultimo = null, erros = [], soNaMemoria = 0;
+    bt.setAttribute('aria-busy', 'true'); t.textContent = fs.length > 1 ? 'Guardando ' + fs.length + ' apostilas…' : 'Guardando a apostila…';
+    fs.reduce(function (p, f) {
+      return p.then(function () {
+        return importarUmaAp(f).then(function (r) { ultimo = r.id; if (r.so) soNaMemoria++; }, function (e) { console.warn(e); erros.push(f.name + ': ' + erroPdf(e)); });
+      });
+    }, Promise.resolve()).then(function () {
+      importandoAp = false; bt.removeAttribute('aria-busy');
+      montarApostilas(); montarEsde();
+      if (erros.length) abrirGaveta('<h2>Não deu para colocar</h2>' + erros.map(function (x) { return '<p style="line-height:1.5">' + esc(x) + '</p>'; }).join(''));
+      else if (soNaMemoria) avisoLongoAp('A apostila abre, mas este navegador não deixou guardar o arquivo. Ela fica aqui só até você fechar o app.');
+      if (!erros.length && ultimo && fs.length === 1) abrirApostila(ultimo, { voltar: 'estudos' });
+      else if (!erros.length && ultimo) aviso(fs.length + ' apostilas guardadas');
+    });
+  }
+  function importarUmaAp(f) {
+    return lerArquivoAp(f).then(function (buf) {
+      var id = idDoArquivo(buf);
+      if (listaAp().some(function (a) { return a.id === id; })) return { id: id };
+      return carregarPdfjs().catch(function () { throw new Error('sem-leitor'); }).then(function (lib) {
+        // O pdf.js fica com o buffer que recebe (ele passa para o worker): vai uma cópia, e o original segue para o banco.
+        return abrirPdf(lib, buf.slice(0));
+      }).then(function (doc) {
+        return Promise.all([doc.getMetadata().catch(function () { return {}; }), capaDoPdf(doc)]).then(function (r) {
+          var item = { id: id, t: tituloAp(r[0] && r[0].info, f.name), n: doc.numPages, capa: r[1], em: Date.now() };
+          doc.destroy();
+          return BancoAp.guardar(id, buf).catch(function (e) { console.warn(e); memoriaAp[id] = buf; item.so = true; }).then(function () {
+            var l = listaAp().filter(function (a) { return a.id !== id; }); l.unshift(item); gravarLocal('lar-apostilas', l);
+            if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
+            return { id: id, so: item.so };
+          });
+        });
+      });
+    });
+  }
+  function arquivoAp(id) {
+    if (memoriaAp[id]) return Promise.resolve(memoriaAp[id].slice(0));
+    return BancoAp.ler(id).catch(function () { return null; }).then(function (b) { if (!b) throw new Error('sem-arquivo'); return b; });
+  }
+
+  // A estante de apostilas, em Estudos: a capa é a primeira página do próprio PDF.
+  function montarApostilas() {
+    var el = $('#estante-ap'); if (!el) return;
+    var l = listaAp().map(function (a) { return { a: a, e: estadoAp(a.id) }; }).sort(function (x, y) { return (y.e.lida || y.a.em) - (x.e.lida || x.a.em); });
+    el.innerHTML = l.map(function (x) {
+      var a = x.a, e = x.e;
+      return '<button type="button" class="volume" data-apostila="' + esc(a.id) + '"><div class="capa-k capa-ap">' + (a.capa ? '<img src="' + a.capa + '" alt="">' : '') + '</div><b>' + esc(a.t) + '</b>' +
+        (e.lida ? '<small>Página ' + e.pag + ' de ' + a.n + '</small><span class="barra-p"><i style="width:' + Math.round(e.pag / a.n * 100) + '%"></i></span>' : '<small>' + a.n + ' páginas. Ainda não começou</small>') + '</button>';
+    }).join('');
+    el.hidden = !l.length;
+    $('#por-apostila-t').textContent = l.length ? 'Colocar outra apostila' : 'Colocar uma apostila em PDF';
+    $('#por-apostila-s').textContent = l.length ? 'ESDE, EADE ou outro curso, em PDF' : 'Escolha o arquivo no celular; ele não sai do aparelho';
+  }
+  $('#por-apostila').addEventListener('click', function () { if (!importandoAp) $('#arquivo-ap').click(); });
+  $('#arquivo-ap').addEventListener('change', function (e) { var fs = Array.prototype.slice.call(e.target.files || []); e.target.value = ''; importarApostilas(fs); });
+  $('#estante-ap').addEventListener('click', function (e) { var v = e.target.closest('[data-apostila]'); if (v) abrirApostila(v.dataset.apostila, { voltar: 'estudos' }); });
+  $('#ir-apostilas').addEventListener('click', function () {
+    irA('estudos');
+    setTimeout(function () { var s = $('.apostilas'), r = $('#rolar-estudos'); if (s && r) r.scrollTop = Math.max(0, s.offsetTop - 70); }, 60);
+  });
+
+  /* ---------- O leitor da apostila ---------- */
+  // Dois modos: "Texto" tira o texto de cada página e o mostra com a letra do leitor (o jeito fácil de ler no
+  // celular); "Página" mostra a folha como foi impressa, com aproximação de dois dedos. A página do app é sempre
+  // a página do PDF, para o estudo em grupo ("abram na página 45") bater com a apostila de todos.
+  var AP = { id: null, item: null, doc: null, est: null, pag: 1, n: 1, gen: 0, voltar: 'estudos', linhas: {}, textos: {}, sumario: null, secoes: [], cache: {}, ordemCache: [], z: { s: 1, L: 0, T: 0, w: 0, h: 0, W: 0, H: 0 }, hi: null, ouvindo: false, realce: null, esde: null, tSimples: 0 };
+  function salvarEstAp() { if (AP.id) gravarLocal('lar-ap-' + AP.id, AP.est); }
+  function aplicarPrefAp() { $('[data-tela="apostila"]').dataset.tema = pref.tema; $('#texto-ap').style.setProperty('--tam-letra', pref.tam + 'px'); }
+  function fecharDocAp() {
+    limparCacheAp(); AP.linhas = {}; AP.textos = {}; AP.sumario = null; AP.secoes = [];
+    if (AP.doc) { try { AP.doc.destroy(); } catch (e) {} }
+    AP.doc = null; AP.id = null;
+  }
+  function abrirApostila(id, opc) {
+    opc = opc || {};
+    var item = listaAp().filter(function (a) { return a.id === id; })[0]; if (!item) return;
+    var mesmo = AP.id === id && AP.doc;
+    if (!mesmo) aviso('Abrindo a apostila…');
+    var pronto = mesmo ? Promise.resolve(AP.doc) : Promise.all([carregarPdfjs().catch(function () { throw new Error('sem-leitor'); }), arquivoAp(id)]).then(function (r) { return abrirPdf(r[0], r[1]); });
+    pronto.then(function (doc) {
+      if (!mesmo) { fecharDocAp(); AP.doc = doc; AP.id = id; }
+      AP.item = item; AP.n = doc.numPages; AP.est = estadoAp(id); AP.esde = opc.esde || null; AP.realce = null; AP.voltar = opc.voltar || 'estudos';
+      if (!AP.est.modo) AP.est.modo = app.clientWidth < 700 ? 'texto' : 'pagina';
+      var retomar = !opc.pag && AP.est.lida && AP.est.pag > 1;
+      sumarioAp();
+      irA('apostila'); aplicarPrefAp();
+      setTimeout(function () {
+        mostrarPaginaAp(opc.pag || AP.est.pag || 1, 0, 'abrir');
+        if (retomar) aviso('Você parou na página ' + AP.est.pag);
+        else if (opc.pag && opc.esde) aviso('Roteiro na página ' + opc.pag);
+        if (opc.busca) setTimeout(function () { abrirBuscaAp(opc.busca); }, 350);
+      }, 30);
+    }).catch(function (e) { console.warn(e); avisoLongoAp(erroPdf(e)); });
+  }
+  $('#ap-voltar').addEventListener('click', function () { irA(AP.voltar || 'estudos'); });
+  aoSair.apostila = function () { AP.ouvindo = false; clearTimeout(AP.tSimples); zerarZoomAp(); };
+
+  function mostrarPaginaAp(n, dir, origem) {
+    if (!AP.doc) return;
+    n = Math.max(1, Math.min(AP.n, Math.round(n) || 1));
+    if (origem !== 'voz' && origem !== 'redim' && (AP.ouvindo || Voz.ativo())) { AP.ouvindo = false; Voz.parar(); botaoOuvir($('#ap-ouvir'), false); }
+    if (origem !== 'busca') AP.realce = null;
+    var g = ++AP.gen;
+    AP.pag = n; AP.est.pag = n; AP.est.lida = Date.now(); salvarEstAp();
+    atualizarPeAp();
+    if (AP.est.modo === 'texto') mostrarTextoAp(n, g, dir, origem); else mostrarChapaAp(n, g, dir);
+    // A página seguinte já vai sendo preparada, para virar sem esperar.
+    setTimeout(function () {
+      if (g !== AP.gen || n >= AP.n) return;
+      if (AP.est.modo === 'texto') textoAp(n + 1).catch(function () {}); else prepararChapaAp(n + 1).catch(function () {});
+    }, 500);
+  }
+  function atualizarPeAp() {
+    $('#ap-pagina').textContent = 'Página ' + AP.pag + ' de ' + AP.n;
+    $('#ap-progr').style.width = Math.round(AP.pag / AP.n * 100) + '%';
+    $('#ap-onde').textContent = secaoAp(AP.pag) || AP.item.t;
+    var nota = AP.est.notas[AP.pag], bn = $('#ap-nota');
+    bn.dataset.tem = !!nota; bn.querySelector('span').textContent = nota ? 'Sua anotação' : 'Anotar';
+    var tem = AP.est.marcas.indexOf(AP.pag) >= 0, area = $('#folhas-ap'), fita = area.querySelector('.fita');
+    $('#ap-marcador').setAttribute('aria-pressed', tem);
+    if (tem && !fita) { fita = document.createElement('div'); fita.className = 'fita'; area.appendChild(fita); if (anima) G.from(fita, { y: -30, duration: .5, ease: 'bounce.out' }); }
+    else if (!tem && fita) fita.remove();
+  }
+  function proximaAp(inteira) {
+    var t = $('#texto-ap');
+    // No modo texto, tocar na borda primeiro desce o resto da página; só depois vira para a seguinte.
+    if (!inteira && !t.hidden && t.scrollTop + t.clientHeight < t.scrollHeight - 12) { rolarAp(t, t.scrollTop + t.clientHeight - 56); return; }
+    if (AP.pag < AP.n) { mostrarPaginaAp(AP.pag + 1, 1); Som.folhear(1); } else aviso('Fim da apostila');
+  }
+  function anteriorAp(inteira) {
+    var t = $('#texto-ap');
+    if (!inteira && !t.hidden && t.scrollTop > 12) { rolarAp(t, Math.max(0, t.scrollTop - t.clientHeight + 56)); return; }
+    if (AP.pag > 1) { mostrarPaginaAp(AP.pag - 1, -1, !inteira && AP.est.modo === 'texto' ? 'fim' : undefined); Som.folhear(1); }
+  }
+  function rolarAp(t, y) { if (anima) G.to(t, { scrollTop: y, duration: .45, ease: 'power2.inOut' }); else t.scrollTop = y; }
+
+  // Modo texto
+  function mostrarTextoAp(n, g, dir, origem) {
+    var caixa = $('#texto-ap');
+    $('#pagina-ap').hidden = true; caixa.hidden = false; $('#selo-ap').hidden = true;
+    if (!AP.textos[n]) caixa.innerHTML = '<div class="miolo-ap"><p class="espera-ap">Preparando a página ' + n + '…</p></div>';
+    textoAp(n).then(function (tx) {
+      if (g !== AP.gen) return;
+      if (tx.vazia) { mostrarChapaAp(n, g, dir, 'Página sem texto: mostrando a imagem'); return; }
+      caixa.innerHTML = '<div class="miolo-ap"><p class="num-ap">Página ' + n + '</p>' + htmlTextoAp(n, tx) +
+        '<div class="fim-ap"><button type="button" data-original>Ver a página original</button>' + (n < AP.n ? '<button type="button" data-seguir>Ir para a página ' + (n + 1) + '</button>' : '<span>Fim da apostila</span>') + '</div></div>';
+      var m = AP.realce && caixa.querySelector('mark');
+      caixa.scrollTop = m ? Math.max(0, m.offsetTop - caixa.clientHeight * .3) : origem === 'fim' ? caixa.scrollHeight : 0;
+      if (anima && dir) G.fromTo(caixa.firstChild, { x: dir * 60, opacity: .35 }, { x: 0, opacity: 1, duration: .38, ease: 'power3.out', clearProps: 'transform,opacity' });
+    }).catch(function (e) { if (g !== AP.gen) return; console.warn(e); mostrarChapaAp(n, g, dir); });
+  }
+  function htmlTextoAp(n, tx) {
+    var marcados = {}; AP.est.trechos.forEach(function (m) { if (m.pag === n) marcados[m.i] = m; });
+    return tx.blocos.map(function (bl, i) {
+      var m = marcados[i], cls = (bl.lista ? 'lista-ap' : '') + (bl.t === 'n' ? ' nota-ap' + (bl.traco ? ' traco-ap' : '') : '') + (m && bl.txt.slice(0, 24) === m.txt.slice(0, 24) ? ' marcado' : '');
+      return '<' + (bl.t === 'h' ? 'h3' : 'p') + ' data-i="' + i + '"' + (cls ? ' class="' + cls.trim() + '"' : '') + '>' + realcarAp(bl.txt) + '</' + (bl.t === 'h' ? 'h3' : 'p') + '>';
+    }).join('');
+  }
+  function realcarAp(txt) {
+    var q = AP.realce; if (!q) return esc(txt);
+    var base = normal(txt), out = '', de = 0, k;
+    if (base.length !== txt.length) return esc(txt);
+    while ((k = base.indexOf(q, de)) >= 0) { out += esc(txt.slice(de, k)) + '<mark>' + esc(txt.slice(k, k + q.length)) + '</mark>'; de = k + q.length; }
+    return out + esc(txt.slice(de));
+  }
+  function limparLinhaAp(s) {
+    return s.replace(/­\s*$/, '-').normalize('NFC')
+      .replace(/[ﬀ-ﬆ]/g, function (c) { return ['ff', 'fi', 'fl', 'ffi', 'ffl', 'st', 'st'][c.charCodeAt(0) - 0xFB00]; })
+      .replace(/[­\u0000-\u0008\u000B-\u001F]/g, '').replace(/\s+/g, ' ').trim();
+  }
+  // As linhas da página, na ordem do PDF, com a posição e o tamanho da letra.
+  function linhasAp(n) {
+    if (!AP.doc || n < 1 || n > AP.n) return Promise.resolve(null);
+    if (AP.linhas[n]) return AP.linhas[n];
+    var p = Promise.all([carregarPdfjs(), AP.doc.getPage(n)]).then(function (r) {
+      var lib = r[0], pg = r[1], vp = pg.getViewport({ scale: 1 });
+      return pg.getTextContent().then(function (tc) {
+        var linhas = [], at = null, traco = false;
+        tc.items.forEach(function (it) {
+          if (typeof it.str !== 'string') return;
+          if (!it.str.trim()) { if (at) { if (it.str) at.esp = true; if (it.hasEOL) at.fim = true; } return; }
+          // O traço que abre as notas de rodapé ("__________") não entra no texto; só avisa que dali em diante são notas.
+          if (/^_{5,}$/.test(it.str.trim())) { traco = true; if (at) at.fim = true; return; }
+          var m = lib.Util.transform(vp.transform, it.transform), x = m[4], y = m[5], tam = Math.hypot(m[2], m[3]) || 10;
+          if (Math.abs(m[0]) < .01 && Math.abs(m[1]) > .01) return;   // texto de lado (margens, marcas d'água)
+          if (!at || at.fim || Math.abs(y - at.y) > Math.max(tam, at.tam) * .5) { at = { x0: x, x1: x, y: y, tam: tam, n: 0, soma: 0, txt: '', traco: traco }; traco = false; linhas.push(at); }
+          else if (at.esp || (x - at.x1 > tam * .16 && !/\s$/.test(at.txt) && !/^\s/.test(it.str))) at.txt += ' ';
+          at.esp = false; at.txt += it.str; at.x0 = Math.min(at.x0, x); at.x1 = Math.max(at.x1, x + (it.width || 0));
+          at.soma += tam * it.str.length; at.n += it.str.length; at.tam = at.soma / at.n;
+          if (it.hasEOL) at.fim = true;
+        });
+        linhas.forEach(function (l) { l.txt = limparLinhaAp(l.txt); });
+        return { linhas: linhas.filter(function (l) { return l.txt; }), H: vp.height, W: vp.width };
+      });
+    });
+    AP.linhas[n] = p; p.catch(function () { delete AP.linhas[n]; });
+    return p;
+  }
+  function textoAp(n) {
+    if (AP.textos[n]) return AP.textos[n];
+    // As vizinhas de dois lados: em muitos livros o cabeçalho alterna entre páginas pares e ímpares.
+    var p = Promise.all([linhasAp(n), linhasAp(n - 2), linhasAp(n - 1), linhasAp(n + 1), linhasAp(n + 2)]).then(function (r) { return montarTextoAp(r[0], r.slice(1)); });
+    AP.textos[n] = p; p.catch(function () { delete AP.textos[n]; });
+    return p;
+  }
+  var ROMANO = /^(?=[mdclxvi])m*(c[md]|d?c{0,3})(x[cl]|l?x{0,3})(i[xv]|v?i{0,3})$/i;
+  var ENCLITICO = /^(se|lhes?|l[oa]s?|n[oa]s?|m[eo]|t[eo]|vos)(?=[\s.,;:!?)»”]|$)/i, PREFIXO = /(?:^|[\s(“"])(bem|recém|além|aquém|sem|pré|pós|pró|ex|vice|grão|grã)-$/i;
+  function juntarAp(a, b) {
+    if (/-$/.test(a) && /^-/.test(b)) return a + b.slice(1);
+    // Palavra partida no fim da linha ("espí-" + "rito"); o hífen fica em "encontra-se" e "bem-aventurados".
+    if (/[a-zà-ÿ]-$/i.test(a) && /^[a-zà-ÿ]/.test(b) && !ENCLITICO.test(b) && !PREFIXO.test(a)) return a.slice(0, -1) + b;
+    return a + (/-$/.test(a) ? '' : ' ') + b;
+  }
+  function assinaturaAp(t) { return normal(t).replace(/[\d\s.,;:·|–—-]+/g, ''); }
+  function naMargemAp(l, pag) { return l.y < pag.H * .085 || l.y > pag.H * .935; }
+  // As linhas que podem ser cabeçalho ou rodapé: as de perto da borda da folha e as duas primeiras e duas
+  // últimas do bloco de texto (há livros com margem grande, e o cabeçalho fica longe da borda).
+  function zonaAp(pag) {
+    var ls = pag.linhas; if (!ls.length) return [];
+    var ys = ls.map(function (l) { return l.y; }), minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+    return ls.filter(function (l) { return naMargemAp(l, pag) || l.y - minY < l.tam * 2.6 || maxY - l.y < l.tam * 2.6; });
+  }
+  var SEPARADOR_AP = /^[_\-–—.·\s]{5,}$/;
+  // Junta as linhas em títulos e parágrafos. Saem o número da página e o cabeçalho e o rodapé que se repetem nas
+  // páginas vizinhas; as notas (letra menor) ficam menores. O resto vem como está no PDF. É uma leitura
+  // aproximada: "Ver a página original" mostra a folha.
+  function montarTextoAp(pag, vizinhas) {
+    if (!pag) return { blocos: [], vazia: true, chars: 0 };
+    var repetidas = {};
+    vizinhas.forEach(function (v) { if (v) zonaAp(v).forEach(function (l) { var a = assinaturaAp(l.txt); if (a.length > 2) repetidas[a] = 1; }); });
+    var zona = zonaAp(pag);
+    var linhas = pag.linhas.filter(function (l) {
+      if (zona.indexOf(l) < 0 || SEPARADOR_AP.test(l.txt)) return true;
+      var s = l.txt.replace(/^[-–—\s]+|[-–—\s]+$/g, '');
+      if (/^\d{1,4}$/.test(s) || /^p[aá]g(ina|\.)?\s*\d+$/i.test(s) || (naMargemAp(l, pag) && ROMANO.test(s))) return false;
+      return !repetidas[assinaturaAp(l.txt)];
+    });
+    var chars = 0, conta = {};
+    linhas.forEach(function (l) { if (!SEPARADOR_AP.test(l.txt)) chars += l.txt.length; });
+    if (chars < 25) return { blocos: [], vazia: true, chars: chars };
+    // A letra do corpo é a mais usada nesta página e nas vizinhas: numa página tomada por notas, a letra das
+    // notas não pode passar por letra do corpo (senão o texto vira título).
+    [pag].concat(vizinhas).forEach(function (v) { if (v) v.linhas.forEach(function (l) { var k = Math.round(l.tam * 2) / 2; conta[k] = (conta[k] || 0) + l.txt.length; }); });
+    var corpo = +Object.keys(conta).sort(function (a, b) { return conta[b] - conta[a]; })[0];
+    var doCorpo = linhas.filter(function (l) { return Math.abs(l.tam - corpo) <= corpo * .12; });
+    var xs = doCorpo.map(function (l) { return l.x0; }).sort(function (a, b) { return a - b; }), margem = xs[Math.floor(xs.length * .15)] || 0;
+    var fins = doCorpo.map(function (l) { return l.x1; }).sort(function (a, b) { return a - b; }), borda = fins[Math.floor(fins.length * .85)] || pag.W;
+    var passos = [];
+    for (var i = 1; i < linhas.length; i++) { var d = linhas[i].y - linhas[i - 1].y; if (d > corpo * .6 && d < corpo * 3) passos.push(d); }
+    passos.sort(function (a, b) { return a - b; });
+    var passo = passos[Math.floor(passos.length / 2)] || corpo * 1.3, blocos = [], at = null, depoisDoTraco = false;
+    linhas.forEach(function (l, i) {
+      // O traço que separa as notas de rodapé não aparece; a primeira nota depois dele ganha uma linha em cima.
+      if (SEPARADOR_AP.test(l.txt)) { depoisDoTraco = true; at = null; return; }
+      if (l.traco) { depoisDoTraco = true; at = null; }
+      // Item de lista (com marcador) ou parágrafo numerado ("24. - Antes que..."): os dois começam bloco novo.
+      var ant = linhas[i - 1], dy = ant ? l.y - ant.y : 0, lista = /^([•●▪■◦]|\d{1,2}\)|[a-z]\))\s/.test(l.txt), item = lista || /^(\d{1,3}\.|[–—-])\s/.test(l.txt);
+      var caixaAlta = l.txt.length < 80 && /[A-ZÀ-Ý]{3}/.test(l.txt) && l.txt === l.txt.toUpperCase() && (!ant || dy > passo * 1.25 || dy < 0);
+      var centrada = l.txt.length < 90 && l.x0 - margem > corpo * 3 && Math.abs((l.x0 - margem) - (borda - l.x1)) < corpo * 1.5;
+      var t = (l.tam > corpo * 1.16 && l.txt.length < 160) || caixaAlta || centrada ? 'h' : l.tam < corpo * .9 ? 'n' : 'p', novo = !at || at.t !== t;
+      if (!novo) {
+        if (dy > passo * 1.45 || dy < -corpo) novo = true;                                  // espaço maior, ou outra coluna
+        else if (t === 'h') novo = Math.abs(l.tam - ant.tam) > corpo * .1;
+        else if (item) novo = true;                                                          // item de lista
+        else if (l.x0 - margem > corpo * .8 && Math.abs(l.x0 - ant.x0) > corpo * .5) novo = true;   // primeira linha recuada
+        else if (ant.x1 < borda - corpo * 2.5 && /[.!?:;»”"]$/.test(ant.txt)) novo = true;     // a linha anterior terminou curta, com ponto
+      }
+      if (novo) { at = { t: t, txt: l.txt, lista: lista }; if (depoisDoTraco && t === 'n') at.traco = true; depoisDoTraco = false; blocos.push(at); }
+      else at.txt = juntarAp(at.txt, l.txt);
+    });
+    return { blocos: blocos, vazia: false, chars: chars };
+  }
+
+  // Modo página: a folha num canvas, com aproximação. Guarda as últimas folhas desenhadas.
+  var MAXPX_AP = 8e6;
+  function dimensoesAp(pg) {
+    var caixa = $('#pagina-ap'), W = caixa.clientWidth, H = caixa.clientHeight, v1 = pg.getViewport({ scale: 1 });
+    AP.tamanho = tamanhoAp();
+    var k = Math.max(.05, Math.min((W - 20) / v1.width, (H - 20) / v1.height));
+    return { W: W, H: H, k: k, w: v1.width * k, h: v1.height * k, vw: v1.width, vh: v1.height };
+  }
+  function desenharAp(pg, d, nivel) {
+    var dpr = Math.min(2, window.devicePixelRatio || 1), px = d.k * dpr * nivel;
+    if (d.vw * px * d.vh * px > MAXPX_AP) px = Math.sqrt(MAXPX_AP / (d.vw * d.vh));
+    var vp = pg.getViewport({ scale: px }), c = document.createElement('canvas');
+    c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+    return pg.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise.then(function () { return c; });
+  }
+  function prepararChapaAp(n) {
+    if (AP.cache[n]) return AP.cache[n];
+    var p = AP.doc.getPage(n).then(function (pg) { var d = dimensoesAp(pg); return desenharAp(pg, d, 1).then(function (c) { return { c: c, d: d }; }); });
+    AP.cache[n] = p; AP.ordemCache.push(n);
+    p.catch(function () { delete AP.cache[n]; });
+    while (AP.ordemCache.length > 5) {
+      var velha = AP.cache[AP.ordemCache.shift()];
+      if (velha) velha.then(function (r) { if (!r.c.parentNode) r.c.width = r.c.height = 0; }, function () {});
+    }
+    for (var k in AP.cache) if (AP.ordemCache.indexOf(+k) < 0) delete AP.cache[k];
+    return p;
+  }
+  function limparCacheAp() {
+    Object.keys(AP.cache).forEach(function (k) { AP.cache[k].then(function (r) { if (!r.c.parentNode) r.c.width = r.c.height = 0; }, function () {}); });
+    AP.cache = {}; AP.ordemCache = [];
+  }
+  function trocarCanvasAp(c) {
+    var ch = $('#chapa-ap');
+    $$('canvas', ch).forEach(function (x) { if (x !== c) { ch.removeChild(x); if (x === AP.hi) { x.width = x.height = 0; AP.hi = null; } } });
+    if (c.parentNode !== ch) ch.appendChild(c);
+  }
+  function mostrarChapaAp(n, g, dir, selo) {
+    $('#texto-ap').hidden = true;
+    var caixa = $('#pagina-ap'), s = $('#selo-ap'); caixa.hidden = false;
+    s.hidden = !selo; if (selo) s.textContent = selo;
+    zerarZoomAp(true);
+    prepararChapaAp(n).then(function (r) {
+      if (g !== AP.gen) return;
+      var d = r.d, ch = $('#chapa-ap');
+      AP.z = { s: 1, L: (d.W - d.w) / 2, T: Math.max(10, (d.H - d.h) / 2), w: d.w, h: d.h, W: d.W, H: d.H };
+      ch.style.width = d.w + 'px'; ch.style.height = d.h + 'px';
+      trocarCanvasAp(r.c); aplicarZoomAp();
+      if (anima && dir) G.fromTo(caixa, { x: dir * 60, opacity: .35 }, { x: 0, opacity: 1, duration: .38, ease: 'power3.out', clearProps: 'transform,opacity' });
+    }).catch(function (e) { if (g !== AP.gen) return; console.warn(e); s.hidden = false; s.textContent = 'Não foi possível mostrar esta página'; });
+  }
+  function aplicarZoomAp() { var z = AP.z; $('#chapa-ap').style.transform = 'translate(' + z.L + 'px,' + z.T + 'px) scale(' + z.s + ')'; }
+  function limitarZoomAp() {
+    var z = AP.z, sw = z.w * z.s, sh = z.h * z.s;
+    z.L = sw <= z.W ? (z.W - sw) / 2 : Math.min(0, Math.max(z.W - sw, z.L));
+    z.T = sh <= z.H ? Math.max(10, (z.H - sh) / 2) : Math.min(0, Math.max(z.H - sh, z.T));
+  }
+  function zoomParaAp(s, x, y) {
+    var z = AP.z, ux = (x - z.L) / z.s, uy = (y - z.T) / z.s;
+    z.s = Math.max(1, Math.min(4, s)); z.L = x - ux * z.s; z.T = y - uy * z.s;
+    limitarZoomAp(); aplicarZoomAp();
+  }
+  function zerarZoomAp(semDesenhar) {
+    clearTimeout(AP.tNitidez);
+    if (AP.z.s === 1 && !AP.hi) return;
+    AP.z.s = 1; limitarZoomAp(); aplicarZoomAp();
+    if (AP.hi && !semDesenhar && AP.cache[AP.pag]) AP.cache[AP.pag].then(function (r) { if (AP.z.s === 1) trocarCanvasAp(r.c); }, function () {});
+  }
+  // Depois de aproximar, a folha é desenhada de novo com mais detalhe, para a letra não ficar borrada.
+  function nitidezAp() {
+    clearTimeout(AP.tNitidez);
+    AP.tNitidez = setTimeout(function () {
+      var z = AP.z, n = AP.pag, g = AP.gen, nivel = Math.min(4, Math.ceil(z.s * 2) / 2);
+      if (z.s < 1.2 || (AP.hi && AP.hi.nivel === nivel)) return;
+      AP.doc.getPage(n).then(function (pg) { return desenharAp(pg, dimensoesAp(pg), nivel); }).then(function (c) {
+        if (g !== AP.gen || AP.z.s < 1.2) { c.width = c.height = 0; return; }
+        var velho = AP.hi; c.nivel = nivel; trocarCanvasAp(c); AP.hi = c;
+        if (velho && velho !== c) velho.width = velho.height = 0;
+      }).catch(function () {});
+    }, 240);
+  }
+  // Gestos na folha: dois dedos aproximam, dois toques aproximam ou voltam, arrastar mexe na folha aproximada;
+  // sem aproximação, deslizar para o lado ou tocar nas bordas vira a página.
+  (function () {
+    var el = $('#pagina-ap'), pts = {}, ini = null, pinca = null, toqueAnt = null, tToque = 0;
+    function pos(e) { var r = el.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+    function comecar() {
+      var ks = Object.keys(pts), z = AP.z;
+      if (ks.length >= 2) { var a = pts[ks[0]], b = pts[ks[1]]; pinca = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, m: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, s: z.s, L: z.L, T: z.T }; ini = null; }
+      else if (ks.length === 1) { var p = pts[ks[0]]; ini = { x: p.x, y: p.y, L: z.L, T: z.T, t: Date.now(), moveu: false }; pinca = null; }
+    }
+    el.addEventListener('pointerdown', function (e) { try { el.setPointerCapture(e.pointerId); } catch (x) {} pts[e.pointerId] = pos(e); comecar(); });
+    el.addEventListener('pointermove', function (e) {
+      if (!pts[e.pointerId]) return;
+      pts[e.pointerId] = pos(e); var z = AP.z, ks = Object.keys(pts);
+      if (pinca && ks.length >= 2) {
+        var a = pts[ks[0]], b = pts[ks[1]], d = Math.hypot(a.x - b.x, a.y - b.y), m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+        var s = Math.max(1, Math.min(4, pinca.s * d / pinca.d)), ux = (pinca.m.x - pinca.L) / pinca.s, uy = (pinca.m.y - pinca.T) / pinca.s;
+        z.s = s; z.L = m.x - ux * s; z.T = m.y - uy * s; limitarZoomAp(); aplicarZoomAp();
+      } else if (ini) {
+        var dx = pts[e.pointerId].x - ini.x, dy = pts[e.pointerId].y - ini.y;
+        if (Math.abs(dx) > 6 || Math.abs(dy) > 6) ini.moveu = true;
+        if (z.s > 1.01) { z.L = ini.L + dx; z.T = ini.T + dy; limitarZoomAp(); aplicarZoomAp(); }
+      }
+    });
+    function soltar(e) {
+      if (!pts[e.pointerId]) return;
+      var p = pts[e.pointerId]; delete pts[e.pointerId];
+      if (pinca) {
+        if (Object.keys(pts).length < 2) { pinca = null; ini = null; if (AP.z.s <= 1.02) zerarZoomAp(); else nitidezAp(); if (Object.keys(pts).length === 1) comecar(); }
+        return;
+      }
+      if (!ini || e.type === 'pointercancel') { ini = null; return; }
+      var dx = p.x - ini.x, dy = p.y - ini.y, z = AP.z, i0 = ini; ini = null;
+      if (z.s <= 1.01 && Math.abs(dx) > 50 && Math.abs(dy) < 80) { if (dx < 0) proximaAp(true); else anteriorAp(true); return; }
+      if (z.s > 1.01 && i0.moveu) { nitidezAp(); return; }
+      if (Date.now() - i0.t > 350 || i0.moveu) return;
+      var agora = Date.now();
+      if (toqueAnt && agora - tToque < 320 && Math.hypot(p.x - toqueAnt.x, p.y - toqueAnt.y) < 40) {
+        clearTimeout(AP.tSimples); toqueAnt = null;
+        if (z.s > 1.05) zerarZoomAp(); else { zoomParaAp(2.5, p.x, p.y); nitidezAp(); }
+        return;
+      }
+      toqueAnt = p; tToque = agora; clearTimeout(AP.tSimples);
+      AP.tSimples = setTimeout(function () { toqueAnt = null; if (AP.z.s > 1.01) return; var W = el.clientWidth; if (p.x > W * .7) proximaAp(true); else if (p.x < W * .3) anteriorAp(true); }, 330);
+    }
+    el.addEventListener('pointerup', soltar); el.addEventListener('pointercancel', soltar);
+    // No computador: Ctrl + rodinha (ou o gesto de pinça do trackpad) aproxima; a rodinha mexe na folha aproximada.
+    el.addEventListener('wheel', function (e) {
+      if (!e.ctrlKey && AP.z.s <= 1.01) return;
+      e.preventDefault(); var p = pos(e);
+      if (e.ctrlKey) zoomParaAp(AP.z.s * Math.exp(-e.deltaY / 200), p.x, p.y);
+      else { AP.z.L -= e.deltaX; AP.z.T -= e.deltaY; limitarZoomAp(); aplicarZoomAp(); }
+      if (AP.z.s <= 1.01) zerarZoomAp(); else nitidezAp();
+    }, { passive: false });
+  })();
+  // Gestos no texto: deslizar vira a página; tocar nas bordas desce ou sobe a tela; segurar um parágrafo marca o trecho.
+  (function () {
+    var t = $('#texto-ap'), ini = null, segurar = null;
+    t.addEventListener('pointerdown', function (e) {
+      ini = { x: e.clientX, y: e.clientY, t: Date.now() };
+      var p = e.target.closest('[data-i]'); clearTimeout(segurar);
+      if (p) segurar = setTimeout(function () { ini = null; marcarTrechoAp(p); }, 550);
+    });
+    t.addEventListener('pointermove', function (e) { if (ini && (Math.abs(e.clientX - ini.x) > 10 || Math.abs(e.clientY - ini.y) > 10)) clearTimeout(segurar); });
+    t.addEventListener('pointercancel', function () { clearTimeout(segurar); ini = null; });
+    t.addEventListener('pointerup', function (e) {
+      clearTimeout(segurar); if (!ini) return;
+      var dx = e.clientX - ini.x, dy = e.clientY - ini.y, i0 = ini; ini = null;
+      if (Math.abs(dx) > 50 && Math.abs(dy) < 60) { if (dx < 0) proximaAp(true); else anteriorAp(true); return; }
+      if (e.target.closest('button')) return;
+      if (Date.now() - i0.t < 400 && Math.abs(dx) < 8 && Math.abs(dy) < 8) { var r = t.getBoundingClientRect(), x = e.clientX - r.left; if (x > r.width * .7) proximaAp(); else if (x < r.width * .3) anteriorAp(); }
+    });
+    t.addEventListener('click', function (e) {
+      if (e.target.closest('[data-original]')) { AP.est.modo = 'pagina'; salvarEstAp(); mostrarPaginaAp(AP.pag, 0, 'modo'); aviso('Para voltar ao texto, toque em Aa'); }
+      else if (e.target.closest('[data-seguir]')) { proximaAp(true); }
+    });
+  })();
+  document.addEventListener('keydown', function (e) {
+    if (telaAtual !== 'apostila' || $('.gaveta')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') proximaAp(e.key === 'ArrowRight');
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') anteriorAp(e.key === 'ArrowLeft');
+  });
+  // Celular deitado, teclado aberto, janela mudando: a folha é redesenhada para o novo tamanho.
+  var tRedimAp = 0;
+  function tamanhoAp() { var f = $('#folhas-ap'); return f.clientWidth + 'x' + f.clientHeight; }
+  function redimAp() {
+    if (telaAtual !== 'apostila' || !AP.doc) return;
+    clearTimeout(tRedimAp);
+    tRedimAp = setTimeout(function () {
+      var k = tamanhoAp(); if (k === AP.tamanho || /^0x|x0$/.test(k)) return;
+      AP.tamanho = k; limparCacheAp();
+      if (!$('#pagina-ap').hidden) mostrarPaginaAp(AP.pag, 0, 'redim');
+    }, 200);
+  }
+  if (window.ResizeObserver) new ResizeObserver(redimAp).observe($('#folhas-ap'));
+  window.addEventListener('resize', redimAp);
+
+  function marcarTrechoAp(p) {
+    var i = +p.dataset.i, ts = AP.est.trechos, k = ts.findIndex(function (m) { return m.pag === AP.pag && m.i === i; });
+    if (k >= 0) { ts.splice(k, 1); p.classList.remove('marcado'); aviso('Marcação retirada'); }
+    else { ts.push({ pag: AP.pag, i: i, txt: p.textContent.slice(0, 120) }); p.classList.add('marcado'); aviso('Trecho marcado'); Som.sino(1046, 0, .025, 1.4); if (anima) G.fromTo(p, { scale: .985 }, { scale: 1, duration: .5, ease: 'back.out(3)' }); }
+    salvarEstAp();
+    if (navigator.vibrate) try { navigator.vibrate(12); } catch (e) {}
+  }
+  $('#ap-marcador').addEventListener('click', function () {
+    var ms = AP.est.marcas, k = ms.indexOf(AP.pag);
+    if (k >= 0) { ms.splice(k, 1); aviso('Marcador retirado'); }
+    else { ms.push(AP.pag); ms.sort(function (a, b) { return a - b; }); Som.sino(880, 0, .03, 1.6); aviso('Página marcada'); }
+    salvarEstAp(); atualizarPeAp();
+  });
+  $('#ap-nota').addEventListener('click', function () {
+    var n = AP.pag;
+    abrirGaveta('<h2>Anotação da página ' + n + '</h2><label class="oculto" for="nota-ap">Anotação</label><textarea id="nota-ap" maxlength="4000" placeholder="Uma ideia, uma dúvida para levar ao grupo de estudo, uma frase para lembrar">' + esc(AP.est.notas[n] || '') + '</textarea><p class="busca-prog">Fica guardada só neste aparelho.</p>', function (g) {
+      var t = g.querySelector('#nota-ap');
+      t.addEventListener('input', function () { if (t.value.trim()) AP.est.notas[n] = t.value; else delete AP.est.notas[n]; salvarEstAp(); atualizarPeAp(); });
+    });
+  });
+  function formIrAp() { return '<form class="ir-ap" id="form-ir-ap"><label for="num-ir-ap">Ir para a página</label><input type="number" id="num-ir-ap" inputmode="numeric" min="1" max="' + AP.n + '" value="' + AP.pag + '"><button class="btn btn-papel" type="submit">Ir</button></form>'; }
+  function ligarIrAp(g) {
+    var f = g.querySelector('#form-ir-ap'), c = g.querySelector('#num-ir-ap');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault(); var v = parseInt(c.value, 10);
+      if (v >= 1 && v <= AP.n) { fecharGaveta(); mostrarPaginaAp(v, v >= AP.pag ? 1 : -1); } else aviso('Escolha de 1 a ' + AP.n);
+    });
+    return c;
+  }
+  $('#ap-pagina').addEventListener('click', function () {
+    abrirGaveta('<h2>Página ' + AP.pag + ' de ' + AP.n + '</h2>' + formIrAp(), function (g) { var c = ligarIrAp(g); setTimeout(function () { c.focus(); c.select(); }, 250); });
+  });
+
+  // Sumário do próprio PDF (quando ele tem), com as marcações e anotações da pessoa.
+  function sumarioAp() {
+    if (AP.sumario) return AP.sumario;
+    var doc = AP.doc;
+    AP.sumario = doc.getOutline().then(function (ol) {
+      var lista = [];
+      (function andar(itens, nivel) {
+        (itens || []).forEach(function (it) { if (lista.length >= 400) return; lista.push({ t: String(it.title || '').replace(/\s+/g, ' ').trim(), dest: it.dest, nivel: nivel }); if (nivel < 2) andar(it.items, nivel + 1); });
+      })(ol, 0);
+      return Promise.all(lista.map(function (s) { return paginaDoDestinoAp(doc, s.dest).then(function (p) { s.p = p; }, function () { s.p = null; }); })).then(function () {
+        var ok = lista.filter(function (s) { return s.p && s.t; });
+        if (AP.doc === doc) { AP.secoes = ok; if (telaAtual === 'apostila') atualizarPeAp(); }
+        return ok;
+      });
+    }).catch(function () { return []; });
+    return AP.sumario;
+  }
+  function paginaDoDestinoAp(doc, dest) {
+    return (typeof dest === 'string' ? doc.getDestination(dest) : Promise.resolve(dest)).then(function (d) {
+      if (!Array.isArray(d) || d[0] == null) return null;
+      return typeof d[0] === 'number' ? d[0] + 1 : doc.getPageIndex(d[0]).then(function (i) { return i + 1; });
+    });
+  }
+  function secaoAp(p) { var r = null; AP.secoes.forEach(function (s) { if (s.p <= p && (!r || s.p >= r.p)) r = s; }); return r ? r.t : ''; }
+  $('#ap-indice').addEventListener('click', function () {
+    sumarioAp().then(function (sum) {
+      var e = AP.est, it = AP.item, atual = null;
+      sum.forEach(function (s) { if (s.p <= AP.pag && (!atual || s.p >= atual.p)) atual = s; });
+      var minhas = e.marcas.map(function (p) { return { p: p, h: '<small>Marcador</small><span>Página ' + p + (secaoAp(p) ? ': ' + esc(secaoAp(p)) : '') + '</span>' }; })
+        .concat(e.trechos.map(function (m) { return { p: m.pag, i: m.i, h: '<small>Trecho, p. ' + m.pag + '</small><span>' + esc(m.txt.slice(0, 90)) + '…</span>' }; }))
+        .concat(Object.keys(e.notas).map(function (p) { var t = e.notas[p]; return { p: +p, h: '<small>Anotação, p. ' + p + '</small><span>' + esc(t.slice(0, 90)) + (t.length > 90 ? '…' : '') + '</span>' }; }))
+        .sort(function (a, b) { return a.p - b.p; });
+      abrirGaveta('<h2>' + esc(it.t) + '</h2><p class="busca-prog">Você está na página ' + AP.pag + ' de ' + AP.n + '.</p>' + formIrAp() +
+        (minhas.length ? '<ul class="lista-caps"><li class="grupo">Suas marcações e anotações</li>' + minhas.map(function (m) { return '<li><button type="button" data-ir-p="' + m.p + '"' + (m.i !== undefined ? ' data-ir-i="' + m.i + '"' : '') + '>' + m.h + '</button></li>'; }).join('') + '</ul>' : '') +
+        '<ul class="lista-caps"><li class="grupo">Sumário da apostila</li>' + (sum.length ? sum.map(function (s) {
+          return '<li class="nivel-' + s.nivel + '"><button type="button" data-ir-p="' + s.p + '"' + (s === atual ? ' aria-current="true"' : '') + '><small>p. ' + s.p + '</small><span>' + esc(s.t) + '</span></button></li>';
+        }).join('') : '<li class="grupo" style="font-weight:500">Este PDF não traz sumário. Use a busca ou vá direto à página.</li>') + '</ul>' +
+        '<div class="sobre-ap"><label for="nome-ap" style="font-weight:600">Nome da apostila</label><input type="text" id="nome-ap" maxlength="90" value="' + esc(it.t) + '">' +
+        '<small>O arquivo fica só neste aparelho. Se você tirar a apostila, as marcações e anotações continuam guardadas para quando colocar o mesmo PDF de novo.</small><button type="button" class="tirar-ap" id="tirar-ap">Tirar esta apostila do aparelho</button></div>', function (g) {
+        ligarIrAp(g);
+        g.addEventListener('click', function (ev) {
+          var b = ev.target.closest('[data-ir-p]'); if (!b) return;
+          var p = +b.dataset.irP, i = b.dataset.irI; fecharGaveta(); mostrarPaginaAp(p, p >= AP.pag ? 1 : -1);
+          if (i !== undefined) setTimeout(function () { var el = $('#texto-ap [data-i="' + i + '"]'); if (el) { var t = $('#texto-ap'); t.scrollTop = Math.max(0, el.offsetTop - 80); } }, 120);
+        });
+        var nome = g.querySelector('#nome-ap');
+        nome.addEventListener('change', function () {
+          var v = nome.value.replace(/\s+/g, ' ').trim(); if (!v) { nome.value = it.t; return; }
+          it.t = v; var l = listaAp(); l.forEach(function (a) { if (a.id === it.id) a.t = v; }); gravarLocal('lar-apostilas', l); atualizarPeAp(); aviso('Nome guardado');
+        });
+        var tirar = g.querySelector('#tirar-ap'), armado = 0;
+        tirar.addEventListener('click', function () {
+          if (!armado) { armado = setTimeout(function () { armado = 0; tirar.textContent = 'Tirar esta apostila do aparelho'; }, 4000); tirar.textContent = 'Toque de novo para tirar'; return; }
+          clearTimeout(armado); var id = AP.id;
+          gravarLocal('lar-apostilas', listaAp().filter(function (a) { return a.id !== id; }));
+          delete memoriaAp[id]; BancoAp.tirar(id).catch(function () {});
+          fecharGaveta(); var volta = AP.voltar || 'estudos'; fecharDocAp(); irA(volta); montarApostilas(); montarEsde(); aviso('Apostila retirada');
+        });
+        var cur = g.querySelector('[aria-current="true"]'); if (cur) cur.scrollIntoView({ block: 'center' });
+      });
+    });
+  });
+
+  // Busca em todas as páginas. Sem a frase exata, procura as páginas que têm todas as palavras.
+  function abrirBuscaAp(inicial) {
+    var ger = 0;
+    abrirGaveta('<h2>Buscar na apostila</h2><label for="campo-busca-ap" style="font-weight:600">Palavra ou trecho</label><input class="campo" id="campo-busca-ap" style="background:#FFFBF4;border-color:#E2D2B6;color:var(--tinta)" placeholder="Ex.: perispírito, reencarnação" autocomplete="off" value="' + esc(inicial || '') + '"><p class="busca-prog" id="prog-busca-ap" aria-live="polite"></p><div id="resultados-ap"></div>', function (g) {
+      var campo = g.querySelector('#campo-busca-ap'), prog = g.querySelector('#prog-busca-ap'), saida = g.querySelector('#resultados-ap'), t;
+      function buscar(palavras) {
+        var q = normal(campo.value.trim()).replace(/\s+/g, ' '), meu = ++ger, achados = 0, doc = AP.doc, n = 1, paginas = [];
+        var termos = q.split(/[^a-z0-9]+/).filter(function (w, i, a) { return w.length >= 4 && a.indexOf(w) === i; }), minimo = Math.max(2, Math.ceil(termos.length * .6));
+        if (!palavras) saida.innerHTML = '';
+        prog.textContent = '';
+        if (q.length < 3 || (palavras && termos.length < 2)) return;
+        (function seguir() {
+          if (meu !== ger || !g.isConnected || AP.doc !== doc) return;
+          if (n > AP.n || achados >= 80) {
+            if (palavras) {
+              // Sem a frase exata: as páginas com mais palavras da busca vêm primeiro.
+              paginas.sort(function (a, b) { return b.s - a.s || a.p - b.p; });
+              saida.innerHTML = paginas.slice(0, 30).map(function (x) { return x.h; }).join('');
+              prog.textContent = paginas.length ? 'A frase exata não aparece. Estas páginas têm mais palavras da busca:' : AP.esde ? 'O título deste roteiro não aparece na apostila. Procure uma palavra do tema ou use o sumário.' : 'Nada encontrado. Tente outra palavra.';
+            } else if (!achados && termos.length >= 2) buscar(true);
+            else prog.textContent = achados ? achados + (achados >= 80 ? '+' : '') + ' trechos' : 'Nada encontrado. Tente outra palavra.';
+            return;
+          }
+          var p = n++;
+          textoAp(p).then(function (tx) {
+            if (meu !== ger) return;
+            var html = '';
+            if (palavras) {
+              var todo = normal(tx.blocos.map(function (b) { return b.txt; }).join(' ')), s = termos.filter(function (w) { return todo.indexOf(w) >= 0; }).length;
+              if (s >= minimo) {
+                var melhor = tx.blocos[0], mc = -1;
+                tx.blocos.forEach(function (b) { var nb = normal(b.txt), c = termos.filter(function (w) { return nb.indexOf(w) >= 0; }).length; if (c > mc) { mc = c; melhor = b; } });
+                paginas.push({ p: p, s: s, h: '<button class="resultado" data-p="' + p + '" data-realce="' + esc(termos[0]) + '"><small>Página ' + p + ', ' + s + ' de ' + termos.length + ' palavras</small>' + esc(melhor.txt.slice(0, 150)) + '…</button>' });
+              }
+            } else tx.blocos.some(function (bl) {
+              var base = normal(bl.txt), k = base.indexOf(q); if (k < 0) return false;
+              var o = base.length === bl.txt.length ? bl.txt : base, ini = Math.max(0, k - 50);
+              html += '<button class="resultado" data-p="' + p + '"><small>Página ' + p + '</small>' + (ini ? '…' : '') + esc(o.slice(ini, k)) + '<mark>' + esc(o.substr(k, q.length)) + '</mark>' + esc(o.slice(k + q.length, k + q.length + 70)) + '…</button>';
+              achados++; return achados >= 80;
+            });
+            if (html) saida.insertAdjacentHTML('beforeend', html);
+            if (p % 10 === 0) prog.textContent = 'Procurando… página ' + p + ' de ' + AP.n;
+            seguir();
+          }, seguir);
+        })();
+      }
+      campo.addEventListener('input', function () { clearTimeout(t); t = setTimeout(function () { buscar(false); }, 300); });
+      saida.addEventListener('click', function (e) {
+        var r = e.target.closest('[data-p]'); if (!r) return;
+        var p = +r.dataset.p; AP.realce = r.dataset.realce || normal(campo.value.trim()).replace(/\s+/g, ' ');
+        if (AP.esde) { var mapa = lerLocal('lar-ap-esde', {}); mapa[AP.esde] = { id: AP.id, pag: p }; gravarLocal('lar-ap-esde', mapa); }
+        fecharGaveta(); mostrarPaginaAp(p, p >= AP.pag ? 1 : -1, 'busca');
+      });
+      if (inicial) buscar(false); else setTimeout(function () { campo.focus(); }, 300);
+    });
+  }
+  $('#ap-busca').addEventListener('click', function () { abrirBuscaAp(); });
+
+  $('#ap-letra').addEventListener('click', function () {
+    var tams = [16, 18, 19, 21, 24], temas = [['papel', 'Papel'], ['sepia', 'Sépia'], ['noite', 'Abajur']], modos = [['texto', 'Texto'], ['pagina', 'Página']];
+    function dica() { return AP.est.modo === 'texto' ? 'O texto de cada página com a letra do app. Figuras e quadros aparecem em Página.' : 'A folha como foi impressa. Aproxime com dois dedos ou com dois toques.'; }
+    abrirGaveta('<h2>Letra e página</h2><div class="ajuste-linha"><b>Ler como</b><div class="seg">' + modos.map(function (m) { return '<button data-modo="' + m[0] + '" aria-pressed="' + (AP.est.modo === m[0]) + '">' + m[1] + '</button>'; }).join('') + '</div></div>' +
+      '<p class="busca-prog" id="dica-modo">' + dica() + '</p>' +
+      '<div class="ajuste-linha" id="linha-tam"' + (AP.est.modo === 'texto' ? '' : ' hidden') + '><b>Tamanho</b><div class="seg">' + tams.map(function (t) { return '<button data-tam="' + t + '" aria-pressed="' + (pref.tam === t) + '" style="font-family:var(--f-leitura);font-size:' + (t - 4) + 'px">A</button>'; }).join('') + '</div></div>' +
+      '<div class="ajuste-linha"><b>Cor</b><div class="seg">' + temas.map(function (t) { return '<button data-tema="' + t[0] + '" aria-pressed="' + (pref.tema === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div>', function (g) {
+      g.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-tam],[data-tema],[data-modo]'); if (!b) return;
+        if (b.dataset.tam) pref.tam = +b.dataset.tam;
+        if (b.dataset.tema) pref.tema = b.dataset.tema;
+        if (b.dataset.tam || b.dataset.tema) { gravarLocal('lar-leitor', pref); aplicarPrefAp(); aplicarPref(); }
+        if (b.dataset.modo && b.dataset.modo !== AP.est.modo) { AP.est.modo = b.dataset.modo; salvarEstAp(); mostrarPaginaAp(AP.pag, 0, 'modo'); }
+        $$('[data-tam]', g).forEach(function (x) { x.setAttribute('aria-pressed', +x.dataset.tam === pref.tam); });
+        $$('[data-tema]', g).forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.tema === pref.tema); });
+        $$('[data-modo]', g).forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.modo === AP.est.modo); });
+        g.querySelector('#dica-modo').textContent = dica(); g.querySelector('#linha-tam').hidden = AP.est.modo !== 'texto';
+      });
+    });
+  });
+
+  // Ouvir: lê a página com a voz do aparelho e segue para as próximas, virando junto.
+  function ouvirPaginaAp(n, pulos) {
+    textoAp(n).then(function (tx) {
+      if (!AP.ouvindo || telaAtual !== 'apostila' || AP.pag !== n) return;
+      if (!tx.blocos.length) {
+        if (n < AP.n && pulos < 3) { mostrarPaginaAp(n + 1, 1, 'voz'); ouvirPaginaAp(n + 1, pulos + 1); }
+        else { AP.ouvindo = false; botaoOuvir($('#ap-ouvir'), false); aviso('Esta página não tem texto para ler'); }
+        return;
+      }
+      var els = !$('#texto-ap').hidden ? $$('#texto-ap [data-i]') : [];
+      var ok = Voz.falar(tx.blocos.map(function (bl, i) { return { texto: bl.txt, el: els[i] || null }; }), function (el) {
+        marcarLendo(el);
+        var t = $('#texto-ap'); if (el && !t.hidden) { var alvo = Math.max(0, el.offsetTop - 60); if (alvo > t.scrollTop + t.clientHeight * .6 || alvo < t.scrollTop) rolarAp(t, alvo); }
+      }, function () {
+        marcarLendo(null);
+        // Espera a troca de tela terminar: se a pessoa saiu da apostila, a leitura para aqui.
+        setTimeout(function () {
+          if (AP.ouvindo && telaAtual === 'apostila' && AP.pag === n && n < AP.n) { mostrarPaginaAp(n + 1, 1, 'voz'); Som.folhear(1); ouvirPaginaAp(n + 1, 0); }
+          else { AP.ouvindo = false; botaoOuvir($('#ap-ouvir'), false); }
+        }, 0);
+      });
+      if (ok) botaoOuvir($('#ap-ouvir'), true); else AP.ouvindo = false;
+    }, function () { AP.ouvindo = false; botaoOuvir($('#ap-ouvir'), false); });
+  }
+  $('#ap-ouvir').addEventListener('click', function () {
+    if (AP.ouvindo || Voz.ativo()) { AP.ouvindo = false; Voz.parar(); botaoOuvir($('#ap-ouvir'), false); return; }
+    AP.ouvindo = true; ouvirPaginaAp(AP.pag, 0);
+  });
+
+  // No ESDE: "Ler na apostila" abre a apostila do tomo certo e procura o título do roteiro. A página escolhida fica
+  // guardada para o roteiro, e da próxima vez a apostila já abre nela.
+  function botaoApEsde(ch) {
+    return listaAp().length ? '<button type="button" class="ia-e ap-e" data-ap-esde="' + ch + '"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/></svg>Ler na apostila</button>' : '';
+  }
+  function abrirApEsde(ch) {
+    var p = ch.split('.'), m = ESDE.filter(function (x) { return x.n === p[0]; })[0], r = m && m.r[+p[1] - 1]; if (!r) return;
+    var l = listaAp(), salvo = lerLocal('lar-ap-esde', {})[ch];
+    if (salvo && l.some(function (a) { return a.id === salvo.id; })) { abrirApostila(salvo.id, { pag: salvo.pag, voltar: 'estudos', esde: ch }); return; }
+    var rx = m.tomo === 2 ? /tomo\s*(ii\b|2\b)/i : /tomo\s*(i\b|1\b)/i, comEst = l.map(function (a) { return { a: a, e: estadoAp(a.id) }; });
+    var esde = comEst.filter(function (x) { return /esde|sistematizado/i.test(x.a.t); }), doTomo = esde.filter(function (x) { return rx.test(x.a.t); });
+    var lista = doTomo.length ? doTomo : esde.length ? esde : comEst; if (!lista.length) return;
+    lista.sort(function (x, y) { return (y.e.lida || y.a.em) - (x.e.lida || x.a.em); });
+    // Procura a parte principal do título ("Espiritismo ou Doutrina Espírita", antes dos dois-pontos): é a que costuma vir igual na apostila.
+    abrirApostila(lista[0].a.id, { voltar: 'estudos', esde: ch, busca: r[0].split(/[:.]/)[0].trim() });
+  }
 
   atualizarInicio(); atualizarIA();
 
