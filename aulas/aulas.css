@@ -193,6 +193,23 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
 .au-pincel i { display: block; border-radius: 50%; background: currentColor; }
 .au-tempo-vez { display: inline-block; min-width: 2.2em; text-align: center; font-variant-numeric: tabular-nums; }
 
+/* Missão surpresa e Amigo do bem */
+.au-regra { max-width: 38em; padding: 8px 18px; border-radius: 18px; background: rgba(230,221,243,.62); color: #4A3B66; font-size: .92em; font-weight: 600; line-height: 1.4; }
+.au-bolha.guardada { color: #33511F; background: radial-gradient(circle at 40% 32%, #FBFDF0, #DDE9B8 60%, #BFD48C); }
+.au-envelopes { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 2vw, 26px); margin: 8px 0; }
+.au-envelope { width: clamp(118px, 21vw, 220px); padding: 0; border: 0; background: none; filter: drop-shadow(0 10px 16px rgba(120,80,30,.22)); transition: transform .25s var(--mola); }
+.au-envelope:active { transform: scale(.94); }
+.au-envelope svg { display: block; width: 100%; height: auto; }
+.au-tipo { width: clamp(76px, 13vmin, 116px); height: clamp(76px, 13vmin, 116px); border-radius: 50%; display: grid; place-items: center; background: #FFE9BE; color: #7A4A10; box-shadow: 0 8px 20px rgba(200,140,50,.24); }
+.au-tipo svg { width: 58%; height: 58%; }
+.au-missao-texto { font-family: var(--f-leitura); font-weight: 600; font-size: clamp(1.5em, 3vw + 10px, 2.5em); line-height: 1.22; max-width: 22em; text-wrap: balance; margin: 4px 0; }
+.au-flor { width: clamp(150px, 29vmin, 270px); margin: 2px auto; }
+.au-flor svg { display: block; width: 100%; height: auto; overflow: visible; }
+.au-flor .pet { transition: fill .4s, opacity .4s; }
+.au-flor .pet.nova { transform-box: fill-box; transform-origin: center; animation: au-pet .6s var(--mola); }
+@keyframes au-pet { from { transform: scale(0); } to { transform: scale(1); } }
+.au-sel { min-height: 46px; max-width: 45%; padding: 0 14px; border-radius: 999px; border: 2px solid #E6D8BE; background: #FFF; color: var(--tinta); font-size: .95em; }
+
 /* Encenar e semana */
 .au-dupla { font-family: var(--f-leitura); font-weight: 600; font-size: clamp(1.6em, 3.2vw + 10px, 2.8em); line-height: 1.16; color: #6F4714; }
 .au-recado { width: 100%; max-width: 720px; padding: 16px 18px; border: 2px dashed #E0CBA4; border-radius: 22px; background: rgba(255,255,255,.65); font-size: .95em; line-height: 1.5; text-align: left; white-space: pre-line; }

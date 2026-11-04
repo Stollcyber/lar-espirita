@@ -10,7 +10,8 @@
      como Kardec; expressão do conhecimento.
    - Prece inicial e final, história, comentários, atividade: roteiros de aula do Grupo Seara do Mestre (prática das casas;
      não há nada sobre isso em Jacobson Trovão ou Jorge Elarrat, e a FEB não fixa a ordem nem os minutos).
-   As crianças jogam sempre juntas: não há placar individual nem quem perde. Os nomes ficam só no aparelho. */
+   As crianças jogam sempre juntas: não há placar individual nem quem perde. Os nomes ficam só no aparelho.
+   Missão surpresa (2 vezes por mês): proposta nossa a partir do Evangelho, cap. XIII; não vem da FEB nem dos autores acima. */
 window.IniciarAulas = function (api) {
   'use strict';
   var app = api.app, G = api.G, anima = api.anima, esc = api.esc;
@@ -35,6 +36,16 @@ window.IniciarAulas = function (api) {
     apagar: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>',
     feito: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4.5 4.5L19 7"/></svg>'
   };
+
+  // A missão: envelope fechado (com selo redondo) e um desenho por tipo, para quem ainda não lê.
+  var ENVELOPE = '<svg viewBox="0 0 120 84" aria-hidden="true"><rect x="3" y="3" width="114" height="78" rx="12" fill="#FFF6E3" stroke="#E8C68E" stroke-width="3"/><path d="M6 10 L60 50 L114 10" fill="none" stroke="#E8C68E" stroke-width="3" stroke-linejoin="round"/><circle cx="60" cy="49" r="11" fill="#E8A246"/></svg>';
+  var DESENHO_TIPO = {
+    palavra: '<path d="M4 6h16v11H10l-5 4v-4H4z"/><circle cx="8.5" cy="11.5" r=".7" fill="currentColor"/><circle cx="12" cy="11.5" r=".7" fill="currentColor"/><circle cx="15.5" cy="11.5" r=".7" fill="currentColor"/>',
+    atencao: '<path d="M2 12c3-5 6.4-7 10-7s7 2 10 7c-3 5-6.4 7-10 7s-7-2-10-7z"/><circle cx="12" cy="12" r="3"/>',
+    ajuda: '<path d="M12 20S4 15 4 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15 12 20 12 20z"/>',
+    paciencia: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.4 2"/>'
+  };
+  function svgTipo(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (DESENHO_TIPO[k] || DESENHO_TIPO.ajuda) + '</svg>'; }
 
   // As plantas do jardim: flores de pétalas redondas e arbustos. Nunca quatro pétalas, para não lembrar uma cruz.
   function svgPlanta(i, broto) {
@@ -97,10 +108,10 @@ window.IniciarAulas = function (api) {
   function escolherVoz() { var vs = speechSynthesis.getVoices(); voz = vs.filter(function (v) { return /^pt[-_]BR/i.test(v.lang); })[0] || vs.filter(function (v) { return /^pt/i.test(v.lang); })[0] || null; }
   if ('speechSynthesis' in window) { try { escolherVoz(); speechSynthesis.addEventListener('voiceschanged', escolherVoz); } catch (e) {} }
   function pararFala() { if ('speechSynthesis' in window) try { speechSynthesis.cancel(); } catch (e) {} if (falando) { falando.setAttribute('aria-pressed', 'false'); falando = null; } }
-  function falar(txt, botao) {
+  function falar(txt, botao, baixinho) {
     if (!('speechSynthesis' in window)) { api.aviso('Este aparelho não lê em voz alta. Leia para a turma.'); return; }
     var mesmo = botao && falando === botao; pararFala(); if (mesmo) return;
-    var u = new SpeechSynthesisUtterance(txt); u.lang = 'pt-BR'; u.rate = .92; if (voz) u.voice = voz;
+    var u = new SpeechSynthesisUtterance(txt); u.lang = 'pt-BR'; u.rate = .92; if (baixinho) u.volume = .5; if (voz) u.voice = voz;
     if (botao) { falando = botao; botao.setAttribute('aria-pressed', 'true'); u.onend = u.onerror = function () { if (falando === botao) { botao.setAttribute('aria-pressed', 'false'); falando = null; } }; }
     speechSynthesis.speak(u);
   }
@@ -160,6 +171,7 @@ window.IniciarAulas = function (api) {
   };
   var MOMENTOS = {
     chegada: { nome: 'Chegada', d: 'Cada criança toca no seu nome, e a turma se reúne.', min: 5, nota: 'Receba cada criança pelo nome. Deixe que ela toque na própria bolha. Sentir-se bem-vinda faz parte da aula.' },
+    missao: { nome: 'Missão surpresa', d: 'Cada criança recebe, em particular, um gesto bom para fazer durante o encontro.', min: 3, nota: 'Cada criança recebe a sua em particular; leia baixinho para quem ainda não lê. Diga a regra em voz alta: é surpresa só para os colegas, adultos de confiança podem saber, e segredo que dá medo a gente sempre conta. Nenhuma missão pede toque. Quem não quiser uma, pode trocar. Se alguém chegar depois, volte à Chegada e inclua a criança: ela recebe uma missão simples.' },
     prece1: { nome: 'Prece de abertura', d: 'Acalmar o coração e orar com palavras simples.', min: 2, nota: 'Uma prece curta, com palavras simples: agradecer e pedir ajuda para aprender. Pode ser você ou uma criança que queira. Ninguém é obrigado.' },
     lembrar: { nome: 'Da última vez', d: 'Lembrar o encontro anterior e a tarefa da semana.', min: 4, nota: 'Sem cobrança: quem não conseguiu pode tentar de novo. Cada criança que conseguiu acende um vaga-lume no jardim da turma.' },
     abrir: { nome: 'Da vida para a lição', d: 'Uma conversa que parte do dia a dia das crianças.', min: 5, nota: 'Comece pela vida delas: é o caminho que o Currículo da FEB propõe, inspirado em Jesus. Escute mais do que fale, e deixe a roda escolher quem responde.' },
@@ -168,6 +180,7 @@ window.IniciarAulas = function (api) {
     jogo: { nome: 'Brincar e aprender', d: '', min: 12, nota: 'A turma joga junta e todos ganham: a FEB recomenda jogos cooperativos. Enquanto uma criança está com o tablet, as outras ajudam. Elogie a ajuda, e não o acerto.' },
     expressao: { nome: 'Mão na massa', d: '', min: 10, nota: 'Aqui a criança mostra o que entendeu. Vale o processo, e não um resultado bonito.' },
     vivencia: { nome: 'Para a semana', d: 'A tarefa da semana e o recado para as famílias.', min: 3, nota: 'Envie o recado para as famílias: a evangelização continua em casa. O recado não leva nome de nenhuma criança.' },
+    bem: { nome: 'O bem que vimos', d: 'Cada um conta o bem que viu, e nunca o que fez.', min: 3, nota: 'Aqui cada um conta o bem que viu: é fazer o bem sem ostentação (O Evangelho segundo o Espiritismo, cap. XIII). Não pergunte quem cumpriu a missão, nem mostre quem não cumpriu. O silêncio é um instante para cada um olhar para dentro (O Livro dos Espíritos, questão 919). A surpresa termina hoje: quem quiser pode contar.' },
     prece2: { nome: 'Prece final', d: 'Agradecer e plantar a semente de hoje no jardim.', min: 2, nota: 'Agradeça pelo encontro. Depois a turma planta a semente de hoje no jardim: é o que elas vão reencontrar na próxima semana.' }
   };
   function ultimaAula(t) { return t.aulas[t.aulas.length - 1] || null; }
@@ -188,15 +201,15 @@ window.IniciarAulas = function (api) {
     return lista.slice().sort(function (a, b) { return (usos[a] || 0) - (usos[b] || 0); })[0] || null;
   }
   function roteiro(a, t) {
-    var l = ['chegada', 'prece1']; if (ultimaAula(t)) l.push('lembrar');
-    l.push('abrir', 'historia', 'pensar'); if (a.jogo) l.push('jogo'); l.push('expressao', 'vivencia', 'prece2');
+    var l = ['chegada']; if (a.missao) l.push('missao'); l.push('prece1'); if (ultimaAula(t)) l.push('lembrar');
+    l.push('abrir', 'historia', 'pensar'); if (a.jogo) l.push('jogo'); l.push('expressao', 'vivencia'); if (a.missao) l.push('bem'); l.push('prece2');
     var soma = l.reduce(function (s, k) { return s + MOMENTOS[k].min; }, 0);
     return l.map(function (k) { return { k: k, min: Math.max(1, Math.round(MOMENTOS[k].min * a.dur / soma)) }; });
   }
   function novaAula(pedido, tema, parecidosL) {
     var t = turma(), f = t.faixa;
     var jogos = jogosPossiveis(tema, f);
-    return { pedido: pedido || '', temaId: tema.id, aberto: tema.aberta ? tema : null, dur: t.dur || 60, jogo: menosUsado(jogos, t, 'jogo'), expressao: menosUsado(['mural', 'encenar'], t, 'expressao'), parecidos: (parecidosL || []).map(function (x) { return x.id; }), aviso: pedido ? delicado(pedido) : null, presentes: [], minhaHistoria: '', historiaDe: null };
+    return { pedido: pedido || '', temaId: tema.id, aberto: tema.aberta ? tema : null, dur: t.dur || 60, jogo: menosUsado(jogos, t, 'jogo'), expressao: menosUsado(['mural', 'encenar'], t, 'expressao'), parecidos: (parecidosL || []).map(function (x) { return x.id; }), aviso: pedido ? delicado(pedido) : null, presentes: [], minhaHistoria: '', historiaDe: null, missao: qualMissaoHoje(t), missaoProf: sortearMissaoProf(), dadas: {}, amigos: null, gestos: 0 };
   }
   function temaDaAula(a) { return a.aberto || temaPorId(a.temaId); }
   function historiaDaAula(a, t) {
@@ -271,11 +284,21 @@ window.IniciarAulas = function (api) {
       '<div class="au-nomes" id="au-t-nomes"></div>' +
       '<p class="au-aviso-suave">Use só o primeiro nome. Os nomes ficam neste aparelho e não vão para a internet. Pode deixar para depois: a aula funciona sem nomes.</p>' +
       '<div class="au-rodape"><button class="au-acao" id="au-t-ok">' + (primeira ? 'Pronto, vamos lá' : 'Guardar') + '</button></div>' +
+      (!primeira ? '<h3 class="au-sec">Amigo do bem</h3><p class="au-sub">Duplas que não devem sair juntas no sorteio.</p><div class="au-escolhas" style="align-items:center"><select class="au-sel" id="au-ev-a" aria-label="Primeira criança"></select><select class="au-sel" id="au-ev-b" aria-label="Segunda criança"></select><button class="au-pilula b" id="au-ev-add">Incluir</button></div><div class="au-nomes" id="au-ev-lista"></div>' : '') +
       (!primeira ? '<h3 class="au-sec">Outras turmas</h3><ul class="au-lista">' + S.turmas.map(function (x) { return '<li><span class="txt">' + esc(x.nome) + '<small>' + esc(faixaDe(x).nome) + ' · ' + x.aulas.length + ' encontros</small></span>' + (x.id === t.id ? '<span class="au-sub">Esta</span>' : '<button class="au-pilula" data-trocar="' + x.id + '">Abrir</button>') + '</li>'; }).join('') + '</ul><div class="au-rodape"><button class="au-pilula b" id="au-t-nova">Criar outra turma</button>' + (S.turmas.length > 1 ? '<button class="au-pilula" id="au-t-apagar">Apagar esta turma</button>' : '') + '</div>' : '') +
       '</div></div>', 'turma');
+    var evitar = t ? (t.evitar || []).slice() : [];
+    function desenharDuplas() {
+      var sa = $('#au-ev-a'); if (!sa) return;
+      var op = nomes.map(function (n) { return '<option>' + esc(n) + '</option>'; }).join('');
+      sa.innerHTML = op; $('#au-ev-b').innerHTML = op;
+      $('#au-ev-lista').innerHTML = evitar.map(function (d, i) { return '<span class="au-nome">' + esc(d[0]) + ' e ' + esc(d[1]) + '<button data-ev="' + i + '" aria-label="Tirar esta dupla">' + ICO.apagar + '</button></span>'; }).join('');
+      ao('[data-ev]', function (e) { evitar.splice(+e.currentTarget.dataset.ev, 1); desenharDuplas(); }, $('#au-ev-lista'));
+    }
     function desenharNomes() {
       $('#au-t-nomes').innerHTML = nomes.map(function (n, i) { return '<span class="au-nome">' + esc(n) + '<button data-tirar="' + i + '" aria-label="Tirar ' + esc(n) + '">' + ICO.apagar + '</button></span>'; }).join('');
       ao('[data-tirar]', function (e) { nomes.splice(+e.currentTarget.dataset.tirar, 1); desenharNomes(); }, $('#au-t-nomes'));
+      desenharDuplas();
     }
     function incluir() { var c = $('#au-t-add'); c.value.split(/[,;\n]+/).forEach(function (n) { n = n.trim(); if (n && nomes.indexOf(n) < 0) nomes.push(n); }); c.value = ''; desenharNomes(); }
     desenharNomes();
@@ -283,11 +306,18 @@ window.IniciarAulas = function (api) {
     ao('[data-sair]', function () { api.irA('inicio'); });
     ao('[data-f]', function (e) { faixa = e.currentTarget.dataset.f; $$('[data-f]', vista).forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.f === faixa); }); });
     $('#au-t-incluir').addEventListener('click', incluir);
+    var addDupla = $('#au-ev-add');
+    if (addDupla) addDupla.addEventListener('click', function () {
+      var x = $('#au-ev-a').value, y = $('#au-ev-b').value;
+      if (!x || !y || x === y) { api.aviso('Escolha duas crianças diferentes.'); return; }
+      if (!evitar.some(function (d) { return (d[0] === x && d[1] === y) || (d[0] === y && d[1] === x); })) evitar.push([x, y]);
+      desenharDuplas();
+    });
     $('#au-t-add').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); incluir(); } });
     $('#au-t-ok').addEventListener('click', function () {
       incluir();
       var nome = $('#au-t-nome').value.trim() || 'Minha turma';
-      if (t) { t.nome = nome; t.faixa = faixa; t.criancas = nomes; }
+      if (t) { t.nome = nome; t.faixa = faixa; t.criancas = nomes; t.evitar = evitar.filter(function (d) { return nomes.indexOf(d[0]) >= 0 && nomes.indexOf(d[1]) >= 0; }); }
       else { t = { id: 't' + Date.now(), nome: nome, faixa: faixa, criancas: nomes, aulas: [], perguntas: [], vagalumes: 0, andamento: null, dur: 60 }; S.turmas.push(t); S.atual = t.id; }
       gravar(); verInicio();
     });
@@ -305,7 +335,7 @@ window.IniciarAulas = function (api) {
     a.jogo = a.jogo && jogos.indexOf(a.jogo) >= 0 ? a.jogo : menosUsado(jogos, t, 'jogo');
     if (a.jogo === 'encenar') a.expressao = 'mural';
     var m = roteiro(a, t);
-    var naMao = m.reduce(function (s, x) { return s + ((x.k === 'chegada' || x.k === 'jogo' || (x.k === 'expressao' && a.expressao === 'mural')) ? x.min : 0); }, 0);
+    var naMao = m.reduce(function (s, x) { return s + ((x.k === 'chegada' || x.k === 'missao' || x.k === 'jogo' || (x.k === 'expressao' && a.expressao === 'mural')) ? x.min : 0); }, 0);
     var pend = t.perguntas.filter(function (p) { return !p.feita; });
     var seP = tema.seperguntarem || [];
     mostrar('<div class="au-fundo papel"></div>' + topo('Preparar o encontro') +
@@ -319,9 +349,14 @@ window.IniciarAulas = function (api) {
       '<h3 class="au-sec">O roteiro</h3><ol class="au-trilho">' + m.map(function (x) {
         var M = MOMENTOS[x.k], nome = M.nome, d = M.d, troca = '';
         if (x.k === 'jogo') { nome = JOGOS[a.jogo].nome; d = JOGOS[a.jogo].d; if (jogos.length > 1) troca = '<button class="au-pilula" data-trocar-jogo>Trocar por outra brincadeira</button>'; }
+        if (x.k === 'missao') {
+          if (a.missao === 'amigo') { nome = 'Amigo do bem'; d = 'Cada criança cuida de outra, sorteada em roda, e ninguém fica de fora. Só quem recebe vê o nome.'; }
+          troca = (podeAmigo(t) ? '<button class="au-pilula" data-missao-tipo>' + (a.missao === 'amigo' ? 'Trocar por Missão surpresa' : 'Trocar por Amigo do bem') + '</button> ' : '') + '<button class="au-pilula" data-missao-tirar>Tirar deste encontro</button>';
+        }
         if (x.k === 'expressao') { nome = JOGOS[a.expressao].nome; d = JOGOS[a.expressao].d; if (a.jogo !== 'encenar') troca = '<button class="au-pilula" data-trocar-exp>Trocar por ' + esc(JOGOS[a.expressao === 'mural' ? 'encenar' : 'mural'].nome) + '</button>'; }
         return '<li><span class="au-min' + (x.k === 'jogo' || x.k === 'expressao' ? ' jogo' : '') + '">' + x.min + '<br>min</span><div><h4>' + esc(nome) + '</h4><p>' + esc(d) + '</p>' + troca + '</div></li>';
       }).join('') + '</ol>' +
+      (a.missao ? '' : '<div class="au-rodape" style="margin-top:6px"><button class="au-pilula b" data-missao-por>Incluir a Missão surpresa hoje</button><span class="au-sub">Ela está prevista para 2 encontros por mês.</span></div>') +
       '<p class="au-aviso-suave">O tablet fica nas mãos das crianças por cerca de ' + naMao + ' dos ' + a.dur + ' minutos. No resto, a turma olha para você, e não para a tela. Os minutos são uma sugestão: a FEB não fixa uma duração.</p>' +
       (tema.aberta ? '<h3 class="au-sec">A história</h3><p class="au-sub">Escreva a sua, em poucos parágrafos, ou use uma pronta:</p>' +
         '<label class="au-campo"><textarea id="au-minha" rows="5" placeholder="Era uma vez…">' + esc(a.minhaHistoria) + '</textarea></label>' +
@@ -330,6 +365,7 @@ window.IniciarAulas = function (api) {
         '<label class="au-campo">Atitudes que ajudam<textarea id="au-sim" rows="3">' + esc((tema.semear ? tema.semear.sim : []).join('\n')) + '</textarea></label>' +
         '<label class="au-campo">Atitudes que atrapalham<textarea id="au-nao" rows="3">' + esc((tema.semear ? tema.semear.nao : []).join('\n')) + '</textarea></label>' : '') +
       '<h3 class="au-sec">Para você estudar antes</h3>' +
+      (a.missao ? '<p style="line-height:1.5"><b>A sua missão de hoje:</b> ' + esc(a.missaoProf) + ' <button class="au-pilula" data-prof>Trocar</button></p>' : '') +
       (tema.dica ? '<p style="line-height:1.5"><b>Para contar:</b> ' + esc(tema.dica) + '</p>' : '') +
       '<p style="line-height:1.5;margin-top:8px"><b>Material:</b> ' + esc(tema.material) + '</p>' +
       '<div id="au-base">' + tema.base.map(baseHtml).join('') + '</div>' +
@@ -354,6 +390,10 @@ window.IniciarAulas = function (api) {
     ao('[data-trocar-exp]', function () { a.expressao = a.expressao === 'mural' ? 'encenar' : 'mural'; redesenhar(); });
     ao('[data-hist]', function (e) { a.historiaDe = a.historiaDe === e.currentTarget.dataset.hist ? null : e.currentTarget.dataset.hist; redesenhar(); });
     ao('[data-ver-caixa]', function () { verCaixinha(); });
+    ao('[data-missao-tipo]', function () { a.missao = a.missao === 'amigo' ? 'simples' : 'amigo'; a.amigos = null; a.dadas = {}; redesenhar(); });
+    ao('[data-missao-tirar]', function () { a.missao = null; redesenhar(); });
+    ao('[data-missao-por]', function () { a.missao = 'simples'; redesenhar(); });
+    ao('[data-prof]', function () { a.missaoProf = sortearMissaoProf(a.missaoProf); redesenhar(); });
     ligarBase($('#au-base'), tema);
     var mais = $('#au-mais');
     function procurar() {
@@ -390,7 +430,7 @@ window.IniciarAulas = function (api) {
     var and = t.andamento, a = and.aula, m = roteiro(a, t), tema = temaDaAula(a);
     if (and.i >= m.length) and.i = m.length - 1;
     filaAtual = Fila(presentes());
-    var i = and.i, atual = m[i], M = MOMENTOS[atual.k], crianca = atual.k === 'jogo' || (atual.k === 'expressao' && a.expressao === 'mural');
+    var i = and.i, atual = m[i], M = MOMENTOS[atual.k], crianca = atual.k === 'missao' || atual.k === 'jogo' || (atual.k === 'expressao' && a.expressao === 'mural');
     var estreito = window.matchMedia('(max-width: 880px), (orientation: portrait)').matches;
     var prox = m[i + 1];
     mostrar('<div class="au-fundo papel"></div>' +
@@ -412,6 +452,8 @@ window.IniciarAulas = function (api) {
     $('#au-depois').addEventListener('click', function () { if (prox) { and.i++; gravar(); verSala(); } else verPlantio(); });
     var palco = $('#au-palco');
     CENAS[atual.k](palco, a, tema, and.estado);
+    // Um lembrete só, no meio do encontro, para o evangelizador olhar sem cobrar.
+    if (a.missao && atual.k === 'pensar' && !and.estado.lembrou) { and.estado.lembrou = true; gravar(); api.aviso('Repare nos gestos bons das crianças, sem cobrar nem perguntar.'); }
     // Relógio manso: só mostra quanto falta deste momento. Nada apita.
     var t0 = Date.now(), rel = $('#au-relogio'), tiq = setInterval(function () {
       var resta = atual.min - (Date.now() - t0) / 60000;
@@ -427,6 +469,7 @@ window.IniciarAulas = function (api) {
       if (tema.base.length) h += '<h5>Base em Kardec</h5>' + tema.base.map(baseHtml).join('');
       if ((tema.seperguntarem || []).length) h += '<h5>Se perguntarem…</h5>' + tema.seperguntarem.map(function (q) { return '<details class="au-det"><summary>' + esc(q.p) + '</summary><p>' + esc(q.r) + '</p></details>'; }).join('');
     }
+    if (a.missao && a.missaoProf) h += '<details class="au-det"><summary>A sua missão de hoje</summary><p>' + esc(a.missaoProf) + '</p></details>';
     if (k === 'jogo') h += '<h5>Se não der para usar o tablet</h5><p>' + esc(JOGOS[a.jogo].sem) + '</p>';
     if (k === 'expressao') h += '<h5>Se não der para usar o tablet</h5><p>' + esc(JOGOS[a.expressao].sem) + '</p>';
     return h;
@@ -459,6 +502,8 @@ window.IniciarAulas = function (api) {
       }
       des();
     },
+    missao: function (p, a, tema) { cenaMissao(p, a, tema); },
+    bem: function (p, a) { cenaBem(p, a); },
     prece1: function (p) { cenaPrece(p, 'Vamos começar com uma prece', 'Vamos respirar devagar e acalmar o coração.'); },
     prece2: function (p) { cenaPrece(p, 'Vamos agradecer', 'Agradecer pelo encontro e por tudo o que aprendemos hoje.'); },
     lembrar: function (p) {
@@ -520,7 +565,7 @@ window.IniciarAulas = function (api) {
     jogo: function (p, a, tema) { JOGOS_CENA[a.jogo](p, tema, a); },
     expressao: function (p, a, tema) { JOGOS_CENA[a.expressao](p, tema, a); },
     vivencia: function (p, a, tema) {
-      var recado = 'Olá, família! Hoje, na evangelização, conversamos sobre: ' + tema.titulo + '.\n' + tema.familia + '\nA tarefa da semana: ' + tema.vivencia;
+      var recado = 'Olá, família! Hoje, na evangelização, conversamos sobre: ' + tema.titulo + '.\n' + tema.familia + '\nA tarefa da semana: ' + tema.vivencia + (a.missao ? '\nHoje cada criança também tentou fazer um gesto bom, como surpresa para os colegas. Se ela quiser contar, ouçam com alegria. Não precisa perguntar.' : '');
       p.innerHTML = '<div class="au-meio"><p class="au-eyebrow">A tarefa da semana</p><h2 class="au-grande">' + esc(tema.vivencia) + '</h2>' +
         '<div class="au-recado" id="au-recado">' + esc(recado) + '</div>' +
         '<div class="au-rodape" style="justify-content:center;margin-top:4px">' + (navigator.share ? '<button class="au-pilula b" id="au-enviar">Enviar para as famílias</button>' : '') + '<button class="au-pilula" id="au-copiar">Copiar o recado</button></div></div>';
@@ -540,6 +585,123 @@ window.IniciarAulas = function (api) {
     if (rz) rz.addEventListener('click', function () { var q = $('#au-quem-reza', p); q.hidden = false; q.textContent = f.proxima() + ', você quer fazer a prece hoje?'; rz.textContent = 'Perguntar a outra criança'; });
     var v = $('#au-ver-pn', p);
     v.addEventListener('click', function () { var pn = $('#au-pn', p); pn.hidden = !pn.hidden; v.setAttribute('aria-expanded', !pn.hidden); v.textContent = pn.hidden ? 'Ver o Pai Nosso' : 'Esconder o Pai Nosso'; var r = $('.au-respira', p); r.hidden = !pn.hidden; });
+  }
+  /* ---------- Missão surpresa e Amigo do bem ---------- */
+  // "Surpresa", e não "segredo": vale só entre os colegas e termina no mesmo dia. Materiais de prevenção de abuso ensinam
+  // essa diferença (ver CONTINUAR.md). Ninguém conta o que fez, e sim o bem que viu (Evangelho, cap. XIII, itens 1 e 3).
+  var REGRA_SURPRESA = 'É surpresa só para os colegas. Adultos de confiança podem saber. E segredo que dá medo a gente sempre conta.';
+  function podeAmigo(t) { return t.faixa !== 'jardim' && t.criancas.length >= 3; }
+  // Dois encontros por mês (pedido do usuário), com pelo menos 10 dias entre eles. No plano dá para ligar ou desligar.
+  // De 7 a 10 anos, a cada três missões, uma é o Amigo do bem.
+  function qualMissaoHoje(t) {
+    var hoje = new Date(), noMes = 0, ultima = 0, feitas = 0;
+    t.aulas.forEach(function (x) {
+      if (!x.missao) return;
+      feitas++;
+      var d = new Date(x.em);
+      if (d.getMonth() === hoje.getMonth() && d.getFullYear() === hoje.getFullYear()) noMes++;
+      if (x.em > ultima) ultima = x.em;
+    });
+    if (noMes >= 2 || hoje.getTime() - ultima < 10 * 864e5) return null;
+    return (feitas + 1) % 3 === 0 && (t.faixa === 'ciclo1' || t.faixa === 'ciclo2') && t.criancas.length >= 3 ? 'amigo' : 'simples';
+  }
+  function sortearMissaoProf(atual) { var l = DADOS.missoes.evangelizador.filter(function (x) { return x !== atual; }); return l[Math.floor(Math.random() * l.length)]; }
+  // Em roda: cada criança cuida da seguinte, então todas recebem cuidado. Evita as duplas marcadas na turma e, se der, repetir.
+  function sortearAmigos(nomes, t) {
+    var evitar = t.evitar || [], hist = t.amigoHist || {}, melhor = null, pior = Infinity;
+    function proibida(x, y) { return evitar.some(function (d) { return (d[0] === x && d[1] === y) || (d[0] === y && d[1] === x); }); }
+    for (var n = 0; n < 400 && pior > 0; n++) {
+      var o = embaralhar(nomes), pena = 0;
+      o.forEach(function (x, i) { var y = o[(i + 1) % o.length]; if (proibida(x, y)) pena += 100; if ((hist[x] || []).indexOf(y) >= 0) pena += 1; });
+      if (pena < pior) { pior = pena; melhor = o; }
+    }
+    var mapa = {}; melhor.forEach(function (x, i) { mapa[x] = melhor[(i + 1) % melhor.length]; });
+    return { mapa: mapa, conflito: pior >= 100 };
+  }
+  // Os 3 envelopes: uma missão do tema e duas gerais, sem repetir o que a criança já recebeu nem o que já saiu hoje.
+  function missoesPara(a, tema, t, chave) {
+    var M = DADOS.missoes, usadas = (t.missHist && t.missHist[chave]) || [], hoje = Object.keys(a.dadas).map(function (n) { return a.dadas[n].t; }), alvo = a.amigos && a.amigos[chave];
+    function livre(x) { return usadas.indexOf(x.t) < 0 && hoje.indexOf(x.t) < 0; }
+    if (alvo) {
+      var todas = M.amigo.map(function (g) { return { t: g.t.replace(/\{nome\}/g, alvo), k: g.k, alvo: alvo }; });
+      var boas = embaralhar(todas.filter(livre));
+      return (boas.length >= 3 ? boas : embaralhar(todas)).slice(0, 3);
+    }
+    var doTema = M.temas[tema.id] || [], geral = M.geral[faixaDe(t).historia];
+    var l = embaralhar(doTema.filter(livre)).slice(0, 1).concat(embaralhar(geral.filter(livre)).slice(0, 2));
+    // Acabaram as gerais: usa as de outros temas antes de repetir o que a criança já recebeu.
+    if (l.length < 3) { var outras = []; Object.keys(M.temas).forEach(function (id) { outras = outras.concat(M.temas[id]); }); l = l.concat(embaralhar(outras.filter(livre)).filter(function (x) { return l.indexOf(x) < 0; })).slice(0, 3); }
+    if (l.length < 3) l = l.concat(embaralhar(geral).filter(function (x) { return l.indexOf(x) < 0; })).slice(0, 3);
+    return embaralhar(l);
+  }
+  function cenaMissao(p, a, tema) {
+    var t = turma(), nomes = presentes(), leitura = faixaDe(t).historia === 'jardim';
+    a.dadas = a.dadas || {};
+    if (a.missao === 'amigo' && !a.amigos && nomes.length >= 3) {
+      var sorteio = sortearAmigos(nomes, t); a.amigos = sorteio.mapa; gravar();
+      if (sorteio.conflito) api.aviso('Não deu para evitar todas as duplas marcadas na turma.');
+    }
+    function lista() {
+      pararFala();
+      var entregues = Object.keys(a.dadas).length;
+      p.innerHTML = '<div class="au-meio"><p class="au-eyebrow">' + (a.amigos ? 'Amigo do bem' : 'Missão surpresa') + '</p><h2 class="au-grande">Uma surpresa boa para cada um</h2><p class="au-regra">' + esc(REGRA_SURPRESA) + '</p>' +
+        (nomes.length
+          ? '<p class="au-sub">Toque no seu nome, longe dos olhos dos amigos</p><div class="au-bolhas">' + nomes.map(function (n, i) { return '<button class="au-bolha' + (a.dadas[n] ? ' guardada' : '') + '" data-m="' + i + '">' + esc(n) + '</button>'; }).join('') + '</div>' + (entregues >= nomes.length ? '<p class="au-vez">Todos já receberam. Agora é só fazer!</p>' : '')
+          : '<button class="au-acao" id="au-m-prox">Próxima criança</button><p class="au-sub">' + entregues + (entregues === 1 ? ' missão entregue' : ' missões entregues') + '</p>') + '</div>';
+      ao('[data-m]', function (e) { var n = nomes[+e.currentTarget.dataset.m]; if (a.dadas[n]) revelar(n, a.dadas[n], null); else envelopes(n); }, p);
+      var prox = $('#au-m-prox', p); if (prox) prox.addEventListener('click', function () { envelopes('crianca' + (entregues + 1)); });
+    }
+    function titulo(chave) { return nomes.indexOf(chave) >= 0 ? 'Só para ' + chave : 'Só para você'; }
+    function envelopes(chave) {
+      var ops = missoesPara(a, tema, t, chave);
+      p.innerHTML = '<div class="au-meio"><span class="au-vez">' + esc(titulo(chave)) + '</span><h2 class="au-grande">Escolha um envelope</h2><div class="au-envelopes">' + ops.map(function (_, i) { return '<button class="au-envelope" data-e="' + i + '" aria-label="Envelope ' + (i + 1) + '">' + ENVELOPE + '</button>'; }).join('') + '</div></div>';
+      ao('[data-e]', function (e) { som('revelacao'); revelar(chave, ops[+e.currentTarget.dataset.e], ops); }, p);
+    }
+    function revelar(chave, m, ops) {
+      var ja = !!a.dadas[chave];
+      p.innerHTML = '<div class="au-meio"><span class="au-vez">' + esc(titulo(chave)) + '</span>' + (m.alvo ? '<p class="au-eyebrow">Hoje você cuida de ' + esc(m.alvo) + '</p>' : '') + '<div class="au-tipo">' + svgTipo(m.k) + '</div><p class="au-missao-texto">' + esc(m.t) + '</p>' +
+        '<div class="au-rodape" style="justify-content:center;margin-top:6px"><button class="au-pilula" id="au-m-ouvir">Ouvir baixinho</button>' + (ja ? '' : '<button class="au-pilula" id="au-m-trocar">Trocar</button>') + '<button class="au-acao" id="au-m-ok">Guardei</button></div></div>';
+      if (leitura && !ja) falar(m.t, null, true);
+      $('#au-m-ouvir', p).addEventListener('click', function () { falar(m.t, null, true); });
+      var tr = $('#au-m-trocar', p);
+      if (tr) tr.addEventListener('click', function () { var novas = (ops || missoesPara(a, tema, t, chave)).filter(function (x) { return x.t !== m.t; }); ops = novas.length ? novas : missoesPara(a, tema, t, chave); revelar(chave, ops[0], ops); });
+      $('#au-m-ok', p).addEventListener('click', function () {
+        if (!ja) {
+          a.dadas[chave] = m;
+          if (nomes.indexOf(chave) >= 0) { var h = t.missHist || (t.missHist = {}); (h[chave] = h[chave] || []).push(m.t); if (h[chave].length > 60) h[chave].shift(); if (m.alvo) { var ah = t.amigoHist || (t.amigoHist = {}); (ah[chave] = ah[chave] || []).push(m.alvo); if (ah[chave].length > 4) ah[chave].shift(); } }
+          gravar(); som('suave');
+        }
+        lista();
+      });
+    }
+    lista();
+  }
+  // Cada gesto visto abre uma pétala e acende um vaga-lume no jardim. A conta é da turma, nunca de uma criança.
+  function cenaBem(p, a) {
+    var t = turma(), fila = filaAtual, nomes = presentes(), total = Math.max(6, Math.min(12, nomes.length || 6)), CORES = ['#F2A0B4', '#F7C948', '#B8A2E8', '#F58D68', '#7FB5EA', '#9BBF62'];
+    a.gestos = a.gestos || 0;
+    function flor(novo) {
+      var h = '<svg viewBox="0 0 200 200" aria-hidden="true">';
+      for (var i = 0; i < total; i++) {
+        var ang = i * 6.2832 / total - 1.5708, aberta = i < a.gestos;
+        h += '<circle class="pet' + (novo && i === a.gestos - 1 ? ' nova' : '') + '" cx="' + (100 + Math.cos(ang) * 58).toFixed(1) + '" cy="' + (100 + Math.sin(ang) * 58).toFixed(1) + '" r="27" fill="' + (aberta ? CORES[i % CORES.length] : '#EDE5D6') + '"/>';
+      }
+      return h + '<circle cx="100" cy="100" r="30" fill="' + (a.gestos >= total ? '#F9D65F' : '#F2E3BE') + '"/></svg>';
+    }
+    function des(quem, novo) {
+      p.innerHTML = '<div class="au-meio" style="gap:8px"><p class="au-eyebrow">O bem que vimos</p><h2 class="au-grande">Quem viu uma coisa boa hoje?</h2><p class="au-sub" style="font-size:1.05em;max-width:34em">Conte o que você viu um amigo fazer. O que você mesmo fez não precisa contar aqui.' + (a.amigos ? ' Alguém sentiu que estava sendo cuidado? Quem quiser, pode tentar adivinhar quem foi.' : '') + '</p>' +
+        (quem ? '<span class="au-vez">' + esc(quem) + ', o que você viu?</span>' : '') + '<div class="au-flor">' + flor(novo) + '</div>' +
+        '<p class="au-sub">' + (a.gestos ? a.gestos + (a.gestos === 1 ? ' gesto bom visto' : ' gestos bons vistos') : 'Cada gesto abre uma pétala') + '</p>' +
+        '<div class="au-rodape" style="justify-content:center;margin-top:0">' + (fila.vazia ? '' : '<button class="au-pilula" id="au-b-quem">Quem conta?</button>') + '<button class="au-acao" id="au-b-mais" style="min-height:50px;font-size:1em">Vimos mais um gesto bom</button><button class="au-pilula" id="au-b-sil">Um instante em silêncio</button></div></div>';
+      var q = $('#au-b-quem', p); if (q) q.addEventListener('click', function () { som('suave'); des(fila.proxima()); });
+      $('#au-b-mais', p).addEventListener('click', function () { a.gestos++; t.vagalumes = (t.vagalumes || 0) + 1; gravar(); som('suave'); des(null, true); api.brilho($('.au-flor', p), 16); });
+      $('#au-b-sil', p).addEventListener('click', silencio);
+    }
+    function silencio() {
+      p.innerHTML = '<div class="au-meio"><div class="au-respira"><span>Respire<br>devagar</span></div><h2 class="au-grande">Em silêncio: como você se sentiu hoje?</h2><p class="au-sub" style="font-size:1.05em">A surpresa termina hoje. Quem quiser, pode contar para a família.</p></div>';
+      var tm = setTimeout(function () { des(); }, 20000); aoSairDaVista.push(function () { clearTimeout(tm); });
+    }
+    des();
   }
   // A roda: sorteia quem fala, sem repetir enquanto houver alguém que ainda não falou.
   function montarRoda(el) {
@@ -738,7 +900,7 @@ window.IniciarAulas = function (api) {
     var t = turma(), and = t.andamento, a = and.aula, tema = temaDaAula(a);
     mostrar(jardimHtml(t) + '<div class="au-topo"><h2>O jardim da turma</h2></div><div class="au-rolar" style="display:flex;flex-direction:column;align-items:center;text-align:center"><h1 class="au-titulo" id="au-pl-t">Hoje plantamos: ' + esc(tema.titulo) + '</h1><p class="au-sub" id="au-pl-s" style="margin-top:8px;font-size:1.05em">Todo mundo junto: toquem na semente!</p><button class="au-acao" id="au-plantar" style="margin-top:18px;min-height:76px;font-size:1.25em">Plantar a semente</button></div>', 'plantio');
     $('#au-plantar').addEventListener('click', function () {
-      var reg = { tema: a.temaId, titulo: tema.titulo, pedido: a.pedido, em: Date.now(), presentes: a.presentes.length, jogo: a.jogo, expressao: a.expressao, vivencia: tema.vivencia, conseguiram: (a.conseguiram || []).length, aval: null, nota: '' };
+      var reg = { tema: a.temaId, titulo: tema.titulo, pedido: a.pedido, em: Date.now(), presentes: a.presentes.length, jogo: a.jogo, expressao: a.expressao, vivencia: tema.vivencia, conseguiram: (a.conseguiram || []).length, missao: a.missao || null, gestos: a.gestos || 0, aval: null, nota: '' };
       t.aulas.push(reg); t.andamento = null; gravar();
       var n = t.aulas.length; $('.au-jardim', vista).outerHTML = jardimHtml(t, true);
       var novaEl = $$('.au-planta.nova', vista)[0]; if (novaEl && anima) api.brilho(novaEl, 26); som('revelacao');
@@ -832,7 +994,7 @@ window.IniciarAulas = function (api) {
   function verDiario() {
     var t = turma(), l = t.aulas.slice().reverse();
     mostrar('<div class="au-fundo papel"></div>' + topo('Diário da turma') + '<div class="au-rolar"><div class="au-coluna">' +
-      (l.length ? '<ul class="au-lista">' + l.map(function (a) { return '<li><span class="txt"><b>' + esc(a.titulo) + '</b><small>' + dataCurta(a.em) + (a.presentes ? ' · ' + a.presentes + (a.presentes === 1 ? ' criança' : ' crianças') : '') + (a.aval ? ' · ' + esc(a.aval) : '') + '</small>' + (a.nota ? '<span style="display:block;margin-top:4px">' + esc(a.nota) + '</span>' : '') + '</span></li>'; }).join('') + '</ul>' : '<p class="au-sub">Os encontros aparecem aqui, com as suas anotações.</p>') +
+      (l.length ? '<ul class="au-lista">' + l.map(function (a) { return '<li><span class="txt"><b>' + esc(a.titulo) + '</b><small>' + dataCurta(a.em) + (a.presentes ? ' · ' + a.presentes + (a.presentes === 1 ? ' criança' : ' crianças') : '') + (a.gestos ? ' · ' + a.gestos + (a.gestos === 1 ? ' gesto bom visto' : ' gestos bons vistos') : '') + (a.aval ? ' · ' + esc(a.aval) : '') + '</small>' + (a.nota ? '<span style="display:block;margin-top:4px">' + esc(a.nota) + '</span>' : '') + '</span></li>'; }).join('') + '</ul>' : '<p class="au-sub">Os encontros aparecem aqui, com as suas anotações.</p>') +
       '</div></div>', 'diario');
     ao('[data-voltar]', function () { verInicio(); });
   }
