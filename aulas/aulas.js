@@ -1,6 +1,6 @@
 /* Evangelização: aulas contínuas para uma turma de crianças de 5 a 10 anos, no tablet.
    Módulo separado, para poder virar um app próprio: só conversa com o app pelo objeto "api" (ver o fim de lar-espirita.html).
-   Para clonar: aulas/, dados/evangelizacao.json, arte/aulas/ e, nas ferramentas, montar-evangelizacao.mjs e aulas-arte.cjs.
+   Para clonar: aulas/ (aulas.js, mundo.js, aulas.css), dados/evangelizacao.json, arte/aulas/ e, nas ferramentas, montar-evangelizacao.mjs e aulas-arte.cjs.
 
    De onde vem o desenho da aula (ver CONTINUAR.md):
    - FEB/CFN, Orientação à Ação Evangelizadora Espírita da Infância (2016): espaços interativos, lúdicos e afetivos, jogos
@@ -47,48 +47,30 @@ window.IniciarAulas = function (api) {
   };
   function svgTipo(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (DESENHO_TIPO[k] || DESENHO_TIPO.ajuda) + '</svg>'; }
 
-  // As plantas do jardim: flores de pétalas redondas e arbustos. Nunca quatro pétalas, para não lembrar uma cruz.
-  function svgPlanta(i, broto) {
-    var CORES = [['#F2A0B4', '#F9D65F'], ['#F7C948', '#A8642C'], ['#B8A2E8', '#FDE58F'], ['#F58D68', '#FFE08A'], ['#7FB5EA', '#FFF2B3'], ['#FFF7EA', '#F6C453']];
-    var c = CORES[i % CORES.length], tipo = i % 4, s = '<svg viewBox="0 0 60 100" aria-hidden="true">';
-    if (broto) return s + '<path d="M30 98 C 29 86, 31 76, 30 60" fill="none" stroke="#5F8A3F" stroke-width="5" stroke-linecap="round"/><ellipse cx="18" cy="58" rx="14" ry="9" transform="rotate(24 18 58)" fill="#86AE55"/><ellipse cx="42" cy="56" rx="14" ry="9" transform="rotate(-24 42 56)" fill="#9BBF62"/></svg>';
-    if (tipo === 3) {
-      return s + '<path d="M30 98 V 66" stroke="#6B5237" stroke-width="6" stroke-linecap="round"/><circle cx="17" cy="56" r="15" fill="#6C9148"/><circle cx="43" cy="56" r="15" fill="#769C4E"/><circle cx="30" cy="38" r="20" fill="#86AE55"/><circle cx="23" cy="46" r="3.6" fill="' + c[0] + '"/><circle cx="38" cy="32" r="3.6" fill="' + c[0] + '"/><circle cx="41" cy="55" r="3.6" fill="' + c[0] + '"/><circle cx="17" cy="60" r="3.6" fill="' + c[0] + '"/><circle cx="29" cy="27" r="3.6" fill="' + c[0] + '"/></svg>';
-    }
-    var pet = [5, 8, 6][tipo], d = tipo === 1 ? 13.5 : 12, rp = tipo === 1 ? 6.6 : 9.4, cx = 30, cy = 30;
-    s += '<path d="M30 98 C 27 80, 33 62, 30 36" fill="none" stroke="#5F8A3F" stroke-width="4.4" stroke-linecap="round"/><ellipse cx="19" cy="74" rx="11" ry="5.4" transform="rotate(24 19 74)" fill="#86AE55"/><ellipse cx="41" cy="64" rx="11" ry="5.4" transform="rotate(-24 41 64)" fill="#9BBF62"/>';
-    for (var k = 0; k < pet; k++) { var a = k * 6.2832 / pet - 1.5708; s += '<circle cx="' + (cx + Math.cos(a) * d).toFixed(1) + '" cy="' + (cy + Math.sin(a) * d).toFixed(1) + '" r="' + rp + '" fill="' + c[0] + '"/>'; }
-    return s + '<circle cx="30" cy="30" r="' + (tipo === 1 ? 8.4 : 7.4) + '" fill="' + c[1] + '"/></svg>';
-  }
-  // Lugar fixo de cada planta no gramado (com sorteio de semente, a turma reencontra o mesmo jardim).
-  function lugarDaPlanta(i) {
-    var col = 9, lin = 5, total = col * lin, ordem = [], s = 7, n;
-    for (n = 0; n < total; n++) ordem.push(n);
-    function r() { s = (s * 16807) % 2147483647; return s / 2147483647; }
-    for (n = total - 1; n > 0; n--) { var j = Math.floor(r() * (n + 1)), x = ordem[n]; ordem[n] = ordem[j]; ordem[j] = x; }
-    var v = ordem[i % total], cx = v % col, ly = Math.floor(v / col), volta = Math.floor(i / total);
-    var dx = ((i * 37) % 7 - 3) * .7 + volta * 2.4, dy = ((i * 53) % 5 - 2) * .6;
-    return { x: 6 + cx * (88 / (col - 1)) + dx, y: 74 + ly * (22 / (lin - 1)) + dy, escala: 6 + ly * 1.3 };
-  }
-  function jardimHtml(t, nova) {
-    var aulas = t ? t.aulas.length : 0, h = '<div class="au-jardim" aria-hidden="true">';
-    for (var i = 0; i < aulas; i++) {
-      var l = lugarDaPlanta(i);
-      h += '<div class="au-planta' + (nova && i === aulas - 1 ? ' nova' : '') + '" style="left:' + l.x.toFixed(1) + '%;top:' + l.y.toFixed(1) + '%;width:' + l.escala.toFixed(1) + 'vmin;z-index:' + Math.round(l.y) + ';animation-delay:-' + (i % 5) + 's">' + svgPlanta(i) + '</div>';
-    }
-    var vaga = t ? Math.min(t.vagalumes || 0, 30) : 0;
-    for (var v = 0; v < vaga; v++) h += '<i class="au-vaga" style="left:' + (5 + (v * 61) % 90) + '%;top:' + (58 + (v * 29) % 34) + '%;animation-delay:-' + (v % 7) + 's"></i>';
-    return h + '</div>';
-  }
-
   /* ---------- Tela e navegação entre as vistas ---------- */
   var tela = document.createElement('section');
   tela.className = 'tela t-aulas'; tela.dataset.tela = 'aulas'; tela.setAttribute('aria-label', 'Evangelização'); tela.hidden = true;
   tela.innerHTML = '<div class="au-vista"></div>';
   app.appendChild(tela);
+  // O jardim fica atrás de todas as telas (mundo.js).
+  var mundo = window.MundoAulas(tela, { G: G, anima: anima, esc: esc, som: som, data: dataCurta, eNoite: function () { return app.classList.contains('noite'); } });
+  var svgPlanta = mundo.svgPlanta, svgBrotinho = mundo.svgBrotinho, abriuJardim = false, ultimoPasso = null;
   var vista = $('.au-vista', tela), vistaAtual = null, aoSairDaVista = [];
+  var CAMERAS = { inicio: 'jardim', plantio: 'jardim', sala: 'sala' };
   function limpar() { aoSairDaVista.forEach(function (f) { try { f(); } catch (e) {} }); aoSairDaVista = []; pararFala(); }
-  function mostrar(html, nome) { limpar(); vistaAtual = nome; vista.innerHTML = html; vista.scrollTop = 0; if (anima) G.fromTo(vista, { opacity: 0 }, { opacity: 1, duration: .35, clearProps: 'opacity' }); }
+  function mostrar(html, nome) {
+    limpar();
+    var antes = vistaAtual; vistaAtual = nome; vista.dataset.vista = nome;
+    mundo.camera(CAMERAS[nome] || 'alto');
+    if (nome !== 'sala' && nome !== 'plantio') mundo.ceuDoHorario();
+    if (nome !== 'sala') ultimoPasso = null;
+    vista.innerHTML = html; vista.scrollTop = 0;
+    if (!anima || nome === 'sala') return;
+    // A folha sobe sobre o jardim; entre uma folha e outra, só troca.
+    var folha = !CAMERAS[nome], vinhaDeFolha = antes && !CAMERAS[antes];
+    if (folha && !vinhaDeFolha) G.from($('.au-coluna', vista), { y: 60, opacity: 0, duration: .6, ease: 'power3.out', clearProps: 'transform,opacity' });
+    else G.fromTo(vista, { opacity: 0 }, { opacity: 1, duration: .3, clearProps: 'opacity' });
+  }
   function ao(sel, fn, raiz) { $$(sel, raiz || vista).forEach(function (b) { b.addEventListener('click', fn); }); }
   function topo(titulo, voltar, extra) { return '<div class="au-topo"><button class="au-redondo" data-voltar aria-label="Voltar">' + ICO.voltar + '</button><h2>' + esc(titulo) + '</h2>' + (extra || '') + '</div>'; }
   function carregar() {
@@ -98,7 +80,7 @@ window.IniciarAulas = function (api) {
   api.aoEntrar.aulas = function () {
     document.body.classList.add('aulas-largo');
     carregar().then(function () { if (!vistaAtual) { if (turma()) verInicio(); else verTurma(true); } }).catch(function () {
-      vista.innerHTML = '<div class="au-fundo papel"></div><div class="au-rolar"><p class="au-titulo" style="margin-top:20vh">Não consegui abrir as aulas.</p><p class="au-sub">Veja a conexão e tente de novo.</p><div class="au-rodape"><button class="au-acao" data-ir="inicio">Voltar</button></div></div>';
+      vista.innerHTML = '<div class="au-rolar"><p class="au-titulo" style="margin-top:20vh">Não consegui abrir as aulas.</p><p class="au-sub">Veja a conexão e tente de novo.</p><div class="au-rodape"><button class="au-acao" data-ir="inicio">Voltar</button></div></div>';
     });
   };
   api.aoSair.aulas = function () { document.body.classList.remove('aulas-largo'); pararFala(); };
@@ -226,39 +208,69 @@ window.IniciarAulas = function (api) {
   }
 
   /* ---------- Início: o jardim da turma ---------- */
+  function saudacao() { var h = new Date().getHours(); return app.classList.contains('noite') ? 'Boa noite!' : h < 12 ? 'Bom dia!' : h < 18 ? 'Boa tarde!' : 'Olá!'; }
   function verInicio(novaPlanta) {
     var t = turma(); if (!t) return verTurma(true);
     var feitos = {}; t.aulas.forEach(function (a) { if (a.tema) feitos[a.tema] = 1; });
     var prox = DADOS.temas.filter(function (x) { return !feitos[x.id]; })[0];
     var abertas = t.perguntas.filter(function (p) { return !p.feita; }).length, n = t.aulas.length;
-    var sug = ['Perdão', 'Brigas em casa', 'Quem é Deus?', 'Mentira', 'Saudade da vovó'];
-    mostrar(jardimHtml(t, novaPlanta) +
-      '<div class="au-topo"><button class="au-redondo" data-sair aria-label="Voltar ao início do app">' + ICO.voltar + '</button><h2>Evangelização</h2><button class="au-pilula" data-ver="turma">' + esc(t.nome) + ' · ' + esc(faixaDe(t).nome) + '</button></div>' +
-      '<div class="au-rolar"><div class="au-coluna">' +
-      '<h1 class="au-titulo">Sobre o que será o encontro?</h1>' +
-      '<form class="au-busca" id="au-form"><input id="au-assunto" type="text" enterkeyhint="go" autocomplete="off" placeholder="Escreva o assunto: perdão, inveja, a chegada de um bebê…" aria-label="Assunto do encontro"><button class="au-acao" type="submit">Montar a aula</button></form>' +
-      '<div class="au-sugestoes" id="au-sug">' + sug.map(function (x) { return '<button class="au-pilula" data-sug="' + esc(x) + '">' + esc(x) + '</button>'; }).join('') + '</div>' +
-      (t.andamento ? '<div class="au-proximo"><span>Encontro em andamento:<br><b>' + esc(temaDaAula(t.andamento.aula).titulo) + '</b></span><button class="au-acao" data-retomar>Continuar</button></div>' :
-        prox ? '<div class="au-proximo"><span>Ou siga o programa. Próximo tema:<br><b>' + esc(prox.titulo) + '</b></span><button class="au-pilula b" data-tema="' + prox.id + '">Preparar este</button></div>' : '') +
-      '<div class="au-menu"><button class="au-pilula" data-ver="programa">Programa do ano</button><button class="au-pilula" data-ver="caixinha">Caixinha de perguntas' + (abertas ? ' <span class="num">' + abertas + '</span>' : '') + '</button><button class="au-pilula" data-ver="mural">Mural</button><button class="au-pilula" data-ver="diario">Diário</button></div>' +
-      '</div></div>' +
-      '<div class="au-canteiro-info">' + (n ? 'O jardim da turma tem ' + n + (n === 1 ? ' planta' : ' plantas') : 'O jardim da turma começa no primeiro encontro') + '</div>', 'inicio');
+    var sug = ['Perdão', 'Brigas em casa', 'Mentira', 'Saudade da vovó'];
+    function chips() { return sug.map(function (x) { return '<button class="au-pilula" data-sug="' + esc(x) + '">' + esc(x) + '</button>'; }).join(''); }
+    var tabua = t.andamento
+      ? '<button class="au-tabua a" data-retomar><small>Encontro em andamento</small><b>' + esc(temaDaAula(t.andamento.aula).titulo) + '</b></button>'
+      : prox ? '<button class="au-tabua a" data-tema="' + prox.id + '"><small>Próximo tema</small><b>' + esc(prox.titulo) + '</b></button>' : '';
+    mundo.plantas(t, novaPlanta);
+    mostrar('<div class="au-casa">' +
+      '<div class="au-topo"><button class="au-redondo" data-sair aria-label="Voltar ao início do app">' + ICO.voltar + '</button><span class="au-marca">Evangelização</span><button class="au-pilula" data-ver="turma">' + esc(t.nome) + ', ' + esc(faixaDe(t).nome) + '</button></div>' +
+      '<div class="au-casa-ceu"><h1 class="au-titulo">' + saudacao() + ' Sobre o que será o encontro?</h1>' +
+      '<form class="au-busca" id="au-form"><input id="au-assunto" type="text" enterkeyhint="go" autocomplete="off" placeholder="Escreva o assunto: perdão, inveja, um bebê…" aria-label="Assunto do encontro"><button class="au-acao" type="submit">Montar a aula</button></form>' +
+      '<div class="au-sugestoes" id="au-sug">' + chips() + '</div></div>' +
+      '<div class="au-casa-chao">' +
+      '<div class="au-objetos">' +
+      '<div class="au-brotinho-caixa"><p class="au-fala" id="au-fala" role="status" hidden></p><button class="au-brotinho" id="au-brt" aria-label="Falar com o Brotinho">' + svgBrotinho() + '</button></div>' +
+      '<button class="au-obj" data-ver="mural"><svg viewBox="0 0 120 150" aria-hidden="true" id="au-cavalete"><g stroke="#A8784A" stroke-width="7" stroke-linecap="round"><path d="M44 70 L24 146"/><path d="M76 70 L96 146"/><path d="M60 8 V132"/></g><rect x="24" y="96" width="72" height="7" rx="3.5" fill="#8F643C"/><rect x="20" y="14" width="80" height="82" rx="4" fill="#FFFDF6" stroke="#D8C7A6" stroke-width="2.5"/><g id="au-rabisco"><circle cx="42" cy="36" r="10" fill="#F7C948"/><path d="M26 80 C 40 64, 52 66, 62 74 C 72 62, 86 62, 96 76 V 92 H 24 Z" fill="#A9CE6A"/><path d="M70 74 V 52" stroke="#5F9A40" stroke-width="3" stroke-linecap="round"/><circle cx="70" cy="46" r="4.6" fill="#F2A0B4"/><circle cx="77" cy="50" r="4.6" fill="#F2A0B4"/><circle cx="74.6" cy="58" r="4.6" fill="#F2A0B4"/><circle cx="65.4" cy="58" r="4.6" fill="#F2A0B4"/><circle cx="63" cy="50" r="4.6" fill="#F2A0B4"/><circle cx="70" cy="52" r="4" fill="#F9D65F"/></g></svg><span>Mural</span></button>' +
+      '<button class="au-obj' + (abertas ? ' tem' : '') + '" data-ver="caixinha" aria-label="Caixinha de perguntas' + (abertas ? ', ' + abertas + (abertas === 1 ? ' pergunta esperando' : ' perguntas esperando') : '') + '"><svg viewBox="0 0 120 150" aria-hidden="true"><rect x="53" y="76" width="14" height="72" rx="4" fill="#A8784A"/><path d="M16 82 V50 C16 30 34 20 60 20 C86 20 104 30 104 50 V82 Z" fill="#4F8FC0"/><path d="M16 50 C16 30 34 20 60 20 C76 20 88 24 96 31 C 78 26 34 28 16 58 Z" fill="#7DB2DC" opacity=".6"/><rect x="26" y="50" width="50" height="9" rx="4.5" fill="#2E5F88"/>' + (abertas ? '<path d="M34 54 h34 v-22 h-34 z" fill="#FFF6E3" stroke="#E8C68E" stroke-width="1.5"/><path d="M34 32 L51 44 L68 32" fill="none" stroke="#E8C68E" stroke-width="1.5"/><rect x="26" y="54" width="50" height="5" rx="2.5" fill="#2E5F88"/>' : '') + '<g class="au-bandeira"><rect x="96" y="28" width="5" height="44" rx="2" fill="#8C6239"/><path d="M99 28 h19 v13 h-19 z" fill="#F4B63F"/></g></svg>' + (abertas ? '<em class="au-num">' + abertas + '</em>' : '') + '<span>Caixinha</span></button>' +
+      '<button class="au-obj" data-ver="diario"><svg viewBox="0 0 130 118" aria-hidden="true"><path d="M20 72 V102 C20 112 110 112 110 102 V72" fill="#9A6D44"/><path d="M34 80 V106 M58 84 V110 M84 84 V108" stroke="#7E5736" stroke-width="3" stroke-linecap="round"/><ellipse cx="65" cy="72" rx="45" ry="14" fill="#E4C08C"/><ellipse cx="65" cy="72" rx="30" ry="8.6" fill="none" stroke="#C49A62" stroke-width="2"/><path d="M65 64 C52 54 34 50 18 54 L24 24 C40 20 56 24 65 32 Z" fill="#FFFBF0" stroke="#D8C7A6" stroke-width="2"/><path d="M65 64 C78 54 96 50 112 54 L106 24 C90 20 74 24 65 32 Z" fill="#FFF6E3" stroke="#D8C7A6" stroke-width="2"/><path d="M65 32 V64" stroke="#C69A68" stroke-width="2.4"/><g stroke="#C9B58F" stroke-width="2.4" stroke-linecap="round"><path d="M31 33 C40 31 49 33 56 37"/><path d="M29 43 C38 41 48 43 56 47"/><path d="M99 33 C90 31 81 33 74 37"/><path d="M101 43 C92 41 82 43 74 47"/></g></svg><span>Diário</span></button>' +
+      '</div>' +
+      '<div class="au-placa"><i class="au-poste"></i>' + tabua + '<button class="au-tabua b" data-ver="programa"><b>Programa do ano</b></button></div>' +
+      '</div></div>', 'inicio');
     ao('[data-sair]', function () { api.irA('inicio'); });
     ao('[data-ver]', function (e) { abrirVista(e.currentTarget.dataset.ver); });
     ao('[data-tema]', function (e) { var x = temaPorId(e.currentTarget.dataset.tema); verPlano(novaAula('', x, [])); });
     ao('[data-retomar]', function () { verSala(); });
-    var campo = $('#au-assunto'), caixa = $('#au-sug');
+    var campo = $('#au-assunto'), caixa = $('#au-sug'), brt = $('#au-brt'), fala = $('#au-fala'), tmFala = 0, tmPulo = 0;
     function ligarSug() { ao('[data-sug]', function (e) { e.preventDefault(); montarPeloTexto(e.currentTarget.dataset.sug); }, caixa); ao('[data-id]', function (e) { e.preventDefault(); verPlano(novaAula(campo.value.trim(), temaPorId(e.currentTarget.dataset.id), parecidos(campo.value))); }, caixa); }
     ligarSug();
-    // Enquanto escreve, aparecem os temas que combinam.
+    // Enquanto escreve, aparecem os temas que combinam, e o Brotinho comemora quando acha algum.
     campo.addEventListener('input', function () {
       var q = campo.value.trim();
-      if (q.length < 3) { caixa.innerHTML = sug.map(function (x) { return '<button class="au-pilula" data-sug="' + esc(x) + '">' + esc(x) + '</button>'; }).join(''); ligarSug(); return; }
+      if (q.length < 3) { caixa.innerHTML = chips(); ligarSug(); return; }
       var ps = parecidos(q).slice(0, 4);
       caixa.innerHTML = ps.length ? ps.map(function (x) { return '<button class="au-pilula b" data-id="' + x.id + '">' + esc(x.titulo) + '</button>'; }).join('') : '<span class="au-sub">Sem tema pronto: monto a aula procurando “' + esc(q) + '” nas obras.</span>';
       ligarSug();
+      if (ps.length) { clearTimeout(tmPulo); tmPulo = setTimeout(function () { mundo.pular(brt); }, 250); }
     });
     $('#au-form').addEventListener('submit', function (e) { e.preventDefault(); var q = campo.value.trim(); if (!q) { campo.focus(); return; } montarPeloTexto(q); });
+    // O que o Brotinho diz: sempre sobre o jardim, nunca sobre doutrina.
+    function dizer(txt) { fala.textContent = txt; fala.hidden = false; clearTimeout(tmFala); tmFala = setTimeout(function () { fala.hidden = true; }, 4800); }
+    var falas = ['Que bom ter você aqui!', n ? 'Toque numa planta para lembrar do encontro.' : 'Nosso jardim começa no primeiro encontro.', n ? 'O jardim da turma tem ' + n + (n === 1 ? ' planta.' : ' plantas.') : 'Escreva um assunto ali em cima.'], iFala = 0;
+    brt.addEventListener('click', function () { mundo.pular(brt); som('suave'); dizer(falas[iFala++ % falas.length]); });
+    aoSairDaVista.push(function () { clearTimeout(tmFala); clearTimeout(tmPulo); });
+    // O último desenho da turma aparece no cavalete.
+    lerMural().then(function (l) {
+      l = l.filter(function (d) { return d.turma === t.id; }); var ult = l[l.length - 1], cv = $('#au-cavalete'); if (!ult || !cv) return;
+      var r = $('#au-rabisco', cv); if (r) r.remove();
+      var im = document.createElementNS('http://www.w3.org/2000/svg', 'image'); im.setAttribute('href', ult.img); im.setAttribute('x', '22'); im.setAttribute('y', '16'); im.setAttribute('width', '76'); im.setAttribute('height', '78'); im.setAttribute('preserveAspectRatio', 'xMidYMid slice'); cv.appendChild(im);
+    }).catch(function () {});
+    // A abertura acontece uma vez: o jardim sobe, as plantas brotam, os objetos chegam.
+    if (novaPlanta) { mundo.pular(brt); dizer('Que planta bonita! Até o próximo encontro.'); }
+    else if (!abriuJardim) { dizer(falas[1]); }
+    if (!abriuJardim && anima) {
+      mundo.entrada();
+      G.from('.au-casa-ceu > *', { y: 16, opacity: 0, duration: .7, ease: 'power3.out', stagger: .08, delay: .3, clearProps: 'transform,opacity' });
+      G.from('.au-brotinho, .au-obj, .au-placa', { y: 34, opacity: 0, duration: .7, ease: 'back.out(1.6)', stagger: .07, delay: .55, clearProps: 'transform,opacity' });
+    }
+    abriuJardim = true;
   }
   function montarPeloTexto(q) {
     var ps = parecidos(q);
@@ -273,7 +285,7 @@ window.IniciarAulas = function (api) {
     primeira = primeira === true;
     var t = primeira ? null : turma();
     var nomes = t ? t.criancas.slice() : [], faixa = t ? t.faixa : 'mista';
-    mostrar('<div class="au-fundo papel"></div>' +
+    mostrar('' +
       (primeira ? '<div class="au-topo"><button class="au-redondo" data-sair aria-label="Voltar">' + ICO.voltar + '</button><h2>Evangelização</h2></div>' : topo('A turma')) +
       '<div class="au-rolar"><div class="au-coluna">' +
       (primeira ? '<h1 class="au-titulo">Vamos conhecer a sua turma</h1><p class="au-sub" style="margin-top:8px">É rápido, e fica guardado para os próximos encontros. Depois é só escrever o assunto, e a aula fica pronta.</p>' : '') +
@@ -338,7 +350,7 @@ window.IniciarAulas = function (api) {
     var naMao = m.reduce(function (s, x) { return s + ((x.k === 'chegada' || x.k === 'missao' || x.k === 'jogo' || (x.k === 'expressao' && a.expressao === 'mural')) ? x.min : 0); }, 0);
     var pend = t.perguntas.filter(function (p) { return !p.feita; });
     var seP = tema.seperguntarem || [];
-    mostrar('<div class="au-fundo papel"></div>' + topo('Preparar o encontro') +
+    mostrar(topo('Preparar o encontro') +
       '<div class="au-rolar"><div class="au-coluna">' +
       '<h1 class="au-titulo">' + esc(tema.titulo) + '</h1>' +
       '<p class="au-sub" style="margin-top:6px">' + esc(t.nome) + ' · ' + esc(faixaDe(t).nome) + ', ' + esc(faixaDe(t).idade) + (tema.unidade ? ' · Currículo da FEB, ' + esc(tema.unidade) : '') + '</p>' +
@@ -433,9 +445,9 @@ window.IniciarAulas = function (api) {
     var i = and.i, atual = m[i], M = MOMENTOS[atual.k], crianca = atual.k === 'missao' || atual.k === 'jogo' || (atual.k === 'expressao' && a.expressao === 'mural');
     var estreito = window.matchMedia('(max-width: 880px), (orientation: portrait)').matches;
     var prox = m[i + 1];
-    mostrar('<div class="au-fundo papel"></div>' +
+    mostrar('' +
       '<div class="au-barra"><button class="au-redondo" id="au-pausar" aria-label="Pausar o encontro">' + ICO.fechar + '</button>' +
-      '<div class="au-passos" role="progressbar" aria-valuemin="0" aria-valuemax="' + m.length + '" aria-valuenow="' + (i + 1) + '" aria-label="Momento ' + (i + 1) + ' de ' + m.length + '">' + m.map(function (_, k) { return '<i class="' + (k < i ? 'feito' : k === i ? 'agora' : '') + '"></i>'; }).join('') + '</div>' +
+      '<div class="au-passos" role="progressbar" aria-valuemin="0" aria-valuemax="' + m.length + '" aria-valuenow="' + (i + 1) + '" aria-label="Momento ' + (i + 1) + ' de ' + m.length + '">' + m.map(function (_, k) { return '<i class="' + (k < i ? 'feito' : k === i ? 'agora' : '') + '"></i>'; }).join('') + '<span class="au-brt-passo" aria-hidden="true">' + svgBrotinho() + '</span></div>' +
       '<span class="au-relogio" id="au-relogio">' + atual.min + ' min</span>' +
       '<button class="au-redondo" id="au-guardar" aria-label="Guardar uma pergunta das crianças">' + ICO.pergunta + '</button>' +
       '<button class="au-redondo" id="au-guia" aria-label="Como conduzir este momento" aria-expanded="false">' + ICO.guia + '</button></div>' +
@@ -452,6 +464,21 @@ window.IniciarAulas = function (api) {
     $('#au-depois').addEventListener('click', function () { if (prox) { and.i++; gravar(); verSala(); } else verPlantio(); });
     var palco = $('#au-palco');
     CENAS[atual.k](palco, a, tema, and.estado);
+    // O dia passa: o sol anda a cada momento, e o Brotinho pula de pedra em pedra.
+    mundo.ceu(i / Math.max(1, m.length - 1));
+    var pedras = $$('.au-passos i', vista), caixa = $('.au-passos', vista), passo = $('.au-brt-passo', vista);
+    function xDe(p) { var r = p.getBoundingClientRect(); return r.left + r.width / 2 - caixa.getBoundingClientRect().left; }
+    passo.style.left = xDe(pedras[i]) + 'px';
+    if (anima) {
+      if (ultimoPasso !== null && ultimoPasso !== i) {
+        G.fromTo(passo, { x: xDe(pedras[ultimoPasso]) - xDe(pedras[i]) }, { x: 0, duration: .6, ease: 'power2.inOut', clearProps: 'x' });
+        G.fromTo(passo, { y: 0 }, { y: -16, duration: .3, ease: 'sine.out', yoyo: true, repeat: 1, clearProps: 'y' });
+      }
+      var lado = ultimoPasso === null ? 0 : (i >= ultimoPasso ? 1 : -1);
+      if (lado) G.from(palco.children, { x: lado * 46, opacity: 0, duration: .45, ease: 'power3.out', clearProps: 'transform,opacity' });
+      else G.from(palco, { opacity: 0, duration: .4, clearProps: 'opacity' });
+    }
+    ultimoPasso = i;
     // Um lembrete só, no meio do encontro, para o evangelizador olhar sem cobrar.
     if (a.missao && atual.k === 'pensar' && !and.estado.lembrou) { and.estado.lembrou = true; gravar(); api.aviso('Repare nos gestos bons das crianças, sem cobrar nem perguntar.'); }
     // Relógio manso: só mostra quanto falta deste momento. Nada apita.
@@ -729,7 +756,7 @@ window.IniciarAulas = function (api) {
     });
   }
   function festa(p, titulo, sub) {
-    p.innerHTML = '<div class="au-meio"><div class="au-figura" style="width:clamp(110px,20vmin,180px)">' + svgPlanta(new Date().getDate()) + '</div><h2 class="au-grande">' + esc(titulo) + '</h2><p class="au-sub" style="font-size:1.1em">' + esc(sub) + '</p></div>';
+    p.innerHTML = '<div class="au-meio"><div class="au-figura au-comemora" style="width:clamp(110px,20vmin,180px)">' + svgBrotinho() + '</div><h2 class="au-grande">' + esc(titulo) + '</h2><p class="au-sub" style="font-size:1.1em">' + esc(sub) + '</p></div>';
     som('revelacao'); var c = $('.au-grande', p); if (c) api.brilho(c, 30);
   }
 
@@ -898,12 +925,13 @@ window.IniciarAulas = function (api) {
   /* ---------- Plantar e avaliar ---------- */
   function verPlantio() {
     var t = turma(), and = t.andamento, a = and.aula, tema = temaDaAula(a);
-    mostrar(jardimHtml(t) + '<div class="au-topo"><h2>O jardim da turma</h2></div><div class="au-rolar" style="display:flex;flex-direction:column;align-items:center;text-align:center"><h1 class="au-titulo" id="au-pl-t">Hoje plantamos: ' + esc(tema.titulo) + '</h1><p class="au-sub" id="au-pl-s" style="margin-top:8px;font-size:1.05em">Todo mundo junto: toquem na semente!</p><button class="au-acao" id="au-plantar" style="margin-top:18px;min-height:76px;font-size:1.25em">Plantar a semente</button></div>', 'plantio');
+    mundo.ceu(1); mundo.plantas(t);
+    mostrar('<div class="au-topo"><h2>O jardim da turma</h2></div><div class="au-plantio"><h1 class="au-titulo" id="au-pl-t">Hoje plantamos: ' + esc(tema.titulo) + '</h1><p class="au-sub" id="au-pl-s">Todo mundo junto: toquem na semente!</p><div class="au-plantio-pe"><div class="au-brotinho" id="au-pl-brt">' + svgBrotinho() + '</div><button class="au-acao" id="au-plantar">Plantar a semente</button></div></div>', 'plantio');
     $('#au-plantar').addEventListener('click', function () {
       var reg = { tema: a.temaId, titulo: tema.titulo, pedido: a.pedido, em: Date.now(), presentes: a.presentes.length, jogo: a.jogo, expressao: a.expressao, vivencia: tema.vivencia, conseguiram: (a.conseguiram || []).length, missao: a.missao || null, gestos: a.gestos || 0, aval: null, nota: '' };
       t.aulas.push(reg); t.andamento = null; gravar();
-      var n = t.aulas.length; $('.au-jardim', vista).outerHTML = jardimHtml(t, true);
-      var novaEl = $$('.au-planta.nova', vista)[0]; if (novaEl && anima) api.brilho(novaEl, 26); som('revelacao');
+      var n = t.aulas.length; mundo.plantas(t, true); mundo.pular($('#au-pl-brt'));
+      var novaEl = $('.au-planta.nova', tela); if (novaEl && anima) api.brilho(novaEl, 26); som('revelacao');
       $('#au-pl-t').textContent = n === 1 ? 'A primeira planta do jardim!' : 'Agora são ' + n + ' plantas no jardim!';
       $('#au-pl-s').textContent = 'Até o próximo encontro. A semente de hoje continua crescendo em casa.';
       var b = $('#au-plantar'); b.textContent = 'Terminar'; b.replaceWith(b.cloneNode(true));
@@ -911,7 +939,7 @@ window.IniciarAulas = function (api) {
     });
   }
   function verAvaliar(reg) {
-    mostrar('<div class="au-fundo papel"></div><div class="au-topo"><h2>Só para você</h2></div><div class="au-rolar"><div class="au-coluna"><h1 class="au-titulo">Como foi o encontro?</h1><p class="au-sub" style="margin-top:6px">A FEB inclui, ao fim de cada ação, “Avaliar a ação e se autoavaliar no processo”. Um minuto basta, e fica no seu diário.</p>' +
+    mostrar('<div class="au-topo"><h2>Só para você</h2></div><div class="au-rolar"><div class="au-coluna"><h1 class="au-titulo">Como foi o encontro?</h1><p class="au-sub" style="margin-top:6px">A FEB inclui, ao fim de cada ação, “Avaliar a ação e se autoavaliar no processo”. Um minuto basta, e fica no seu diário.</p>' +
       '<div class="au-escolhas" style="margin-top:16px">' + ['Foi muito bem', 'Foi bem', 'Foi difícil'].map(function (o) { return '<button class="au-pilula" data-a="' + o + '" aria-pressed="false">' + o + '</button>'; }).join('') + '</div>' +
       '<label class="au-campo">O que funcionou? O que você mudaria? Alguma criança precisa de atenção?<textarea id="au-av" rows="4"></textarea></label>' +
       '<div class="au-rodape"><button class="au-acao" id="au-av-ok">Guardar no diário</button><button class="au-pilula" id="au-av-pula">Agora não</button></div></div></div>', 'avaliar');
@@ -924,7 +952,7 @@ window.IniciarAulas = function (api) {
   function verPrograma() {
     var t = turma(), feitos = {}; t.aulas.forEach(function (a) { if (a.tema) feitos[a.tema] = 1; });
     var n = 0;
-    mostrar('<div class="au-fundo papel"></div>' + topo('Programa do ano') + '<div class="au-rolar"><div class="au-coluna"><p class="au-sub">' + DADOS.temas.length + ' encontros na ordem dos módulos do Currículo da FEB. Você pode seguir na ordem, pular ou escrever outro assunto a qualquer momento.</p>' +
+    mostrar(topo('Programa do ano') + '<div class="au-rolar"><div class="au-coluna"><p class="au-sub">' + DADOS.temas.length + ' encontros na ordem dos módulos do Currículo da FEB. Você pode seguir na ordem, pular ou escrever outro assunto a qualquer momento.</p>' +
       DADOS.modulos.map(function (m) {
         return '<h3 class="au-sec">Módulo ' + m.id + ': ' + esc(m.nome) + '</h3><ul class="au-lista">' + DADOS.temas.filter(function (x) { return x.modulo === m.id; }).map(function (x) {
           n++;
@@ -939,7 +967,7 @@ window.IniciarAulas = function (api) {
   /* ---------- Caixinha de perguntas ---------- */
   function verCaixinha() {
     var t = turma(), abertas = t.perguntas.filter(function (p) { return !p.feita; }), feitas = t.perguntas.filter(function (p) { return p.feita; });
-    mostrar('<div class="au-fundo papel"></div>' + topo('Caixinha de perguntas') + '<div class="au-rolar"><div class="au-coluna"><p class="au-sub">As perguntas das crianças ficam aqui até você trazer a resposta. Procure nas obras, estude e leve no próximo encontro.</p>' +
+    mostrar(topo('Caixinha de perguntas') + '<div class="au-rolar"><div class="au-coluna"><p class="au-sub">As perguntas das crianças ficam aqui até você trazer a resposta. Procure nas obras, estude e leve no próximo encontro.</p>' +
       '<form class="au-busca" id="au-cx"><input type="text" maxlength="200" placeholder="Escreva uma pergunta" aria-label="Nova pergunta"><button class="au-acao" type="submit">Guardar</button></form>' +
       (abertas.length ? '<ul class="au-lista" style="margin-top:14px">' + abertas.map(function (p) {
         return '<li style="display:block"><div class="txt" style="font-weight:600">' + esc(p.t) + '<small>' + dataCurta(p.em) + '</small></div><div class="au-sugestoes" style="min-height:0"><button class="au-pilula b" data-busca="' + p.id + '">Procurar nas obras</button><button class="au-pilula" data-trazer="' + p.id + '" aria-pressed="' + !!p.trazer + '">Levar no próximo encontro</button><button class="au-pilula" data-feita="' + p.id + '">Já respondi</button></div><div data-res="' + p.id + '"></div></li>';
@@ -974,7 +1002,7 @@ window.IniciarAulas = function (api) {
   function apagarMural(id) { return dbMural().then(function (db) { return new Promise(function (ok, erro) { var tx = db.transaction('desenhos', 'readwrite'); tx.objectStore('desenhos').delete(id); tx.oncomplete = function () { ok(); }; tx.onerror = function () { erro(tx.error); }; }); }); }
   function verMural() {
     var t = turma();
-    mostrar('<div class="au-fundo papel"></div>' + topo('Mural da turma') + '<div class="au-rolar"><div class="au-coluna"><div id="au-gal" class="au-galeria"></div><p id="au-gal-v" class="au-sub"></p></div></div>', 'mural');
+    mostrar(topo('Mural da turma') + '<div class="au-rolar"><div class="au-coluna"><div id="au-gal" class="au-galeria"></div><p id="au-gal-v" class="au-sub"></p></div></div>', 'mural');
     ao('[data-voltar]', function () { verInicio(); });
     lerMural().then(function (l) {
       l = l.filter(function (d) { return d.turma === t.id; }).reverse();
@@ -993,7 +1021,7 @@ window.IniciarAulas = function (api) {
   /* ---------- Diário ---------- */
   function verDiario() {
     var t = turma(), l = t.aulas.slice().reverse();
-    mostrar('<div class="au-fundo papel"></div>' + topo('Diário da turma') + '<div class="au-rolar"><div class="au-coluna">' +
+    mostrar(topo('Diário da turma') + '<div class="au-rolar"><div class="au-coluna">' +
       (l.length ? '<ul class="au-lista">' + l.map(function (a) { return '<li><span class="txt"><b>' + esc(a.titulo) + '</b><small>' + dataCurta(a.em) + (a.presentes ? ' · ' + a.presentes + (a.presentes === 1 ? ' criança' : ' crianças') : '') + (a.gestos ? ' · ' + a.gestos + (a.gestos === 1 ? ' gesto bom visto' : ' gestos bons vistos') : '') + (a.aval ? ' · ' + esc(a.aval) : '') + '</small>' + (a.nota ? '<span style="display:block;margin-top:4px">' + esc(a.nota) + '</span>' : '') + '</span></li>'; }).join('') + '</ul>' : '<p class="au-sub">Os encontros aparecem aqui, com as suas anotações.</p>') +
       '</div></div>', 'diario');
     ao('[data-voltar]', function () { verInicio(); });

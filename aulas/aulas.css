@@ -4,11 +4,9 @@
 body.aulas-largo #palco { padding: 0; }
 body.aulas-largo #app { max-width: none; max-height: none; border-radius: 0; box-shadow: none; }
 
-.t-aulas { --verde: #5F8A3F; --verde-claro: #E6EFCB; --lilas: #8E7BB8; --u: clamp(15px, 1.15vw + 9px, 22px); background: #FBF3E4; color: var(--tinta); font-size: var(--u); overflow: hidden; isolation: isolate; }
+.t-aulas { --verde: #5F8A3F; --verde-claro: #E6EFCB; --lilas: #8E7BB8; --u: clamp(15px, 1.15vw + 9px, 22px); background: #BDE3F8; color: var(--tinta); font-size: var(--u); overflow: hidden; isolation: isolate; }
 .t-aulas button { font-family: var(--f-ui); touch-action: manipulation; }
-.au-fundo { position: absolute !important; inset: 0; z-index: -2; background-size: cover; background-position: center; }
-.au-fundo.papel { background-image: url('../arte/aulas/papel.jpg'); }
-.au-vista { position: absolute; inset: 0; display: flex; flex-direction: column; min-height: 0; }
+.au-vista { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; min-height: 0; }
 .au-rolar { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 6px clamp(16px, 5vw, 64px) calc(26px + env(safe-area-inset-bottom, 0px)); scrollbar-width: none; }
 .au-rolar::-webkit-scrollbar { display: none; }
 .au-coluna { max-width: 860px; margin-inline: auto; }
@@ -25,9 +23,7 @@ body.aulas-largo #app { max-width: none; max-height: none; border-radius: 0; box
 .au-acao[disabled] { opacity: .5; box-shadow: none; }
 
 /* Início: o jardim da turma */
-.au-jardim { position: absolute !important; inset: 0; z-index: -2; overflow: hidden; background: url('../arte/aulas/jardim.jpg') center bottom / cover no-repeat; }
-.au-jardim::after { content: ""; position: absolute; inset: 0 0 auto 0; height: 60%; background: linear-gradient(180deg, rgba(251,243,228,.86), rgba(251,243,228,.5) 60%, rgba(251,243,228,0)); pointer-events: none; }
-.au-planta { position: absolute; transform: translate(-50%, -100%); transform-origin: 50% 100%; animation: au-balanco 5s ease-in-out infinite; pointer-events: none; }
+.au-planta { position: absolute; padding: 0; border: 0; background: none; transform: translate(-50%, -100%); transform-origin: 50% 100%; animation: au-balanco 5s ease-in-out infinite; }
 .au-planta svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 3px 2px rgba(50,60,20,.26)); }
 @keyframes au-balanco { 0%, 100% { transform: translate(-50%, -100%) rotate(-1.6deg); } 50% { transform: translate(-50%, -100%) rotate(1.6deg); } }
 .au-planta.nova { animation: au-brotar 1.6s var(--mola) both, au-balanco 5s ease-in-out 1.6s infinite; }
@@ -44,7 +40,6 @@ body.aulas-largo #app { max-width: none; max-height: none; border-radius: 0; box
 .au-proximo b { font-family: var(--f-leitura); font-weight: 600; font-size: 1.15em; }
 .au-menu { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .au-menu .num { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: var(--ambar); color: #2A1806; font-size: .8em; font-weight: 700; }
-.au-canteiro-info { position: absolute; left: 0; right: 0; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); text-align: center; color: #FFF; font-weight: 600; text-shadow: 0 1px 8px rgba(30,40,10,.6); pointer-events: none; }
 
 /* Formulários (turma, avaliação) */
 .au-campo { display: block; margin-top: 18px; font-weight: 600; }
@@ -95,10 +90,6 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
 
 /* O encontro */
 .au-barra { display: flex; align-items: center; gap: 10px; padding: calc(10px + env(safe-area-inset-top, 0px)) clamp(10px, 2.4vw, 28px) 6px; flex-shrink: 0; }
-.au-passos { flex: 1; min-width: 0; display: flex; align-items: center; gap: 5px; }
-.au-passos i { flex: 1; height: 8px; border-radius: 8px; background: rgba(120,90,60,.16); transition: background .4s; }
-.au-passos i.feito { background: #C9D68A; }
-.au-passos i.agora { background: var(--ambar); }
 .au-relogio { flex-shrink: 0; font-weight: 700; font-size: .9em; color: var(--tinta-suave); min-width: 3.4em; text-align: center; }
 .au-corpo { flex: 1 1 auto; min-height: 0; display: flex; }
 .au-palco { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; padding: 6px clamp(14px, 4vw, 54px) 10px; scrollbar-width: none; }
@@ -225,3 +216,130 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
   .au-zonas { min-height: 180px; }
 }
 @media (prefers-reduced-motion: reduce) { .au-planta, .au-planta.nova, .au-vaga, .au-respira { animation: none !important; } }
+
+/* ---------- O mundo: um jardim vivo atrás de todas as telas (mundo.js) ---------- */
+@property --c1 { syntax: '<color>'; inherits: true; initial-value: #86C5F0; }
+@property --c2 { syntax: '<color>'; inherits: true; initial-value: #BDE3F8; }
+@property --c3 { syntax: '<color>'; inherits: true; initial-value: #FFF4DC; }
+.au-mundo { position: absolute !important; inset: 0; z-index: 0; overflow: hidden; transition: --c1 1.4s, --c2 1.4s, --c3 1.4s; }
+.au-ceu { position: absolute; inset: 0; background: linear-gradient(180deg, var(--c1) 0%, var(--c2) 44%, var(--c3) 74%); }
+.au-astro { position: absolute; width: 44vmin; height: 44vmin; margin: -22vmin 0 0 -22vmin; border-radius: 50%; background: radial-gradient(circle, #FFFCEF 0 17%, #FFF0C4 26%, rgba(255,226,160,.42) 44%, rgba(255,217,152,0) 70%); transition: left 1.4s var(--mola), top 1.4s var(--mola); }
+.au-mundo[data-hora="noite"] .au-astro { width: 26vmin; height: 26vmin; margin: -13vmin 0 0 -13vmin; background: radial-gradient(circle at 42% 38%, #FFFBEA 0 26%, #EFE6C4 36%, rgba(255,246,206,.22) 40%, rgba(255,246,206,0) 70%); }
+.au-estrelas { position: absolute; inset: 0 0 42% 0; opacity: 0; transition: opacity 1.2s; background-image: radial-gradient(circle, #FFF 0 1.5px, transparent 2.5px), radial-gradient(circle, #FFF6D8 0 1px, transparent 2px), radial-gradient(circle, #DDE3FF 0 1.2px, transparent 2.2px); background-size: 190px 150px, 130px 170px, 240px 110px; background-position: 20px 30px, 90px 70px, 150px 10px; }
+.au-mundo[data-hora="noite"] .au-estrelas { opacity: .9; }
+.au-nuvem { position: absolute; left: 0; width: 34vmax; max-width: 620px; height: auto; pointer-events: none; animation: au-nuvem 150s linear infinite; }
+.au-nuvem.n1 { top: 5%; animation-delay: -30s; opacity: .95; }
+.au-nuvem.n2 { top: 15%; width: 24vmax; animation-duration: 210s; animation-delay: -120s; opacity: .8; }
+.au-nuvem.n3 { top: 27%; width: 18vmax; animation-duration: 260s; animation-delay: -60s; opacity: .6; }
+.au-mundo[data-hora="noite"] .au-nuvem { opacity: .14; }
+@keyframes au-nuvem { from { transform: translateX(-40vmax); } to { transform: translateX(110vw); } }
+.au-solo { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; transition: transform 1s var(--mola); }
+.au-mundo[data-camera="alto"] .au-solo { transform: translateY(78%); }
+.au-mundo[data-camera="sala"] .au-solo { transform: translateY(74%); }
+.au-morros { position: absolute; left: -3%; right: -3%; bottom: 58%; aspect-ratio: 1600 / 520; min-height: 190px; background: url('../arte/aulas/morros.webp') center bottom / cover no-repeat; }
+.au-campo { position: absolute; left: 0; right: 0; top: 32%; bottom: 0; background: #7FB34F url('../arte/aulas/campo.webp') center top / cover no-repeat; }
+.au-frente { position: absolute; left: -4%; right: -4%; bottom: -2px; height: 19%; z-index: 95; pointer-events: none; background: url('../arte/aulas/frente.webp') center bottom / auto 100% repeat-x; transform-origin: 50% 100%; animation: au-vento 7s ease-in-out infinite; }
+@keyframes au-vento { 0%, 100% { transform: skewX(-1.6deg); } 50% { transform: skewX(1.6deg); } }
+.au-mundo[data-hora="noite"] .au-morros, .au-mundo[data-hora="noite"] .au-campo, .au-mundo[data-hora="noite"] .au-frente { filter: brightness(.42) saturate(.75) hue-rotate(18deg); }
+.au-mundo[data-hora="noite"] .au-planta svg { filter: brightness(.78) drop-shadow(0 3px 2px rgba(10,10,40,.5)); }
+.au-mundo[data-hora="noite"] .au-vaga { width: 18px; height: 18px; }
+.au-canteiro { position: absolute; inset: 0; }
+.au-planta.toque svg { animation: au-toque .6s var(--mola); transform-origin: 50% 100%; }
+@keyframes au-toque { 30% { transform: scale(1.22, .86); } 60% { transform: scale(.92, 1.14); } }
+.au-balao { position: absolute; z-index: 94; transform: translate(-50%, -100%); max-width: 230px; padding: 8px 14px; border-radius: 16px 16px 16px 4px; background: #FFFDF6; color: var(--tinta); font-size: .84em; line-height: 1.3; text-align: center; box-shadow: 0 8px 22px rgba(40,50,20,.28); pointer-events: none; }
+.au-balao b { display: block; font-family: var(--f-leitura); font-weight: 600; }
+.au-borboleta { position: absolute; left: 30%; top: 40%; width: clamp(24px, 3.4vmin, 36px); z-index: 92; pointer-events: none; animation: au-voo 34s ease-in-out infinite; }
+.au-borboleta svg { display: block; width: 100%; height: auto; overflow: visible; }
+.au-borboleta .asa { transform-box: fill-box; animation: au-asa .26s ease-in-out infinite alternate; }
+.au-borboleta .asa.e { transform-origin: 100% 50%; }
+.au-borboleta .asa.d { transform-origin: 0% 50%; }
+@keyframes au-asa { to { transform: scaleX(.34); } }
+@keyframes au-voo { 0%, 100% { transform: translate(0, 0) rotate(-6deg); } 20% { transform: translate(30vw, -8vh) rotate(8deg); } 40% { transform: translate(44vw, 8vh) rotate(-4deg); } 60% { transform: translate(14vw, 2vh) rotate(6deg); } 80% { transform: translate(-20vw, -6vh) rotate(-8deg); } }
+.au-mundo[data-hora="noite"] .au-borboleta { display: none; }
+
+/* A tela do jardim: o céu guarda a pergunta; o chão guarda os objetos */
+.au-vista[data-vista="inicio"], .au-vista[data-vista="plantio"] { pointer-events: none; }
+.au-vista[data-vista="inicio"] button, .au-vista[data-vista="inicio"] input, .au-vista[data-vista="plantio"] button { pointer-events: auto; }
+.au-casa { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none; }
+.au-casa::-webkit-scrollbar { display: none; }
+@media (max-height: 560px) { .au-vista[data-vista="inicio"] { pointer-events: auto; } }
+.au-marca { flex: 1; min-width: 0; font-family: var(--f-leitura); font-weight: 600; font-size: 1.15em; }
+.au-casa-ceu { width: min(760px, calc(100% - 2 * clamp(16px, 5vw, 64px))); margin: clamp(2px, 2vh, 26px) clamp(16px, 5vw, 64px) 0; }
+.au-casa-ceu .au-titulo { font-size: clamp(1.9em, 3.8vw + 12px, 3.4em); letter-spacing: -.01em; text-shadow: 0 1px 18px rgba(255,255,255,.55); }
+.au-casa-ceu .au-busca { margin-top: clamp(10px, 2vh, 20px); }
+.au-casa-chao { margin-top: auto; flex-shrink: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px clamp(10px, 3vw, 34px); padding: clamp(10px, 2vh, 20px) clamp(10px, 3vw, 40px) calc(clamp(12px, 3vh, 30px) + env(safe-area-inset-bottom, 0px)); }
+.au-objetos { display: flex; align-items: flex-end; gap: clamp(4px, 1.6vw, 22px); }
+.au-obj { position: relative; width: clamp(72px, 12vw, 136px); padding: 0; border: 0; background: none; color: #FFF; font-weight: 700; font-size: .92em; transition: transform .25s var(--mola); }
+.au-obj svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 6px rgba(40,50,20,.3)); }
+.au-obj span { display: block; margin-top: 3px; text-shadow: 0 1px 3px rgba(20,40,10,.85), 0 0 12px rgba(20,40,10,.5); }
+.au-obj:active { transform: scale(.94) rotate(-1.5deg); }
+.au-num { position: absolute; left: 6%; top: 2%; display: grid; place-items: center; min-width: 28px; height: 28px; padding: 0 7px; border-radius: 999px; background: var(--ambar); color: #2A1806; font-style: normal; font-weight: 700; font-size: .9em; box-shadow: 0 3px 8px rgba(60,40,10,.35); }
+.au-bandeira { transform-box: view-box; transform-origin: 98px 72px; transform: rotate(92deg); transition: transform .6s var(--mola); }
+.au-obj.tem .au-bandeira { transform: rotate(0); }
+.au-placa { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; width: clamp(250px, 27vw, 330px); padding-bottom: clamp(14px, 3vh, 34px); }
+.au-poste { position: absolute; left: 50%; top: -10px; bottom: 0; width: 16px; margin-left: -8px; border-radius: 7px 7px 3px 3px; background: linear-gradient(90deg, #8A5F3A, #B0834F 45%, #7A5230); box-shadow: 0 8px 8px rgba(40,50,20,.28); }
+.au-tabua { position: relative; width: 100%; padding: 10px 22px; border: 0; border-radius: 10px 14px 12px 9px; color: #38230F; text-align: center; line-height: 1.2; background: repeating-linear-gradient(177deg, rgba(120,76,36,.0) 0 7px, rgba(120,76,36,.1) 7px 8px), linear-gradient(180deg, #D8AC72, #BC8C54); box-shadow: 0 6px 12px rgba(50,40,10,.32), inset 0 1px 0 rgba(255,236,200,.55); transition: transform .25s var(--mola); }
+.au-tabua.a { transform: rotate(-1.4deg); }
+.au-tabua.b { width: 88%; padding: 8px 18px; transform: rotate(1.2deg); }
+.au-tabua::before, .au-tabua::after { content: ""; position: absolute; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: #6E4A28; box-shadow: inset 0 1px 0 rgba(255,235,200,.5); }
+.au-tabua::before { left: 8px; }
+.au-tabua::after { right: 8px; }
+.au-tabua small { display: block; font-size: .78em; font-weight: 600; opacity: .85; }
+.au-tabua b { display: block; font-family: var(--f-leitura); font-weight: 600; font-size: 1.02em; }
+.au-tabua:active { transform: scale(.97) rotate(.6deg); }
+.au-brotinho-caixa { position: relative; flex-shrink: 0; }
+.au-brotinho { display: block; width: clamp(62px, 9vw, 104px); padding: 0; border: 0; background: none; transition: transform .2s; }
+.au-fala { position: absolute; left: 6px; bottom: calc(100% + clamp(36px, 8vh, 74px)); z-index: 2; width: max-content; max-width: min(250px, 62vw); margin: 0; padding: 9px 14px; border-radius: 16px 16px 16px 4px; background: #FFFDF6; color: var(--tinta); font-size: .9em; font-weight: 600; line-height: 1.3; box-shadow: 0 8px 20px rgba(40,50,20,.26); }
+
+/* O Brotinho */
+.brt { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 5px 4px rgba(40,50,20,.28)); animation: brt-respira 3.6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes brt-respira { 50% { transform: scale(1.02, .975); } }
+.brt-olhos { transform-box: fill-box; transform-origin: center; animation: brt-pisca 5.2s infinite; }
+@keyframes brt-pisca { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.12); } }
+.brt-folhas { transform-box: fill-box; transform-origin: 50% 100%; animation: brt-folhas 4.2s ease-in-out infinite; }
+@keyframes brt-folhas { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }
+.feliz .brt, .au-comemora .brt { animation: brt-pulo .8s cubic-bezier(.3,1.5,.5,1) 2; }
+@keyframes brt-pulo { 0%, 100% { transform: translateY(0) scale(1); } 18% { transform: translateY(0) scale(1.1, .86); } 55% { transform: translateY(-26%) scale(.96, 1.06) rotate(-4deg); } }
+
+/* Folhas de caderno sobre o jardim: preparar, programa, caixinha, mural, diário, turma e avaliar */
+.t-aulas[data-hora="noite"] .au-topo h2, .t-aulas[data-hora="noite"] .au-marca, .t-aulas[data-hora="noite"] .au-casa-ceu .au-titulo { color: var(--creme); text-shadow: none; }
+.t-aulas[data-hora="noite"] .au-casa-ceu .au-sub { color: var(--creme-suave); }
+.au-vista:not([data-vista="inicio"]):not([data-vista="plantio"]):not([data-vista="sala"]) .au-coluna { position: relative; padding: clamp(20px, 3.4vw, 42px) clamp(18px, 4vw, 52px) clamp(22px, 3vw, 40px) clamp(30px, 5vw, 66px); border-radius: 8px 22px 22px 8px; background: radial-gradient(circle at 14px 50%, rgba(95,76,48,.2) 0 5px, rgba(95,76,48,0) 6px) 0 0 / 28px 62px repeat-y, #FFFCF3; box-shadow: 0 26px 60px rgba(40,40,90,.24); }
+.au-fim-plano { background: linear-gradient(180deg, rgba(255,252,243,0), #FFFCF3 42%); }
+
+/* O encontro: pedrinhas no caminho e o dia passando */
+.au-passos { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; height: 46px; padding-top: 22px; }
+.au-passos::before { content: ""; position: absolute; left: 4px; right: 4px; top: 33px; border-top: 3px dotted rgba(70,60,110,.28); }
+.au-passos i { position: relative; width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50% 46% 52% 48%; background: #FFFDF4; box-shadow: 0 2px 4px rgba(50,50,90,.28); transition: background .4s, transform .4s var(--mola); }
+.au-passos i.feito { background: #A9CE6A; }
+.au-passos i.agora { background: var(--ambar); transform: scale(1.3); }
+.au-brt-passo { position: absolute; top: -2px; width: clamp(28px, 3.4vw, 38px); margin-left: calc(clamp(28px, 3.4vw, 38px) / -2); pointer-events: none; }
+.au-relogio { padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.62); color: var(--tinta); }
+.au-palco .au-sub { color: #3D3350; }
+.au-palco .au-eyebrow { align-self: center; padding: 4px 14px; border-radius: 999px; background: rgba(255,255,255,.6); color: #6A4312; }
+.au-nota { align-self: flex-start; max-height: 100%; margin: 4px clamp(10px, 2vw, 22px) 0 0; background: rgba(255,252,243,.88); border-left: 0; border-radius: 22px; box-shadow: 0 10px 28px rgba(40,40,90,.16); }
+.au-pagina { padding: clamp(18px, 3vw, 38px) clamp(20px, 3.4vw, 44px); border-radius: 10px 24px 24px 10px; background: linear-gradient(90deg, #EFE3C8 0, #FFFCF3 3%, #FFFCF3 100%); box-shadow: 0 18px 44px rgba(40,40,90,.22); }
+.au-ref { color: #3D3350; }
+.au-recado { background: rgba(255,252,243,.88); }
+.au-pe .au-pilula { background: rgba(255,255,255,.9); }
+
+/* Plantar a semente */
+.au-plantio { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2vh clamp(16px, 5vw, 64px); }
+.au-plantio .au-sub { margin-top: 8px; font-size: 1.05em; color: #3D3350; }
+.au-plantio-pe { display: flex; align-items: flex-end; justify-content: center; gap: 16px; margin-top: 16px; }
+.au-plantio-pe .au-acao { min-height: 72px; font-size: 1.2em; }
+
+@media (max-width: 880px), (orientation: portrait) { .au-nota { align-self: stretch; margin: 0 10px; border-radius: 20px; } }
+@media (max-width: 620px) {
+  .au-fala { bottom: calc(100% + 4px); }
+  .au-marca { font-size: 1em; }
+  .au-casa-chao { justify-content: center; }
+  .au-placa { order: -1; width: min(92%, 320px); padding-bottom: 8px; }
+  .au-poste { display: none; }
+  .au-tabua.a, .au-tabua.b { transform: none; }
+  .au-vista:not([data-vista="inicio"]):not([data-vista="plantio"]):not([data-vista="sala"]) .au-coluna { background: #FFFCF3; padding-left: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .au-nuvem, .au-frente, .au-borboleta, .au-borboleta .asa, .brt, .brt-olhos, .brt-folhas, .au-planta.toque svg, .feliz .brt, .au-comemora .brt { animation: none !important; } .au-solo, .au-astro, .au-mundo { transition: none; } }
+
+/* O círculo de respirar não pode parecer um segundo sol */
+.au-respira { background: radial-gradient(circle, #FFFFFF 0, #F1EAFB 52%, rgba(226,214,246,.25) 74%, rgba(226,214,246,0)); color: #4A3B66; }
