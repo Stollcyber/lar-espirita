@@ -78,6 +78,7 @@ h1, h2 { text-wrap: balance; }
 .btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 0 24px; border-radius: 999px; border: 0; font-weight: 700; font-size: 17px; text-decoration: none; transition: transform .25s var(--mola); }
 .btn:active { transform: scale(.97); }
 .btn-luz { background: linear-gradient(180deg, #F4B864, var(--ambar)); color: #2A1806; box-shadow: 0 14px 34px rgba(232,162,70,.45), inset 0 1px 0 rgba(255,255,255,.5); }
+.btn-luz:disabled { color: #2A1806; opacity: .72; transform: none; }
 .btn-vidro { min-height: 52px; font-weight: 600; font-size: 16px; color: #FFF8EE; background: rgba(255,246,232,.16); border: 1px solid rgba(255,240,220,.32); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); }
 .linha-botoes { display: flex; gap: 10px; }
 .linha-botoes .btn { flex: 1; }
@@ -734,7 +735,7 @@ h1, h2 { text-wrap: balance; }
       <svg class="ramo" id="ramo" viewBox="0 0 240 48" aria-hidden="true"><path class="haste" d="M4 30 C 34 20, 62 36, 96 28 S 160 14, 196 24 S 228 30, 236 22" fill="none" stroke="#7A5A38" stroke-width="2" stroke-linecap="round"/><path class="g" d="M70 31 c 4 3 9 1 9 -3 s -5 -5 -6 -2" fill="none" stroke="#7E8F4E" stroke-width="1" stroke-linecap="round"/><path class="g" d="M176 20 c 3 -4 9 -3 9 1 s -4 5 -6 2" fill="none" stroke="#7E8F4E" stroke-width="1" stroke-linecap="round"/><g transform="translate(40 26) rotate(-24)"><image class="f" href="arte/videira/folha5.png" x="-8" y="-15.5" width="16" height="17"/></g><g transform="translate(110 25) rotate(150)"><image class="f" href="arte/videira/folha3.png" x="-8" y="-15.5" width="16" height="17"/></g><g transform="translate(152 18) rotate(-12)"><image class="f" href="arte/videira/folha9.png" x="-8" y="-15.5" width="16" height="17"/></g><g transform="translate(207 25)"><g class="u"><image href="arte/videira/cacho2.png" x="-5.5" y="-1" width="11" height="16"/></g></g></svg>
       <p class="guia" id="abertura-guia">O Evangelho no Lar, os livros e a família no mesmo lugar.</p>
     </div>
-    <div class="pe"><button class="btn btn-luz" data-ir="inicio">Entrar</button></div>
+    <div class="pe"><button class="btn btn-luz" id="btn-entrar" data-ir="inicio" disabled>Abrindo…</button></div>
   </section>
 
   <!-- INÍCIO -->
@@ -1251,6 +1252,9 @@ h1, h2 { text-wrap: balance; }
     var b = e.target.closest('[data-ir]'); if (b) { irA(b.dataset.ir); return; }
     var a = e.target.closest('[data-aviso]'); if (a) aviso(a.dataset.aviso);
   });
+  // O toque só funciona depois que este script chega, no fim da página: até lá o botão diz "Abrindo…".
+  // Fica aqui, e não no fim do script, para o app abrir mesmo se algo adiante falhar.
+  var btnEntrar = $('#btn-entrar'); btnEntrar.disabled = false; btnEntrar.textContent = 'Entrar';
 
   /* ---------- Gaveta (folha que sobe) ---------- */
   function abrirGaveta(html, aoMontar) {
