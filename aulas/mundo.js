@@ -9,7 +9,7 @@ window.MundoAulas = function (raiz, opcoes) {
   el.className = 'au-mundo'; el.dataset.camera = 'jardim';
   el.innerHTML = '<div class="au-ceu" aria-hidden="true"></div><i class="au-estrelas" aria-hidden="true"></i><i class="au-astro" aria-hidden="true"></i>' +
     '<img class="au-nuvem n1" src="arte/aulas/nuvem1.webp" alt=""><img class="au-nuvem n2" src="arte/aulas/nuvem2.webp" alt=""><img class="au-nuvem n3" src="arte/aulas/nuvem1.webp" alt="">' +
-    '<div class="au-solo"><div class="au-morros" aria-hidden="true"></div><div class="au-campo" aria-hidden="true"></div><div class="au-canteiro"></div>' +
+    '<div class="au-solo"><div class="au-morros" aria-hidden="true"></div><div class="au-gramado" aria-hidden="true"></div><div class="au-canteiro"></div>' +
     '<div class="au-borboleta" aria-hidden="true"><svg viewBox="0 0 40 30"><g class="asa e"><ellipse cx="11" cy="10" rx="10" ry="9" fill="#F4A9C4"/><ellipse cx="13" cy="21" rx="7" ry="6" fill="#F9C7A0"/></g><g class="asa d"><ellipse cx="29" cy="10" rx="10" ry="9" fill="#F4A9C4"/><ellipse cx="27" cy="21" rx="7" ry="6" fill="#F9C7A0"/></g><ellipse cx="20" cy="15" rx="2" ry="9" fill="#5A4030"/></svg></div>' +
     '<div class="au-frente" aria-hidden="true"></div></div>';
   raiz.insertBefore(el, raiz.firstChild);

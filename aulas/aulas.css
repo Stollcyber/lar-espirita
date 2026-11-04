@@ -237,10 +237,10 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
 .au-mundo[data-camera="alto"] .au-solo { transform: translateY(78%); }
 .au-mundo[data-camera="sala"] .au-solo { transform: translateY(74%); }
 .au-morros { position: absolute; left: -3%; right: -3%; bottom: 58%; aspect-ratio: 1600 / 520; min-height: 190px; background: url('../arte/aulas/morros.webp') center bottom / cover no-repeat; }
-.au-campo { position: absolute; left: 0; right: 0; top: 32%; bottom: 0; background: #7FB34F url('../arte/aulas/campo.webp') center top / cover no-repeat; }
+.au-gramado { position: absolute; left: 0; right: 0; top: 32%; bottom: 0; background: #7FB34F url('../arte/aulas/campo.webp') center top / cover no-repeat; }
 .au-frente { position: absolute; left: -4%; right: -4%; bottom: -2px; height: 19%; z-index: 95; pointer-events: none; background: url('../arte/aulas/frente.webp') center bottom / auto 100% repeat-x; transform-origin: 50% 100%; animation: au-vento 7s ease-in-out infinite; }
 @keyframes au-vento { 0%, 100% { transform: skewX(-1.6deg); } 50% { transform: skewX(1.6deg); } }
-.au-mundo[data-hora="noite"] .au-morros, .au-mundo[data-hora="noite"] .au-campo, .au-mundo[data-hora="noite"] .au-frente { filter: brightness(.42) saturate(.75) hue-rotate(18deg); }
+.au-mundo[data-hora="noite"] .au-morros, .au-mundo[data-hora="noite"] .au-gramado, .au-mundo[data-hora="noite"] .au-frente { filter: brightness(.42) saturate(.75) hue-rotate(18deg); }
 .au-mundo[data-hora="noite"] .au-planta svg { filter: brightness(.78) drop-shadow(0 3px 2px rgba(10,10,40,.5)); }
 .au-mundo[data-hora="noite"] .au-vaga { width: 18px; height: 18px; }
 .au-canteiro { position: absolute; inset: 0; }
@@ -262,8 +262,9 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
 .au-vista[data-vista="inicio"] button, .au-vista[data-vista="inicio"] input, .au-vista[data-vista="plantio"] button { pointer-events: auto; }
 .au-casa { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none; }
 .au-casa::-webkit-scrollbar { display: none; }
-@media (max-height: 560px) { .au-vista[data-vista="inicio"] { pointer-events: auto; } }
-.au-marca { flex: 1; min-width: 0; font-family: var(--f-leitura); font-weight: 600; font-size: 1.15em; }
+/* Tela baixa (quase todo iPhone com a barra do navegador): o início passa da altura e o dedo precisa conseguir rolar. */
+@media (max-height: 720px) { .au-vista[data-vista="inicio"] { pointer-events: auto; } }
+.au-marca { flex: 1; min-width: 0; font-family: var(--f-leitura); font-weight: 600; font-size: 1.15em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .au-casa-ceu { width: min(760px, calc(100% - 2 * clamp(16px, 5vw, 64px))); margin: clamp(2px, 2vh, 26px) clamp(16px, 5vw, 64px) 0; }
 .au-casa-ceu .au-titulo { font-size: clamp(1.9em, 3.8vw + 12px, 3.4em); letter-spacing: -.01em; text-shadow: 0 1px 18px rgba(255,255,255,.55); }
 .au-casa-ceu .au-busca { margin-top: clamp(10px, 2vh, 20px); }
@@ -338,7 +339,18 @@ details.au-det summary { cursor: pointer; font-weight: 600; min-height: 40px; di
   .au-poste { display: none; }
   .au-tabua.a, .au-tabua.b { transform: none; }
   .au-vista:not([data-vista="inicio"]):not([data-vista="plantio"]):not([data-vista="sala"]) .au-coluna { background: #FFFCF3; padding-left: 18px; }
+  /* Mural no celular: tintas menores, para os botões não ficarem escondidos atrás do rodapé. */
+  .au-mural { gap: 6px; }
+  .au-tela-mural { min-height: 170px; }
+  .au-tintas { gap: 6px; }
+  .au-tinta, .au-pincel { width: 38px; height: 38px; }
+  .au-tinta { border-width: 3px; }
+  .au-mural .au-rodape { gap: 6px; flex-wrap: wrap; }
+  .au-mural .au-rodape .au-pilula, .au-mural .au-rodape .au-acao { min-height: 42px !important; padding: 6px 14px; font-size: .9em !important; }
 }
+/* O nome da turma não pode cobrir o título: em tela estreita, some o título; nome longo vira reticências. */
+.au-topo .au-pilula[data-ver] { display: block; flex-shrink: 1; min-width: 0; max-width: 66%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+@media (max-width: 420px) { .au-marca { visibility: hidden; } }
 @media (prefers-reduced-motion: reduce) { .au-nuvem, .au-frente, .au-borboleta, .au-borboleta .asa, .brt, .brt-olhos, .brt-folhas, .au-planta.toque svg, .feliz .brt, .au-comemora .brt { animation: none !important; } .au-solo, .au-astro, .au-mundo { transition: none; } }
 
 /* O círculo de respirar não pode parecer um segundo sol */

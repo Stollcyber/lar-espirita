@@ -4660,7 +4660,9 @@ h1, h2 { text-wrap: balance; }
   }
 
   /* ---------- Evangelização: o módulo de aulas conversa com o app só por aqui (aulas/aulas.js) ---------- */
-  if (window.IniciarAulas) window.IniciarAulas({
+  // Se o módulo falhar ao iniciar, o resto do app segue funcionando e o botão Aulas some.
+  var aulasOk = false;
+  try { if (window.IniciarAulas) { window.IniciarAulas({
     app: app, G: G, anima: anima, esc: esc, Som: Som, irA: irA, aoEntrar: aoEntrar, aoSair: aoSair, aviso: aviso, brilho: brilho,
     abrirGaveta: abrirGaveta, fecharGaveta: fecharGaveta, lerLocal: lerLocal, gravarLocal: gravarLocal, abrirLivro: abrirLivro,
     buscar: function (texto, quantos) { return montarIndice().then(function () { return buscar(texto, 'todas', quantos); }); },
@@ -4674,7 +4676,8 @@ h1, h2 { text-wrap: balance; }
         abrirLivro(obra, undefined, undefined, voltar);
       });
     }
-  });
+  }); aulasOk = true; } } catch (e) { if (window.console) console.error('Aulas não iniciou:', e); }
+  if (!aulasOk) $$('.nav button[data-ir="aulas"]').forEach(function (b) { b.hidden = true; b.parentNode.style.gridTemplateColumns = 'repeat(4, minmax(0, 1fr))'; });
 
   atualizarInicio(); atualizarIA();
 
